@@ -8,37 +8,48 @@ public class Duke{
     public static void initiliase(){
         Scanner inputScanner= new Scanner(System.in);
         printLines();
-        System.out.println("Hello! I'm Mike!\nMay I have your name please?");
+        System.out.println("Hello! I'm Mike!\nEnter your name:");
         printLines();
-        String name= inputScanner.nextLine();
+        String nameOfUser= inputScanner.nextLine();
         printLines();
-        System.out.println("Alright " +name+ " , What can I do for you?");
+        System.out.println("Alright " +nameOfUser+ " , What can I do for you?");
         printLines();
     }
-    public static void main(String[] args) {
+    public static void commands(Task tasks) {
         Scanner inputScanner= new Scanner(System.in);
-        String input;
-        Task tasks=new Task();
-        initiliase();
-        input=inputScanner.nextLine();
+        String command;
+        command=inputScanner.nextLine();
+        while (!command.equals("bye")) {
+            String[] words =command.split(" ");
+            if (command.equals("list")) {
+                printLines();
+                tasks.printTasks();
+                printLines();
+                command=inputScanner.nextLine();
 
-        while (!input.equals("bye")) {
-            if (input.equals("list")) {
+            } else if (words[0].equals("done") & words.length==2) {
                 printLines();
-                tasks.printTask();
+                tasks.completeTasks(Integer.parseInt(words[1]));
                 printLines();
-                input=inputScanner.nextLine();
+                command=inputScanner.nextLine();
+
             } else {
                 printLines();
-                tasks.addTask(input);
+                tasks.addTask(command);
                 printLines();
-                input=inputScanner.nextLine();
+                command=inputScanner.nextLine();
             }
         }
-
         printLines();
         System.out.println("Bye.Hope to see you again soon!");
         printLines();
+
+    }
+    public static void main(String[] args) {
+        Task tasks=new Task();
+        initiliase();
+        commands(tasks);
+
 
     }
 }
