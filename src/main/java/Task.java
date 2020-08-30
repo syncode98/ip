@@ -1,84 +1,72 @@
 public class Task {
-    private String[] tasks;
-    private static int taskIndex=0;
-    private int[] completion;
+    private String task;
+    private boolean isDone;
+    private static int numberOfTasks =0;
 
-    public Task(String[] tasks, int taskNumber, int[] completion) {
-        this.tasks = tasks;
-        taskIndex=taskNumber;
-        this.completion = completion;
+    public Task(String task, boolean isDone) {
+        this.task = task;
+        this.isDone = isDone;
     }
     public Task(){
-        this.tasks=new String[100];
-        this.completion=new int[100];
-        for (int i=0;i <100; i++) {
-            this.completion[i]=-1;
-        }
-        taskIndex=0;
+        this(null,false);
     }
 
-    public int[] getCompletion() {
-        return completion;
+    public String getTask() {
+        return task;
     }
 
-    public void setCompletion(int[] completion) {
-        this.completion = completion;
+    public void setTask(String task) {
+        this.task = task;
     }
 
-    public String[] getTasks() {
-        return tasks;
+    public boolean getIsDone() {
+        return isDone;
     }
 
-    public void setTasks(String[] tasks) {
-        this.tasks = tasks;
+    public void setDone(boolean done) {
+        isDone = done;
     }
 
-    public static int getTaskIndex() {
-        return taskIndex;
+    public static int getNumberOfTasks() {
+        return numberOfTasks;
     }
 
-    public static void setTaskIndex(int taskIndex) {
-        Task.taskIndex = taskIndex;
+    public static void setNumberOfTasks(int numberOfTasks) {
+        Task.numberOfTasks = numberOfTasks;
     }
 
-    public void addTask(String task){
-        this.tasks[taskIndex]=task;
-        this.completion[taskIndex]=0;
-        taskIndex++;
+    public static void printLines(){
+        System.out.println("-------------------------------");
+    }
+    public void addTask(String task) {
+        printLines();
+        this.task=task;
         System.out.println("added: "+task);
+        numberOfTasks++;
+        printLines();
     }
+    public void completeTask() {
+        printLines();
+        if (this.isDone) {
+            System.out.println("The task has already been completed");
+        } else if (this.task==null) {
+            System.out.println("The task does not exist");
 
-    public void printTasks(){
-        int index=0;
-        char complete='\u2713'; //code for tick
-        char incomplete='\u2A09'; //code for cross
-        System.out.println("Here are the tasks in your list:");
-        for (int i=0;i<taskIndex;i++) {
-            index++;
-            char symbol=(this.completion[i]==1) ? complete:incomplete;
-            System.out.println((index)+ ".["+ symbol +"]"+this.tasks[i]);
-        }
-    }
-/*
- *The completion int array stores dictates if a task has been
- *completed or not. -1 is assigned to tasks that have not been created yet.
- *0 is assigned to tasks that have been created but are not complete
- *1 is for tasks that have been completed
- *
- */
-    public void completeTasks(int taskNumber){
-        taskNumber--;
-        char complete='\u2713';
-        if (this.completion[taskNumber] == 0 ) {
-            this.completion[taskNumber]=1;
+        } else {
+            this.isDone=true;
+            char complete='\u2713';
             System.out.println("Nice! I've marked this task as done:");
-            System.out.println("["+ complete +"]"+this.tasks[taskNumber]);
+            System.out.println("["+ complete +"]"+this.task);
         }
-        else if (this.completion[taskNumber] == 1 ) {
-            System.out.println("Task already completed");
-        }
-        else {
-            System.out.println("Task does not exist ");
-        }
+
+        printLines();
+    }
+    public void printTasks(int indexOfTask){
+        char complete='\u2713'; //unicode values for tick
+        char incomplete='\u2A09'; //unicode values for cross
+        char symbol=(this.isDone)?complete:incomplete;
+        System.out.println((indexOfTask)+ ".["+ symbol +"]"+this.task);
+
     }
 }
+
