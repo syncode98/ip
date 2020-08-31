@@ -19,7 +19,7 @@ public class Task {
         this.task = task;
     }
 
-    public boolean getIsDone() {
+    public boolean getDone() {
         return isDone;
     }
 
@@ -38,12 +38,13 @@ public class Task {
     public static void printLines(){
         System.out.println("-------------------------------");
     }
-    public void addTask(String task) {
+
+    public void addTask() {
         printLines();
-        this.task=task;
-        System.out.println("added: "+task);
+        //this.task=task;
+        System.out.println("Got it.I've added this task:\n "+ this.toString());
+        //System.out.println("added: "+task);
         numberOfTasks++;
-        printLines();
     }
     public void completeTask() {
         printLines();
@@ -56,17 +57,17 @@ public class Task {
             this.isDone=true;
             char complete='\u2713';
             System.out.println("Nice! I've marked this task as done:");
-            System.out.println("["+ complete +"]"+this.task);
+            System.out.println(this.toString());
         }
 
         printLines();
     }
-    public void printTasks(int indexOfTask){
+    @Override
+    public String toString() {
         char complete='\u2713'; //unicode values for tick
         char incomplete='\u2A09'; //unicode values for cross
         char symbol=(this.isDone)?complete:incomplete;
-        System.out.println((indexOfTask)+ ".["+ symbol +"]"+this.task);
-
+        return "["+ symbol +"]"+this.task;
     }
 }
 
