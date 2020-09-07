@@ -1,10 +1,21 @@
 import java.util.Scanner;
 
 public class Duke {
-
+/**Declaring the array for the project*/
     public static final int MAX_SIZE = 100;
     private static Task[] tasks=new Task[MAX_SIZE];
-    public static Scanner inputScanner= new Scanner(System.in);
+
+    /**Scanner object initialised so that it can be used throughout Duke class*/
+    private static Scanner inputScanner= new Scanner(System.in);
+
+    /**defining the inputs beforehand*/
+    private static String INPUT_BYE ="bye";
+    private static String INPUT_LIST ="list";
+    private static String INPUT_DONE ="done";
+    private static String INPUT_TODO ="todo";
+    private static String INPUT_DEADLINE ="deadline";
+    private static String INPUT_EVENT ="event";
+
 
     public static void main(String[] args) {
         initialiseMike();
@@ -22,31 +33,39 @@ public class Duke {
 
     }
     public static void readInput(String command) {
-        while (!command.equals("bye")) {
+        while (!command.equals(INPUT_BYE)) {
 
-            if (command.equals("list")) {
+            if (command.equals(INPUT_LIST)) {
                 printAllTasks(tasks);
 
-            }else if (command.contains("done")) {
-                command=command.replace("done","").strip();
-                int indexOfTask=Integer.parseInt(command)-1;
-                tasks[indexOfTask].completeTask();
+            }else if (command.contains(INPUT_DONE)) {
+                command=command.replace(INPUT_DONE,"").strip();
+                int indexOfTask=Integer.parseInt(command);
+                if (indexOfTask<=Task.getNumberOfTasks()) {
+                    indexOfTask=indexOfTask-1;
+                    tasks[indexOfTask].completeTask();
+                } else{
+                    Task.printLines();
+                    System.out.println("The task does not exist");
+                    Task.printLines();
+                }
 
-            }else if (command.contains("todo")) {
+
+            }else if (command.contains(INPUT_TODO)) {
                 String task=command.replace("todo","");
                 Todo todo=new Todo(task);
                 addToTasks(todo);
 
-            } else if (command.contains("deadline")) {
+            } else if (command.contains(INPUT_DEADLINE)) {
                 String[] words=command.split("/");
-                String task=words[0].replace("deadline","");
+                String task=words[0].replace(INPUT_DEADLINE,"");
                 String givenDeadline = words[1].replaceFirst(" ", ":");
                 Deadline deadline =new Deadline(task,givenDeadline);
                 addToTasks(deadline);
 
-            } else if (command.contains("event")) {
+            } else if (command.contains(INPUT_EVENT)) {
                 String[] words= command.split("/");
-                String task = words[0].replace("event", "");
+                String task = words[0].replace(INPUT_EVENT, "");
                 String givenDeadline = words[1].replaceFirst(" ", ":");
                 Event event = new Event(task, givenDeadline);
                 addToTasks(event);

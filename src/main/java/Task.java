@@ -1,4 +1,4 @@
-public class Task {
+public  class Task {
     private String task;
     private boolean isDone;
     private static int numberOfTasks =0;
@@ -41,18 +41,13 @@ public class Task {
 
     public void addTask() {
         printLines();
-        //this.task=task;
         System.out.println("Got it.I've added this task:\n "+ this.toString());
-        //System.out.println("added: "+task);
         numberOfTasks++;
     }
     public void completeTask() {
         printLines();
         if (this.isDone) {
             System.out.println("The task has already been completed");
-        } else if (this.task==null) {
-            System.out.println("The task does not exist");
-
         } else {
             this.isDone=true;
             char complete='\u2713';
