@@ -38,13 +38,13 @@ public class Task {
 
 
     public void addTask() {
-        PrintMethod.printLines();
+
         System.out.println("Got it.I've added this task:\n " + this.toString());
         numberOfTasks++;
     }
 
     public void completeTask() {
-        PrintMethod.printLines();
+
         if (this.isDone) {
             System.out.println("The task has already been completed");
         } else {
@@ -54,7 +54,7 @@ public class Task {
             System.out.println(this.toString());
         }
 
-        PrintMethod.printLines();
+
     }
 
     @Override

@@ -2,6 +2,9 @@ import java.util.Scanner;
 
 public class PrintMethod {
     private static final char sadFace = '\u2639';
+
+
+
     public static void printLines() {
         System.out.println("-------------------------------");
     }
@@ -43,6 +46,17 @@ public class PrintMethod {
     public static void printWithinRangeTask() {
         System.out.println(sadFace + " Task number must be in between 1 and 100");
     }
+
+    public static void printEmptyDescription(String task) {
+        String description= task.equals(Duke.INPUT_EVENT)? ("n "+ task):(" "+task);
+        System.out.println(sadFace + " OOPS!!! The description of a"+description+ " cannot be empty.");
+    }
+    public static void printEmptyDate(String task) {
+
+        System.out.println(sadFace + " Enter a valid date for " + task + ".");
+    }
+
+
 
 
 }
