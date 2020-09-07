@@ -41,9 +41,7 @@ public class Duke {
                 readDone(command);
 
             } else if (command.contains(INPUT_TODO)) {
-                String task = command.replace(INPUT_TODO, "").strip();
-                Todo todo = new Todo(task);
-                addToTasks(todo);
+                readTodo(command);
 
             } else if (command.contains(INPUT_DEADLINE)) {
                 String[] words = command.split("/");
@@ -68,6 +66,28 @@ public class Duke {
 
     }
 
+    public static void readTodo(String command) {
+        Task.printLines();
+        try {
+            String task = returnTask(command);
+            Todo todo = new Todo(task);
+            addToTasks(todo);
+        } catch (IllegalDescriptionException d) {
+            char sadFace = '\u2639';
+            System.out.println(sadFace + " OOPS!!! The description of a todo cannot be empty.");
+        }
+        Task.printLines();
+
+    }
+
+    public static String returnTask(String command) throws IllegalDescriptionException {
+        String task = command.replace(INPUT_TODO, "").strip();
+        if (task.equals("")) {
+            throw new IllegalDescriptionException();
+        }
+        return task;
+    }
+
     public static void readDone(String command) {
         Task.printLines();
         try {
@@ -75,14 +95,14 @@ public class Duke {
             int indexOfTask = findTaskNumber(command);
             tasks[indexOfTask].completeTask();
 
-        } catch (NumberFormatException n) {
+        } catch (NumberFormatException n) { //If user inputs command done without any number
             printInvalidDone();
 
-        } catch (IllegalNumberException i) {
+        } catch (IllegalNumberException i) { //
             printInvalidTask();
 
-        } catch(ArrayIndexOutOfBoundsException a) {
-            printNegativeTask();
+        } catch (ArrayIndexOutOfBoundsException a) {
+            printWithinRangeTask();
 
         }
         Task.printLines();
@@ -92,10 +112,10 @@ public class Duke {
 
         int indexOfTask;
         indexOfTask = Integer.parseInt(command);
-        if (indexOfTask > Task.getNumberOfTasks()) {
+        if (indexOfTask > Task.getNumberOfTasks() && indexOfTask <= MAX_SIZE) {
             throw new IllegalNumberException();
         }
-        return indexOfTask-1;
+        return indexOfTask - 1;
 
     }
 
@@ -125,9 +145,10 @@ public class Duke {
         char sadFace = '\u2639';
         System.out.println(sadFace + " Task does not exist in list!");
     }
-    public static void printNegativeTask() {
+
+    public static void printWithinRangeTask() {
         char sadFace = '\u2639';
-        System.out.println(sadFace + " Task number must be greater than 0!");
+        System.out.println(sadFace + " Task number must be in between 1 and 100");
     }
 
 
