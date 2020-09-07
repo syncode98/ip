@@ -36,18 +36,15 @@ public class Task {
         Task.numberOfTasks = numberOfTasks;
     }
 
-    public static void printLines() {
-        System.out.println("-------------------------------");
-    }
 
     public void addTask() {
-        printLines();
+        PrintMethod.printLines();
         System.out.println("Got it.I've added this task:\n " + this.toString());
         numberOfTasks++;
     }
 
     public void completeTask() {
-        printLines();
+        PrintMethod.printLines();
         if (this.isDone) {
             System.out.println("The task has already been completed");
         } else {
@@ -57,7 +54,7 @@ public class Task {
             System.out.println(this.toString());
         }
 
-        printLines();
+        PrintMethod.printLines();
     }
 
     @Override
