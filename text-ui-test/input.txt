@@ -17,6 +17,7 @@ event project meeting /at Mon 2-4pm
 dedline
 list
 done 2
+done 2
 tod
 list
 bye

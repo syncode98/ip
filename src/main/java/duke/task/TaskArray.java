@@ -1,5 +1,7 @@
-package duke;
+package duke.task;
 
+import duke.Duke;
+import duke.PrintMethod;
 import duke.exception.IllegalEmptyDescriptionException;
 import duke.exception.IllegalNumberException;
 import duke.exception.IllegalPrepositionWithoutDate;

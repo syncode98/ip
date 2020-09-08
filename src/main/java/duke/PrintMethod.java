@@ -45,11 +45,11 @@ public class PrintMethod {
     }
 
     public static void printInvalidTask() {
-        System.out.println(sadFace + " Duke.Task does not exist in list!");
+        System.out.println(sadFace + " Task does not exist in list!");
     }
 
     public static void printWithinRangeTask() {
-        System.out.println(sadFace + " Duke.Task number must be in between 1 and 100");
+        System.out.println(sadFace + " Task number must be in between 1 and 100.");
     }
 
     public static void printEmptyDescription(String task) {
