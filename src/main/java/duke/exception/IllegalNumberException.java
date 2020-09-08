@@ -1,3 +1,5 @@
+package duke.exception;
+
 /**
  * To be called if user enters done command without a taskNumber
  */
