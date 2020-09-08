@@ -53,7 +53,7 @@ public class PrintMethod {
     }
 
     public static void printEmptyDescription(String task) {
-        String description = task.equals(Duke.INPUT_EVENT) ? ("n " + task) : (" " + task);
+        String description = task.equals(Duke.KEYWORD_EVENT) ? ("n " + task) : (" " + task);
         System.out.println(sadFace + " OOPS!!! The description of a" + description + " cannot be empty.");
     }
 
