@@ -1,8 +1,22 @@
 Muthu
-deadline return book /by Sunday
-event project meeting /at Mon 2-4pm
+todo
 todo read book
 list
+done -1
 done 2
+done 101
+deadline
+deadline return book
+deadline return book /by
+deadline return book /by Sunday
+list
+event
+event project meeting
+event project meeting /at
+event project meeting /at Mon 2-4pm
+dedline
+list
+done 2
+tod
 list
 bye

@@ -1,11 +1,9 @@
 import java.util.Scanner;
 
 public class Duke {
-
     private static final int MAX_SIZE = 100;
     private static Task[] tasks = new Task[MAX_SIZE];
-    private static Scanner inputScanner = new Scanner(System.in);
-
+    public static Scanner inputScanner = new Scanner(System.in);
 
     public static String INPUT_BYE = "bye";
     public static String INPUT_LIST = "list";
@@ -13,20 +11,29 @@ public class Duke {
     public static String INPUT_TODO = "todo";
     public static String INPUT_DEADLINE = "deadline";
     public static String INPUT_EVENT = "event";
-    public static String EMPTY = "";
-    public static String SLASH = "/";
-    public static String SEMI_COLON = ":";
-    public static String SPACE = " ";
+    public static String DELIMITER_EMPTY_STRING = "";
+    public static String DELIMITER_SLASH = "/";
+    public static String DELIMITER_SEMI_COLON = ":";
+    public static String DELIMITER_CHARACTER = " ";
 
 
     public static void main(String[] args) {
-
-        PrintMethod.initialiseMike();
+        initialiseMike();
         readInput();
     }
 
-    public static void readInput() {
+    public static void initialiseMike() {
+        PrintMethod.printLines();
+        System.out.println("Hello! I'm Mike!\nEnter your name:");
+        PrintMethod.printLines();
+        String nameOfUser = inputScanner.nextLine();
+        PrintMethod.printLines();
+        System.out.println("Alright " + nameOfUser + " , What can I do for you?");
+        PrintMethod.printLines();
+    }
 
+
+    public static void readInput() {
         String command = inputScanner.nextLine();
         while (!command.equals(INPUT_BYE)) {
 
@@ -44,6 +51,9 @@ public class Duke {
 
             } else if (command.contains(INPUT_EVENT)) {
                 readEvent(command);
+
+            } else {
+                PrintMethod.invalidCommand();
 
             }
             command = inputScanner.nextLine();
@@ -82,8 +92,10 @@ public class Duke {
 
         } catch (IllegalEmptyDescriptionException i) {
             PrintMethod.printEmptyDescription(INPUT_DEADLINE);
+
         } catch (ArrayIndexOutOfBoundsException a) {
             PrintMethod.printEmptyDate(INPUT_DEADLINE);
+
         } catch (IllegalPrepositionWithoutDate p) {
             PrintMethod.printEmptyDate(INPUT_DEADLINE);
         }
@@ -104,7 +116,7 @@ public class Duke {
     }
 
     public static String returnTask(String command, String typeOfTask) throws IllegalEmptyDescriptionException {
-        String task = command.replace(typeOfTask, EMPTY).strip();
+        String task = command.replace(typeOfTask, DELIMITER_EMPTY_STRING).strip();
         if (task.equals("")) {
             throw new IllegalEmptyDescriptionException();
         }
@@ -114,7 +126,7 @@ public class Duke {
     public static void readDone(String command) {
         PrintMethod.printLines();
         try {
-            command = command.replace(INPUT_DONE, EMPTY).strip();
+            command = command.replace(INPUT_DONE, DELIMITER_EMPTY_STRING).strip();
             int indexOfTask = findTaskNumber(command);
             tasks[indexOfTask].completeTask();
 
@@ -152,25 +164,34 @@ public class Duke {
         System.out.println("Now you have " + Task.getNumberOfTasks() + " tasks in the list.");
     }
 
+    /**
+     * Returns the preposition and the deadline of the given task.
+     *
+     * @param typeOfTask
+     * @param command
+     * @return
+     * @throws IllegalEmptyDescriptionException
+     * @throws IllegalPrepositionWithoutDate
+     */
     public static String[] parseString(String typeOfTask, String command) throws IllegalEmptyDescriptionException,
             IllegalPrepositionWithoutDate {
 
-        String[] words = command.split(SLASH);
+        String[] words = command.split(DELIMITER_SLASH);
         String task = returnTask(words[0], typeOfTask);
         words[0] = task;
         String deadlineForTask = words[1].strip();
 
 
         //splits the deadline into its preposition and the date
-        String[] descriptorsForDate = deadlineForTask.split(SPACE);
+        String[] descriptorsForDate = deadlineForTask.split(DELIMITER_CHARACTER);
         String preposition = descriptorsForDate[0].strip();
-        deadlineForTask = deadlineForTask.replace(preposition, EMPTY).strip();
+        deadlineForTask = deadlineForTask.replace(preposition, DELIMITER_EMPTY_STRING).strip();
 
-        if (deadlineForTask.equals(EMPTY)) {
+        if (deadlineForTask.equals(DELIMITER_EMPTY_STRING)) {
             throw new IllegalPrepositionWithoutDate();
         }
 
-        words[1] = preposition + SEMI_COLON + deadlineForTask;
+        words[1] = preposition + DELIMITER_SEMI_COLON + deadlineForTask;
         return words;
 
     }

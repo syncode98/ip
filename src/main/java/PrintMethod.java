@@ -1,37 +1,40 @@
 import java.util.Scanner;
 
 public class PrintMethod {
-    private static final char sadFace = '\u2639';
-
+    public static final char sadFace = '\u2639';
 
 
     public static void printLines() {
-        System.out.println("-------------------------------");
+        System.out.println("-------------------------------------------------------------");
     }
+
     public static void exitCommand() {
         printLines();
         System.out.println("Bye.Hope to see you again soon!");
         printLines();
     }
 
-    public static void initialiseMike() {
-        Scanner inputScanner = new Scanner(System.in);
-        printLines();
-        System.out.println("Hello! I'm Mike!\nEnter your name:");
-        printLines();
-        String nameOfUser = inputScanner.nextLine();
-        printLines();
-        System.out.println("Alright " + nameOfUser + " , What can I do for you?");
-        printLines();
-    }
 
     public static void printAllTasks(Task[] tasks) {
         printLines();
-        System.out.println("Here are the tasks in your list:");
-        for (int i = 0; i < Task.getNumberOfTasks(); i++) {
-            int indexOfTask = i + 1;
-            System.out.println(indexOfTask + "." + tasks[i].toString());
+
+        if (Task.getNumberOfTasks() == 0) {
+            System.out.println("There are currently no tasks available!");
+        } else {
+            System.out.println("Here are the tasks in your list:");
+            for (int i = 0; i < Task.getNumberOfTasks(); i++) {
+                int indexOfTask = i + 1;
+                System.out.println(indexOfTask + "." + tasks[i].toString());
+            }
+
         }
+
+        printLines();
+    }
+
+    public static void invalidCommand() {
+        printLines();
+        System.out.println(sadFace + " OOPS!!! I'm sorry, but I don't know what that means :-(");
         printLines();
     }
 
@@ -48,15 +51,14 @@ public class PrintMethod {
     }
 
     public static void printEmptyDescription(String task) {
-        String description= task.equals(Duke.INPUT_EVENT)? ("n "+ task):(" "+task);
-        System.out.println(sadFace + " OOPS!!! The description of a"+description+ " cannot be empty.");
+        String description = task.equals(Duke.INPUT_EVENT) ? ("n " + task) : (" " + task);
+        System.out.println(sadFace + " OOPS!!! The description of a" + description + " cannot be empty.");
     }
+
     public static void printEmptyDate(String task) {
 
         System.out.println(sadFace + " Enter a valid date for " + task + ".");
     }
-
-
 
 
 }

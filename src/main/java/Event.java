@@ -7,7 +7,7 @@ public class Event extends Task {
     }
 
     public Event(String task, String startAndEndTime) {
-        super(task,false);
+        super(task, false);
         this.startAndEndTime = startAndEndTime;
     }
 
@@ -21,6 +21,6 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return "[E]" + super.toString()+"("+this.startAndEndTime + ")" ;
+        return "[E]" + super.toString() + "(" + this.startAndEndTime + ")";
     }
 }

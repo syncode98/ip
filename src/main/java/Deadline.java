@@ -7,12 +7,13 @@ public class Deadline extends Task {
     }
 
     public Deadline(String task, String deadline) {
-        super(task,false);
+        super(task, false);
         this.deadline = deadline;
     }
+
     public Deadline() {
-        super(null,false);
-        this.deadline=null;
+        super(null, false);
+        this.deadline = null;
     }
 
     public String getDeadline() {
@@ -25,7 +26,7 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        return "[D]" + super.toString()+"("+this.deadline + ")" ;
+        return "[D]" + super.toString() + "(" + this.deadline + ")";
     }
 
 }
