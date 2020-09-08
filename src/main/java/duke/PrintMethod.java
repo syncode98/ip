@@ -1,4 +1,6 @@
-import java.util.Scanner;
+package duke;
+
+import duke.task.Task;
 
 public class PrintMethod {
     public static final char sadFace = '\u2639';
@@ -47,11 +49,11 @@ public class PrintMethod {
     }
 
     public static void printWithinRangeTask() {
-        System.out.println(sadFace + " Task number must be in between 1 and 100");
+        System.out.println(sadFace + " Task number must be in between 1 and 100.");
     }
 
     public static void printEmptyDescription(String task) {
-        String description = task.equals(Duke.INPUT_EVENT) ? ("n " + task) : (" " + task);
+        String description = task.equals(Duke.KEYWORD_EVENT) ? ("n " + task) : (" " + task);
         System.out.println(sadFace + " OOPS!!! The description of a" + description + " cannot be empty.");
     }
 

@@ -16,3 +16,6 @@ bin/
 /text-ui-test/ACTUAL.txt
 text-ui-test/EXPECTED-UNIX.TXT
 src/main/java/Task_edit.java
+text-ui-test/runtest.sh
+CONTRIBUTORS.md
+README.md
