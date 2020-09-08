@@ -4,7 +4,7 @@ public class Todo extends Task {
     }
 
     public Todo(String task) {
-        super(task,false);
+        super(task, false);
     }
 
     @Override
@@ -13,3 +13,4 @@ public class Todo extends Task {
     }
 
 }
+
