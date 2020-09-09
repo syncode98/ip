@@ -32,6 +32,7 @@ public class Duke {
     }
 
 
+    /** Reads the input and calls the corresponding method*/
     public static void readInput() {
         String input = inputScanner.nextLine();
         while (!input.equals(KEYWORD_BYE)) {
