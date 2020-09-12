@@ -10,11 +10,14 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.Todo;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class TaskArray {
     public static final int MAX_SIZE = 100;
-    public static Task[] tasks = new Task[MAX_SIZE];
+    //public static Task[] tasks = new Task[MAX_SIZE];
+    public static ArrayList<Task> taskArrayList = new ArrayList<>();
 
     public static String DELIMITER_EMPTY_STRING = "";
     public static String DELIMITER_SLASH = "/";
@@ -82,7 +85,7 @@ public class TaskArray {
         try {
             command = command.replace(Duke.KEYWORD_DONE, DELIMITER_EMPTY_STRING).strip();
             int indexOfTask = findTaskNumber(command);
-            tasks[indexOfTask].completeTask();
+            taskArrayList.get(indexOfTask).completeTask();
 
         } catch (NumberFormatException n) {
             //Alerts user upon not entering a task number
@@ -92,7 +95,7 @@ public class TaskArray {
             //Alerts user upon entering a task that has not been initialised
             PrintMethod.printInvalidTask();
 
-        } catch (ArrayIndexOutOfBoundsException a) {
+        } catch (IndexOutOfBoundsException o) {
             //Alerts user upon entering a number that is out of range
             PrintMethod.printWithinRangeTask();
 
@@ -105,7 +108,7 @@ public class TaskArray {
 
         int indexOfTask;
         indexOfTask = Integer.parseInt(command);
-        if (indexOfTask > Task.getNumberOfTasks() && indexOfTask <= MAX_SIZE) {
+        if (indexOfTask > taskArrayList.size() && indexOfTask <= MAX_SIZE) {
             throw new IllegalNumberException();
         }
         return indexOfTask - 1;
@@ -113,13 +116,14 @@ public class TaskArray {
     }
 
     public static void addToTasks(Task task) {
-        tasks[Task.getNumberOfTasks()] = task;
+        taskArrayList.add(task);
+        //tasks[Task.getNumberOfTasks()] = task;
         task.addTask();
-        System.out.println("Now you have " + Task.getNumberOfTasks() + " tasks in the list.");
+        System.out.println("Now you have " + taskArrayList.size() + " tasks in the list.");
     }
 
     public static void printTasks() {
-        PrintMethod.printAllTasks(tasks);
+        PrintMethod.printAllTasks(taskArrayList);
     }
 
     /**
@@ -151,6 +155,22 @@ public class TaskArray {
 
         words[1] = preposition + DELIMITER_SEMI_COLON + deadlineForTask;
         return words;
+
+    }
+
+    public static void deleteTask(String command) {
+        PrintMethod.printLines();
+        try {
+            command = command.replace(Duke.KEYWORD_DELETE, DELIMITER_EMPTY_STRING).strip();
+            int indexOfTask = findTaskNumber(command);
+            taskArrayList.remove(indexOfTask);
+            System.out.println("Now you have " + taskArrayList.size() + " tasks in the list.");
+
+        } catch (IllegalNumberException e) {
+            PrintMethod.printInvalidTask();
+        }
+        PrintMethod.printLines();
+
 
     }
 }

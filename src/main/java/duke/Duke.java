@@ -14,6 +14,7 @@ public class Duke {
     public static String KEYWORD_TODO = "todo";
     public static String KEYWORD_DEADLINE = "deadline";
     public static String KEYWORD_EVENT = "event";
+    public static String KEYWORD_DELETE = "delete";
 
 
     public static void main(String[] args) {
@@ -32,7 +33,7 @@ public class Duke {
     }
 
 
-    /** Reads the input and calls the corresponding method*/
+    /** Reads the input and calls the corresponding method */
     public static void readInput() {
         String input = inputScanner.nextLine();
         while (!input.equals(KEYWORD_BYE)) {
@@ -51,6 +52,9 @@ public class Duke {
 
             } else if (input.contains(KEYWORD_EVENT)) {
                 TaskArray.readEvent(input);
+
+            } else if (input.contains(KEYWORD_DELETE)) {
+                TaskArray.deleteTask(input);
 
             } else {
                 PrintMethod.invalidCommand();

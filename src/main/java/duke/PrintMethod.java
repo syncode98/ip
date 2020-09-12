@@ -1,6 +1,9 @@
 package duke;
 
 import duke.task.Task;
+import duke.task.TaskArray;
+
+import java.util.ArrayList;
 
 public class PrintMethod {
     public static final char sadFace = '\u2639';
@@ -17,17 +20,22 @@ public class PrintMethod {
     }
 
 
-    public static void printAllTasks(Task[] tasks) {
+    public static void printAllTasks( ArrayList<Task> taskArrayList) {
         printLines();
 
-        if (Task.getNumberOfTasks() == 0) {
+        if (TaskArray.taskArrayList.size() == 0) {
             System.out.println("There are currently no tasks available!");
         } else {
             System.out.println("Here are the tasks in your list:");
-            for (int i = 0; i < Task.getNumberOfTasks(); i++) {
-                int indexOfTask = i + 1;
-                System.out.println(indexOfTask + "." + tasks[i].toString());
+            for (Task task : TaskArray.taskArrayList) {
+                int indexOfTask = TaskArray.taskArrayList.indexOf(task)+1;
+                System.out.println(indexOfTask+"." + task.toString());
             }
+
+//            for (int i = 0; i < Task.getNumberOfTasks(); i++) {
+//                int indexOfTask = i + 1;
+//                System.out.println(indexOfTask + "." + tasks[i].toString());
+//            }
 
         }
 

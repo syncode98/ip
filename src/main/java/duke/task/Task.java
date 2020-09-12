@@ -3,7 +3,7 @@ package duke.task;
 public class Task {
     private String task;
     private boolean isDone;
-    private static int numberOfTasks = 0;
+    //private static int numberOfTasks = 0;
 
     public Task(String task, boolean isDone) {
         this.task = task;
@@ -30,19 +30,19 @@ public class Task {
         isDone = done;
     }
 
-    public static int getNumberOfTasks() {
-        return numberOfTasks;
-    }
-
-    public static void setNumberOfTasks(int numberOfTasks) {
-        Task.numberOfTasks = numberOfTasks;
-    }
+//    //public static int getNumberOfTasks() {
+//        return numberOfTasks;
+//    }
+//
+//   // public static void setNumberOfTasks(int numberOfTasks) {
+//        Task.numberOfTasks = numberOfTasks;
+//    }
 
 
     public void addTask() {
 
         System.out.println("Got it.I've added this task:\n " + this.toString());
-        numberOfTasks++;
+        //numberOfTasks++;
     }
 
     public void completeTask() {
