@@ -42,7 +42,7 @@ public class Duke {
                 TaskArray.printTasks();
 
             } else if (input.contains(KEYWORD_DONE)) {
-                TaskArray.readDoneAndDelete(input,KEYWORD_DONE);
+                TaskArray.readDoneAndDelete(input, KEYWORD_DONE);
 
             } else if (input.contains(KEYWORD_TODO)) {
                 TaskArray.readTodo(input);
@@ -54,7 +54,7 @@ public class Duke {
                 TaskArray.readEvent(input);
 
             } else if (input.contains(KEYWORD_DELETE)) {
-                TaskArray.readDoneAndDelete(input,KEYWORD_DELETE);
+                TaskArray.readDoneAndDelete(input, KEYWORD_DELETE);
 
             } else {
                 PrintMethod.invalidCommand();

@@ -16,7 +16,6 @@ import java.util.Scanner;
 
 public class TaskArray {
     public static final int MAX_SIZE = 100;
-    //public static Task[] tasks = new Task[MAX_SIZE];
     public static ArrayList<Task> taskArrayList = new ArrayList<>();
 
     public static String DELIMITER_EMPTY_STRING = "";
@@ -85,15 +84,15 @@ public class TaskArray {
         try {
             command = command.replace(keyword, DELIMITER_EMPTY_STRING).strip();
             int indexOfTask = findTaskNumber(command);
-            Task current_task= taskArrayList.get(indexOfTask);
+            Task current_task = taskArrayList.get(indexOfTask);
             if (keyword.equals(Duke.KEYWORD_DONE)) {
                 current_task.completeTask();
             } else {
 
                 System.out.println("Noted. I've removed this task:");
-                System.out.println(" "+current_task.toString());
+                System.out.println(" " + current_task.toString());
                 taskArrayList.remove(current_task);
-                System.out.println("Now you have " + taskArrayList.size() +" tasks in the list.");
+                System.out.println("Now you have " + taskArrayList.size() + " tasks in the list.");
             }
 
 
@@ -127,7 +126,6 @@ public class TaskArray {
 
     public static void addToTasks(Task task) {
         taskArrayList.add(task);
-        //tasks[Task.getNumberOfTasks()] = task;
         task.addTask();
         System.out.println("Now you have " + taskArrayList.size() + " tasks in the list.");
     }
@@ -168,21 +166,5 @@ public class TaskArray {
 
     }
 
-//    public static void deleteTask(String command) {
-//        PrintMethod.printLines();
-//        try {
-//            System.out.println("Noted. I've removed this task: ");
-//            command = command.replace(Duke.KEYWORD_DELETE, DELIMITER_EMPTY_STRING).strip();
-//            int indexOfTask = findTaskNumber(command);
-//            System.out.println(taskArrayList.toString());
-//            taskArrayList.remove(indexOfTask);
-//            System.out.println("Now you have " + taskArrayList.size() + " tasks in the list.");
-//
-//        } catch (IllegalNumberException e) {
-//            PrintMethod.printInvalidTask();
-//        }
-//        PrintMethod.printLines();
-//
-//
-//    }
+
 }

@@ -20,7 +20,7 @@ public class PrintMethod {
     }
 
 
-    public static void printAllTasks( ArrayList<Task> taskArrayList) {
+    public static void printAllTasks(ArrayList<Task> taskArrayList) {
         printLines();
 
         if (TaskArray.taskArrayList.size() == 0) {
@@ -28,15 +28,9 @@ public class PrintMethod {
         } else {
             System.out.println("Here are the tasks in your list:");
             for (Task task : TaskArray.taskArrayList) {
-                int indexOfTask = TaskArray.taskArrayList.indexOf(task)+1;
-                System.out.println(indexOfTask+"." + task.toString());
+                int indexOfTask = TaskArray.taskArrayList.indexOf(task) + 1;
+                System.out.println(indexOfTask + "." + task.toString());
             }
-
-//            for (int i = 0; i < Task.getNumberOfTasks(); i++) {
-//                int indexOfTask = i + 1;
-//                System.out.println(indexOfTask + "." + tasks[i].toString());
-//            }
-
         }
 
         printLines();
