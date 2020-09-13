@@ -10,6 +10,10 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.Todo;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class TaskArray {
@@ -35,6 +39,8 @@ public class TaskArray {
         } catch (ArrayIndexOutOfBoundsException | IllegalPrepositionWithoutDate a) {
             PrintMethod.printEmptyDate(Duke.KEYWORD_EVENT);
 
+        } catch (IOException e) {
+            System.out.println("Something went wrong: " + e.getMessage());
         }
         PrintMethod.printLines();
     }
@@ -52,6 +58,8 @@ public class TaskArray {
         } catch (ArrayIndexOutOfBoundsException | IllegalPrepositionWithoutDate a) {
             PrintMethod.printEmptyDate(Duke.KEYWORD_DEADLINE);
 
+        } catch (IOException e) {
+            System.out.println("Something went wrong: " + e.getMessage());
         }
         PrintMethod.printLines();
     }
@@ -64,6 +72,8 @@ public class TaskArray {
             addToTasks(todo);
         } catch (IllegalEmptyDescriptionException d) {
             PrintMethod.printEmptyDescription(Duke.KEYWORD_TODO);
+        } catch (IOException e) {
+            System.out.println("Something went wrong: " + e.getMessage());
         }
         PrintMethod.printLines();
 
@@ -83,6 +93,7 @@ public class TaskArray {
             command = command.replace(Duke.KEYWORD_DONE, DELIMITER_EMPTY_STRING).strip();
             int indexOfTask = findTaskNumber(command);
             tasks[indexOfTask].completeTask();
+            writeToFile(tasks[indexOfTask].toString());
 
         } catch (NumberFormatException n) {
             //Alerts user upon not entering a task number
@@ -96,6 +107,8 @@ public class TaskArray {
             //Alerts user upon entering a number that is out of range
             PrintMethod.printWithinRangeTask();
 
+        } catch (IOException e) {
+            System.out.println("Something went wrong: " + e.getMessage());
         }
         PrintMethod.printLines();
 
@@ -112,11 +125,14 @@ public class TaskArray {
 
     }
 
-    public static void addToTasks(Task task) {
+    public static void addToTasks(Task task) throws IOException {
         tasks[Task.getNumberOfTasks()] = task;
         task.addTask();
+        writeToFile(task.toString());
+
         System.out.println("Now you have " + Task.getNumberOfTasks() + " tasks in the list.");
     }
+
 
     public static void printTasks() {
         PrintMethod.printAllTasks(tasks);
@@ -153,4 +169,16 @@ public class TaskArray {
         return words;
 
     }
+
+
+    public static void writeToFile(String textToAdd) throws IOException{
+        String filePath = "data.txt";
+        //File f = new File(filePath);
+        //Scanner s = new Scanner(f);
+        FileWriter fw = new FileWriter(filePath, true);
+        fw.write(textToAdd + System.lineSeparator());
+        fw.close();
+    }
+
+
 }

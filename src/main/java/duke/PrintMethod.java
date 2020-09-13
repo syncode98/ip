@@ -2,6 +2,9 @@ package duke;
 
 import duke.task.Task;
 
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class PrintMethod {
     public static final char sadFace = '\u2639';
 
@@ -14,8 +17,8 @@ public class PrintMethod {
         printLines();
         System.out.println("Bye.Hope to see you again soon!");
         printLines();
-    }
 
+    }
 
     public static void printAllTasks(Task[] tasks) {
         printLines();
