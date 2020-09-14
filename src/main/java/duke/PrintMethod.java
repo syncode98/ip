@@ -1,19 +1,49 @@
 package duke;
 
 import duke.task.Task;
+import duke.task.TaskArray;
 
-import java.io.FileWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.nio.file.Files;
+import java.nio.file.InvalidPathException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.io.IOException;
+import java.util.Scanner;
 
 public class PrintMethod {
     public static final char sadFace = '\u2639';
 
+    public static void printContents(){
+        String directory = "src";
+        //Path directoryPath=Paths.get(directory);
+        File directory1=new File(directory);
+        String absolutePath=directory1.getAbsolutePath().replace("src","");
+        String filePath = "data.txt";
+        File f = new File(filePath);
+        try {
+            Scanner readFile = new Scanner(f);
+            while (readFile.hasNext()) {
+                System.out.println(readFile.nextLine());
+            }
+
+
+        } catch (FileNotFoundException e) {
+            System.out.println("You do not have a data.txt file to store yours tasks!");
+            System.out.println("A new data.txt file will be created in this path " + absolutePath);
+            TaskArray.createFile();
+        } catch (InvalidPathException i) {
+            System.out.println("The path does not exist!");
+        }
+
+    }
 
     public static void printLines() {
         System.out.println("-------------------------------------------------------------");
     }
 
-    public static void exitCommand() {
+    public static void exitCommand() throws IOException {
         printLines();
         System.out.println("Bye.Hope to see you again soon!");
         printLines();

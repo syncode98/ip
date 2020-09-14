@@ -171,13 +171,19 @@ public class TaskArray {
     }
 
 
-    public static void writeToFile(String textToAdd) throws IOException{
+    public static void writeToFile(String textToAdd) throws IOException {
         String filePath = "data.txt";
-        //File f = new File(filePath);
-        //Scanner s = new Scanner(f);
         FileWriter fw = new FileWriter(filePath, true);
         fw.write(textToAdd + System.lineSeparator());
         fw.close();
+    }
+
+    public static void createFile()  {
+        try {
+            writeToFile("Here are the tasks from your previous session!");
+        }catch (IOException i) {
+            System.out.println("Something went wrong: " + i.getMessage());
+        }
     }
 
 

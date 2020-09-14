@@ -1,2 +1,3 @@
+Here are the tasks from your previous session:
 [T][⨉]run
-[T][⨉]walk
+[E][⨉]run(by:sunday)

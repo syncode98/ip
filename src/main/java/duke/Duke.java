@@ -2,6 +2,7 @@ package duke;
 
 import duke.task.TaskArray;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Duke {
@@ -16,7 +17,7 @@ public class Duke {
     public static String KEYWORD_EVENT = "event";
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         initialiseMike();
         readInput();
     }
@@ -27,13 +28,17 @@ public class Duke {
         PrintMethod.printLines();
         String nameOfUser = inputScanner.nextLine();
         PrintMethod.printLines();
+        System.out.println("Hello "+ nameOfUser + " !");
+        PrintMethod.printLines();
+        PrintMethod.printContents();
+        PrintMethod.printLines();
         System.out.println("Alright " + nameOfUser + " , What can I do for you?");
         PrintMethod.printLines();
     }
 
 
     /** Reads the input and calls the corresponding method*/
-    public static void readInput() {
+    public static void readInput() throws IOException {
         String input = inputScanner.nextLine();
         while (!input.equals(KEYWORD_BYE)) {
 
