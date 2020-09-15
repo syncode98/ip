@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.io.IOException;
 
 public class PrintMethod {
-    
+
     public static final char sadFace = '\u2639';
 
 

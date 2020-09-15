@@ -8,7 +8,6 @@ import duke.exception.IllegalPrepositionWithoutDate;
 
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -18,7 +17,6 @@ import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 
 import java.util.Scanner;
@@ -59,7 +57,7 @@ public class TaskArray {
         } catch (ArrayIndexOutOfBoundsException | IllegalPrepositionWithoutDate a) {
             PrintMethod.printEmptyDate(keyword);
         } catch (IOException e) {
-            System.out.println("Something went wrong" +e.getMessage());
+            System.out.println("Something went wrong" + e.getMessage());
         }
         PrintMethod.printLines();
     }
@@ -76,13 +74,14 @@ public class TaskArray {
     public static void readDoneAndDelete(String command, String keyword) {
         PrintMethod.printLines();
         try {
+
             command = command.replace(keyword, DELIMITER_EMPTY_STRING).strip();
             int indexOfTask = findTaskNumber(command);
 
             Task current_task = taskArrayList.get(indexOfTask);
             if (keyword.equals(Duke.KEYWORD_DONE)) {
                 current_task.completeTask();
-                searchFile(current_task.toString());
+
             } else {
 
                 System.out.println("Noted. I've removed this task:");
@@ -90,6 +89,7 @@ public class TaskArray {
                 taskArrayList.remove(current_task);
                 System.out.println("Now you have " + taskArrayList.size() + " tasks in the list.");
             }
+            updateFile(current_task.toString(), keyword);
 
 
         } catch (NumberFormatException n) {
@@ -169,7 +169,7 @@ public class TaskArray {
     }
 
 
-    public static void searchFile(String doneTask) throws FileNotFoundException {
+    public static void updateFile(String doneTask, String keyword) throws FileNotFoundException {
 
         String filePath = "data/data.txt";
         File file = new File(filePath);
@@ -187,15 +187,24 @@ public class TaskArray {
         String task = doneTask.substring(6);
         for (String line : filesLines) {
             if (line.contains(task)) {
-                line = line.replace(incomplete, complete);
+                if (keyword.equals(Duke.KEYWORD_DELETE)) {
+                    continue;
+                } else {
+                    line = line.replace(incomplete, complete);
+                }
+
             }
             try {
                 writeToFile(line);
             } catch (IOException e) {
                 System.out.println("Error in file!");
-
             }
         }
+        if(taskArrayList.size()==0) {
+            clearFile();
+            createFile();
+        }
+
     }
 
 
