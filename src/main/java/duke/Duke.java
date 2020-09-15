@@ -5,7 +5,10 @@ import duke.task.TaskArray;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Scanner;
 
 public class Duke {
@@ -70,34 +73,80 @@ public class Duke {
     }
 
     public static void printContents() {
-        String directory = "src";
-        //Path directoryPath=Paths.get(directory);
-        File directory1 = new File(directory);
-        String absolutePath = directory1.getAbsolutePath().replace("src", "");
-        String filePath = "data.txt";
-        File f = new File(filePath);
+        String filePath = "data/data.txt";
+
+        checkDirectoryStatus();
+        checkFileStatus(filePath);
+        String lastLine = null;
+        File file=new File(filePath);
+
         try {
-            Scanner readFile = new Scanner(f);
+            Scanner readFile = new Scanner(file);
             while (readFile.hasNext()) {
-                System.out.println(readFile.nextLine());
+                lastLine = readFile.nextLine();
+                System.out.println(lastLine);
             }
-            PrintMethod.printLines();
-            System.out.println("Do you want to keep the contents of the file?");
-            PrintMethod.printLines();
-            String decision=inputScanner.nextLine();
-            if (decision.equalsIgnoreCase("yes")) {
+            if (!lastLine.equals("You do not have any tasks!")) {
+
                 PrintMethod.printLines();
-                System.out.println("Alright, the tasks will not be deleted!");
-            } else {
-                TaskArray.clearFile();
+                System.out.println("Do you want to keep the contents of the file?");
+                PrintMethod.printLines();
+                String decision = inputScanner.nextLine();
+                if (decision.equalsIgnoreCase("yes")) {
+                    PrintMethod.printLines();
+                    System.out.println("Alright, the tasks will not be deleted!");
+                } else {
+                    TaskArray.clearFile();
+                    TaskArray.createFile();
+                }
+
             }
-            //PrintMethod.printLines();
+
+
         } catch (FileNotFoundException e) {
             System.out.println("You do not have a data.txt file to store yours tasks!");
-            System.out.println("A new data.txt file will be created in this path " + absolutePath);
-            TaskArray.createFile();
+
         } catch (InvalidPathException i) {
             System.out.println("The path does not exist!");
+        } catch (NullPointerException n) {
+            try {
+                TaskArray.writeToFile("You do not have any tasks!");
+                System.out.println("You do not have any tasks!");
+            } catch (IOException e) {
+                System.out.println("There is an error with the file!");
+            }
+        }
+    }
+
+    public static void checkFileStatus(String filePath) {
+
+        try {
+            Path path = Paths.get(filePath);
+            if (!Files.exists(path)) {
+                TaskArray.createFile();
+            }
+
+        } catch (InvalidPathException i) {
+            System.out.println("The path of the file does not exist!");
+
+        }
+
+    }
+
+    public static void checkDirectoryStatus() {
+        try {
+            String directory = "data";
+            Path path = Paths.get(directory);
+            if (!Files.exists(path)) {
+                System.out.println("The directory does not exist!\n");
+                Files.createDirectory(path);
+                System.out.println("A new directory has been created at" + path.toString());
+            }
+
+        } catch (IOException e) {
+            System.out.println("Could not create Directory!");
+        } catch (InvalidPathException i) {
+            System.out.println("The path of the directory does not exist!");
         }
 
     }

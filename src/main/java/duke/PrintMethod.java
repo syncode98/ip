@@ -1,16 +1,8 @@
 package duke;
 
 import duke.task.Task;
-import duke.task.TaskArray;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.nio.file.Files;
-import java.nio.file.InvalidPathException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.io.IOException;
-import java.util.Scanner;
 
 public class PrintMethod {
     public static final char sadFace = '\u2639';

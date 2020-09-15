@@ -5,15 +5,14 @@ import duke.PrintMethod;
 import duke.exception.IllegalEmptyDescriptionException;
 import duke.exception.IllegalNumberException;
 import duke.exception.IllegalPrepositionWithoutDate;
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.Todo;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -75,7 +74,7 @@ public class TaskArray {
             command = command.replace(Duke.KEYWORD_DONE, DELIMITER_EMPTY_STRING).strip();
             int indexOfTask = findTaskNumber(command);
             tasks[indexOfTask].completeTask();
-            String task=tasks[indexOfTask].toString();
+            String task = tasks[indexOfTask].toString();
             searchFile(task);
 
         } catch (NumberFormatException n) {
@@ -154,7 +153,8 @@ public class TaskArray {
     }
 
     public static void searchFile(String doneTask) throws FileNotFoundException {
-        String filePath = "data.txt";
+       // String filePath = "data.txt";
+        String filePath="data/data.txt";
         File file = new File(filePath);
         Scanner readFile = new Scanner(file);
         List<String> filesLines = new ArrayList<>();
@@ -165,11 +165,12 @@ public class TaskArray {
             String line = readFile.nextLine();
             filesLines.add(line);
         }
+
         clearFile();
         String task = doneTask.substring(6);
         for (String line : filesLines) {
             if (line.contains(task)) {
-                line=line.replace(incomplete,complete);
+                line = line.replace(incomplete, complete);
             }
             try {
                 writeToFile(line);
@@ -182,26 +183,39 @@ public class TaskArray {
 
 
     public static void writeToFile(String textToAdd) throws IOException {
-        String filePath = "data.txt";
+        //String filePath = "data.txt";
+        String filePath="data/data.txt";
+        Path path =Paths.get(filePath);
+        File file = new File(filePath);
+        Scanner readFile = new Scanner(file);
         FileWriter fw = new FileWriter(filePath, true);
+        if (readFile.hasNextLine() &&readFile.nextLine().equals("You do not have any tasks!")) {
+            clearFile();
+            fw.write("Here are the tasks!"+ System.lineSeparator());
+        }
+
         fw.write(textToAdd + System.lineSeparator());
         fw.close();
     }
 
     public static void createFile() {
+
         try {
-            writeToFile("Here are the tasks from your previous session!" + System.lineSeparator());
+            String filePath="data/data.txt";
+            Path path=Paths.get(filePath);
+            Files.writeString(path,"You do not have any tasks!"+ System.lineSeparator());
+
         } catch (IOException i) {
-            System.out.println("Something went wrong: " + i.getMessage());
+            System.out.println("Not able to create the file!");
         }
     }
 
     public static void clearFile() {
         try {
-            String filePath = "data.txt";
-            FileWriter fw = new FileWriter(filePath);
-            fw.close();
-            createFile();
+            String filePath="data/data.txt";
+            Path path =Paths.get(filePath);
+            FileWriter file = new FileWriter(filePath);
+            file.close();
         } catch (IOException i) {
             System.out.println("Something went wrong: " + i.getMessage());
         }
