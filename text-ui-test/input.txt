@@ -4,5 +4,9 @@ todo run
 event marathon/at sunday
 deadline exam /by today
 done 2
+list
+delete 2
+todo study
+list
 bye
 

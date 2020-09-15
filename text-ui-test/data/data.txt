@@ -1,4 +1,4 @@
 Here are the tasks!
 [T][⨉]run
-[E][✓]marathon(at:sunday)
 [D][⨉]exam(by:today)
+[T][⨉]study
