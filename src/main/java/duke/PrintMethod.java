@@ -6,6 +6,7 @@ import duke.task.TaskArray;
 import java.util.ArrayList;
 
 public class PrintMethod {
+    
     public static final char sadFace = '\u2639';
 
 
