@@ -14,6 +14,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class TaskArray {
@@ -25,19 +27,32 @@ public class TaskArray {
     public static String DELIMITER_SEMI_COLON = ":";
     public static String DELIMITER_CHARACTER = " ";
 
-    public static void readEvent(String command) {
+    public static void readTask(String command, String keyword) {
 
         try {
             PrintMethod.printLines();
-            String[] words = parseString(Duke.KEYWORD_EVENT, command);
-            Event event = new Event(words[0], words[1]);
-            addToTasks(event);
+            Task currentTask;
+            switch (keyword) {
+            case "event":
+                String[] eventDetails = parseString(keyword, command);
+                currentTask = new Event(eventDetails[0], eventDetails[1]);
+                break;
+            case "deadline":
+                String[] deadlineDetails = parseString(keyword, command);
+                currentTask = new Deadline(deadlineDetails[0], deadlineDetails[1]);
+                break;
+            default:
+                String task = returnTask(command, keyword);
+                currentTask = new Todo(task);
+                break;
+            }
+            addToTasks(currentTask);
 
         } catch (IllegalEmptyDescriptionException i) {
-            PrintMethod.printEmptyDescription(Duke.KEYWORD_EVENT);
+            PrintMethod.printEmptyDescription(keyword);
 
         } catch (ArrayIndexOutOfBoundsException | IllegalPrepositionWithoutDate a) {
-            PrintMethod.printEmptyDate(Duke.KEYWORD_EVENT);
+            PrintMethod.printEmptyDate(keyword);
 
         } catch (IOException e) {
             System.out.println("Something went wrong: " + e.getMessage());
@@ -45,39 +60,6 @@ public class TaskArray {
         PrintMethod.printLines();
     }
 
-    public static void readDeadline(String command) {
-        try {
-            PrintMethod.printLines();
-            String[] words = parseString(Duke.KEYWORD_DEADLINE, command);
-            Deadline deadline = new Deadline(words[0], words[1]);
-            addToTasks(deadline);
-
-        } catch (IllegalEmptyDescriptionException i) {
-            PrintMethod.printEmptyDescription(Duke.KEYWORD_DEADLINE);
-
-        } catch (ArrayIndexOutOfBoundsException | IllegalPrepositionWithoutDate a) {
-            PrintMethod.printEmptyDate(Duke.KEYWORD_DEADLINE);
-
-        } catch (IOException e) {
-            System.out.println("Something went wrong: " + e.getMessage());
-        }
-        PrintMethod.printLines();
-    }
-
-    public static void readTodo(String command) {
-        PrintMethod.printLines();
-        try {
-            String task = returnTask(command, Duke.KEYWORD_TODO);
-            Todo todo = new Todo(task);
-            addToTasks(todo);
-        } catch (IllegalEmptyDescriptionException d) {
-            PrintMethod.printEmptyDescription(Duke.KEYWORD_TODO);
-        } catch (IOException e) {
-            System.out.println("Something went wrong: " + e.getMessage());
-        }
-        PrintMethod.printLines();
-
-    }
 
     public static String returnTask(String command, String typeOfTask) throws IllegalEmptyDescriptionException {
         String task = command.replace(typeOfTask, DELIMITER_EMPTY_STRING).strip();
@@ -93,7 +75,8 @@ public class TaskArray {
             command = command.replace(Duke.KEYWORD_DONE, DELIMITER_EMPTY_STRING).strip();
             int indexOfTask = findTaskNumber(command);
             tasks[indexOfTask].completeTask();
-            writeToFile(tasks[indexOfTask].toString());
+            String task=tasks[indexOfTask].toString();
+            searchFile(task);
 
         } catch (NumberFormatException n) {
             //Alerts user upon not entering a task number
@@ -170,6 +153,33 @@ public class TaskArray {
 
     }
 
+    public static void searchFile(String doneTask) throws FileNotFoundException {
+        String filePath = "data.txt";
+        File file = new File(filePath);
+        Scanner readFile = new Scanner(file);
+        List<String> filesLines = new ArrayList<>();
+        char complete = '\u2713'; //unicode values for tick
+        char incomplete = '\u2A09'; //unicode values for cross
+
+        while (readFile.hasNext()) {
+            String line = readFile.nextLine();
+            filesLines.add(line);
+        }
+        clearFile();
+        String task = doneTask.substring(6);
+        for (String line : filesLines) {
+            if (line.contains(task)) {
+                line=line.replace(incomplete,complete);
+            }
+            try {
+                writeToFile(line);
+            } catch (IOException e) {
+                System.out.println("Error in file!");
+                ;
+            }
+        }
+    }
+
 
     public static void writeToFile(String textToAdd) throws IOException {
         String filePath = "data.txt";
@@ -178,10 +188,21 @@ public class TaskArray {
         fw.close();
     }
 
-    public static void createFile()  {
+    public static void createFile() {
         try {
-            writeToFile("Here are the tasks from your previous session!");
-        }catch (IOException i) {
+            writeToFile("Here are the tasks from your previous session!" + System.lineSeparator());
+        } catch (IOException i) {
+            System.out.println("Something went wrong: " + i.getMessage());
+        }
+    }
+
+    public static void clearFile() {
+        try {
+            String filePath = "data.txt";
+            FileWriter fw = new FileWriter(filePath);
+            fw.close();
+            createFile();
+        } catch (IOException i) {
             System.out.println("Something went wrong: " + i.getMessage());
         }
     }

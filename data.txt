@@ -1,3 +1,2 @@
-Here are the tasks from your previous session:
-[T][⨉]run
-[E][⨉]run(by:sunday)
+Here are the tasks from your previous session!
+
