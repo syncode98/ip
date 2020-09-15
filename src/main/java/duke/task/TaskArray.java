@@ -21,6 +21,7 @@ public class TaskArray {
     public static String DELIMITER_SEMI_COLON = ":";
     public static String DELIMITER_CHARACTER = " ";
 
+    
     public static void readEvent(String command) {
 
         try {
