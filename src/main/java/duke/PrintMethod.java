@@ -30,9 +30,7 @@ public class PrintMethod {
                 int indexOfTask = i + 1;
                 System.out.println(indexOfTask + "." + tasks[i].toString());
             }
-
         }
-
         printLines();
     }
 

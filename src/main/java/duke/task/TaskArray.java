@@ -154,7 +154,7 @@ public class TaskArray {
     }
 
     public static void searchFile(String doneTask) throws FileNotFoundException {
-        // String filePath = "data.txt";
+
         String filePath = "data/data.txt";
         File file = new File(filePath);
         Scanner readFile = new Scanner(file);
@@ -177,7 +177,7 @@ public class TaskArray {
                 writeToFile(line);
             } catch (IOException e) {
                 System.out.println("Error in file!");
-                ;
+
             }
         }
     }
@@ -252,8 +252,6 @@ public class TaskArray {
         } catch (InvalidPathException i) {
             System.out.println("The path of the directory does not exist!");
         }
-
     }
-
 
 }

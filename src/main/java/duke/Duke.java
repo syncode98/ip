@@ -107,8 +107,9 @@ public class Duke {
             System.out.println("The path does not exist!");
         } catch (NullPointerException n) {
             try {
-                TaskArray.writeToFile("You do not have any tasks!");
-                System.out.println("You do not have any tasks!");
+                String noTasks = "You do not have any tasks!";
+                TaskArray.writeToFile(noTasks);
+                System.out.println(noTasks);
             } catch (IOException e) {
                 System.out.println("There is an error with the file!");
             }
