@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -153,8 +154,8 @@ public class TaskArray {
     }
 
     public static void searchFile(String doneTask) throws FileNotFoundException {
-       // String filePath = "data.txt";
-        String filePath="data/data.txt";
+        // String filePath = "data.txt";
+        String filePath = "data/data.txt";
         File file = new File(filePath);
         Scanner readFile = new Scanner(file);
         List<String> filesLines = new ArrayList<>();
@@ -183,27 +184,27 @@ public class TaskArray {
 
 
     public static void writeToFile(String textToAdd) throws IOException {
-        //String filePath = "data.txt";
-        String filePath="data/data.txt";
-        Path path =Paths.get(filePath);
+
+        String filePath = "data/data.txt";
+        Path path = Paths.get(filePath);
         File file = new File(filePath);
         Scanner readFile = new Scanner(file);
-        FileWriter fw = new FileWriter(filePath, true);
-        if (readFile.hasNextLine() &&readFile.nextLine().equals("You do not have any tasks!")) {
+        FileWriter fileWriter = new FileWriter(filePath, true);
+        if (readFile.hasNextLine() && readFile.nextLine().equals("You do not have any tasks!")) {
             clearFile();
-            fw.write("Here are the tasks!"+ System.lineSeparator());
+            fileWriter.write("Here are the tasks!" + System.lineSeparator());
         }
 
-        fw.write(textToAdd + System.lineSeparator());
-        fw.close();
+        fileWriter.write(textToAdd + System.lineSeparator());
+        fileWriter.close();
     }
 
     public static void createFile() {
 
         try {
-            String filePath="data/data.txt";
-            Path path=Paths.get(filePath);
-            Files.writeString(path,"You do not have any tasks!"+ System.lineSeparator());
+            String filePath = "data/data.txt";
+            Path path = Paths.get(filePath);
+            Files.writeString(path, "You do not have any tasks!" + System.lineSeparator());
 
         } catch (IOException i) {
             System.out.println("Not able to create the file!");
@@ -212,13 +213,46 @@ public class TaskArray {
 
     public static void clearFile() {
         try {
-            String filePath="data/data.txt";
-            Path path =Paths.get(filePath);
+            String filePath = "data/data.txt";
+            Path path = Paths.get(filePath);
             FileWriter file = new FileWriter(filePath);
             file.close();
         } catch (IOException i) {
             System.out.println("Something went wrong: " + i.getMessage());
         }
+    }
+
+    public static void checkFileStatus(String filePath) {
+
+        try {
+            Path path = Paths.get(filePath);
+            if (!Files.exists(path)) {
+                TaskArray.createFile();
+            }
+
+        } catch (InvalidPathException i) {
+            System.out.println("The path of the file does not exist!");
+
+        }
+
+    }
+
+    public static void checkDirectoryStatus() {
+        try {
+            String directory = "data";
+            Path path = Paths.get(directory);
+            if (!Files.exists(path)) {
+                System.out.println("The directory does not exist!\n");
+                Files.createDirectory(path);
+                System.out.println("A new directory has been created,named  " + path.toString());
+            }
+
+        } catch (IOException e) {
+            System.out.println("Could not create Directory!");
+        } catch (InvalidPathException i) {
+            System.out.println("The path of the directory does not exist!");
+        }
+
     }
 
 

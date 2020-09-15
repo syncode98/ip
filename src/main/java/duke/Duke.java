@@ -73,19 +73,19 @@ public class Duke {
     }
 
     public static void printContents() {
-        String filePath = "data/data.txt";
-
-        checkDirectoryStatus();
-        checkFileStatus(filePath);
-        String lastLine = null;
-        File file=new File(filePath);
 
         try {
+            String filePath = "data/data.txt";
+            TaskArray.checkDirectoryStatus();
+            TaskArray.checkFileStatus(filePath);
+            String lastLine = null;
+            File file = new File(filePath);
             Scanner readFile = new Scanner(file);
             while (readFile.hasNext()) {
                 lastLine = readFile.nextLine();
                 System.out.println(lastLine);
             }
+
             if (!lastLine.equals("You do not have any tasks!")) {
 
                 PrintMethod.printLines();
@@ -99,10 +99,7 @@ public class Duke {
                     TaskArray.clearFile();
                     TaskArray.createFile();
                 }
-
             }
-
-
         } catch (FileNotFoundException e) {
             System.out.println("You do not have a data.txt file to store yours tasks!");
 
@@ -118,37 +115,5 @@ public class Duke {
         }
     }
 
-    public static void checkFileStatus(String filePath) {
-
-        try {
-            Path path = Paths.get(filePath);
-            if (!Files.exists(path)) {
-                TaskArray.createFile();
-            }
-
-        } catch (InvalidPathException i) {
-            System.out.println("The path of the file does not exist!");
-
-        }
-
-    }
-
-    public static void checkDirectoryStatus() {
-        try {
-            String directory = "data";
-            Path path = Paths.get(directory);
-            if (!Files.exists(path)) {
-                System.out.println("The directory does not exist!\n");
-                Files.createDirectory(path);
-                System.out.println("A new directory has been created at" + path.toString());
-            }
-
-        } catch (IOException e) {
-            System.out.println("Could not create Directory!");
-        } catch (InvalidPathException i) {
-            System.out.println("The path of the directory does not exist!");
-        }
-
-    }
 
 }
