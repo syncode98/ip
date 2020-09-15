@@ -5,6 +5,8 @@ import duke.task.TaskArray;
 
 import java.util.ArrayList;
 
+import java.io.IOException;
+
 public class PrintMethod {
     
     public static final char sadFace = '\u2639';
@@ -14,12 +16,12 @@ public class PrintMethod {
         System.out.println("-------------------------------------------------------------");
     }
 
-    public static void exitCommand() {
+    public static void exitCommand() throws IOException {
         printLines();
         System.out.println("Bye.Hope to see you again soon!");
         printLines();
-    }
 
+    }
 
     public static void printAllTasks(ArrayList<Task> taskArrayList) {
         printLines();
@@ -33,7 +35,6 @@ public class PrintMethod {
                 System.out.println(indexOfTask + "." + task.toString());
             }
         }
-
         printLines();
     }
 
