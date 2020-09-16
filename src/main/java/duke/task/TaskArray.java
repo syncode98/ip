@@ -30,26 +30,32 @@ public class TaskArray {
     public static String DELIMITER_SEMI_COLON = ":";
     public static String DELIMITER_CHARACTER = " ";
 
-    public static void readTask(String command, String keyword) {
+    public static Task returnTask(String input, String keyword) throws IllegalEmptyDescriptionException, IllegalPrepositionWithoutDate {
+        Task currentTask;
+        switch (keyword) {
+        case "event":
+            String[] eventDetails = parseString(keyword, input);
+            currentTask = new Event(eventDetails[0], eventDetails[1]);
+            break;
+        case "deadline":
+            String[] deadlineDetails = parseString(keyword, input);
+            currentTask = new Deadline(deadlineDetails[0], deadlineDetails[1]);
+            break;
+        default:
+            String task = returnTaskDescription(input, keyword);
+            currentTask = new Todo(task);
+            break;
+        }
+        return currentTask;
+
+    }
+
+    public static void readTask(String input, String keyword, boolean writeToFile) {
 
         try {
             PrintMethod.printLines();
-            Task currentTask;
-            switch (keyword) {
-            case "event":
-                String[] eventDetails = parseString(keyword, command);
-                currentTask = new Event(eventDetails[0], eventDetails[1]);
-                break;
-            case "deadline":
-                String[] deadlineDetails = parseString(keyword, command);
-                currentTask = new Deadline(deadlineDetails[0], deadlineDetails[1]);
-                break;
-            default:
-                String task = returnTask(command, keyword);
-                currentTask = new Todo(task);
-                break;
-            }
-            addToTasks(currentTask);
+            Task currentTask = returnTask(input, keyword);
+            addToTasks(currentTask, writeToFile);
 
         } catch (IllegalEmptyDescriptionException i) {
             PrintMethod.printEmptyDescription(keyword);
@@ -63,7 +69,7 @@ public class TaskArray {
     }
 
 
-    public static String returnTask(String command, String typeOfTask) throws IllegalEmptyDescriptionException {
+    public static String returnTaskDescription(String command, String typeOfTask) throws IllegalEmptyDescriptionException {
         String task = command.replace(typeOfTask, DELIMITER_EMPTY_STRING).strip();
         if (task.equals("")) {
             throw new IllegalEmptyDescriptionException();
@@ -71,7 +77,7 @@ public class TaskArray {
         return task;
     }
 
-    public static void readDoneAndDelete(String command, String keyword) {
+    public static void readDoneAndDelete(String command, String keyword, boolean writeFile) {
         PrintMethod.printLines();
         try {
 
@@ -89,7 +95,9 @@ public class TaskArray {
                 taskArrayList.remove(current_task);
                 System.out.println("Now you have " + taskArrayList.size() + " tasks in the list.");
             }
-            updateFile(current_task.toString(), keyword);
+            if (writeFile) {
+                updateFile(current_task.toString(), keyword);
+            }
 
 
         } catch (NumberFormatException n) {
@@ -123,11 +131,14 @@ public class TaskArray {
     }
 
 
-    public static void addToTasks(Task task) throws IOException {
+    public static void addToTasks(Task task, boolean fileWrite) throws IOException {
         taskArrayList.add(task);
         task.addTask();
-        System.out.println("Now you have " + taskArrayList.size() + " tasks in the list.");
-        writeToFile(task.toString());
+        if (fileWrite) {
+            writeToFile(task.toString());
+            System.out.println("Now you have " + taskArrayList.size() + " tasks in the list.");
+        }
+
 
     }
 
@@ -149,7 +160,7 @@ public class TaskArray {
             IllegalPrepositionWithoutDate {
 
         String[] words = command.split(DELIMITER_SLASH);
-        String task = returnTask(words[0], typeOfTask);
+        String task = returnTaskDescription(words[0], typeOfTask);
         words[0] = task;
         String deadlineForTask = words[1].strip();
 
@@ -168,21 +179,27 @@ public class TaskArray {
 
     }
 
+    public static void fileData(ArrayList<String> filesLines) {
+        try {
+            String filePath = "data/data.txt";
+            File file = new File(filePath);
+            Scanner readFile = new Scanner(file);
 
-    public static void updateFile(String doneTask, String keyword) throws FileNotFoundException {
+            while (readFile.hasNext()) {
+                String line = readFile.nextLine();
+                filesLines.add(line);
+            }
 
-        String filePath = "data/data.txt";
-        File file = new File(filePath);
-        Scanner readFile = new Scanner(file);
-        List<String> filesLines = new ArrayList<>();
-        char complete = '\u2713'; //unicode values for tick
-        char incomplete = '\u2A09'; //unicode values for cross
-
-        while (readFile.hasNext()) {
-            String line = readFile.nextLine();
-            filesLines.add(line);
+        } catch (FileNotFoundException e) {
+            System.out.println("Not able to find file!");
         }
 
+    }
+
+
+    public static void updateFile(String doneTask, String keyword) throws IOException {
+        ArrayList<String> filesLines = new ArrayList<>();
+        fileData(filesLines);
         clearFile();
         String task = doneTask.substring(6);
         for (String line : filesLines) {
@@ -190,20 +207,55 @@ public class TaskArray {
                 if (keyword.equals(Duke.KEYWORD_DELETE)) {
                     continue;
                 } else {
-                    line = line.replace(incomplete, complete);
+                    line = line.replace("0", "1");
                 }
-
             }
-            try {
-                writeToFile(line);
-            } catch (IOException e) {
-                System.out.println("Error in file!");
-            }
+            writeToFile(line);
         }
-        if(taskArrayList.size()==0) {
+        if (taskArrayList.size() == 0) {
             clearFile();
             createFile();
         }
+
+    }
+
+    public static void fileToTask(String input) throws IllegalEmptyDescriptionException,
+            IllegalPrepositionWithoutDate {
+
+        char keywordSymbol = input.charAt(0);
+        String status = input.substring(4, 5);
+        String taskDescription = input.substring(8);
+        String keyword = null;
+        switch (keywordSymbol) {
+        case 'T':
+            keyword = Duke.KEYWORD_TODO;
+            break;
+        case 'D':
+            keyword = Duke.KEYWORD_DEADLINE;
+            taskDescription = taskDescription.replace("(", DELIMITER_SLASH);
+            taskDescription = taskDescription.replace(")", DELIMITER_EMPTY_STRING);
+            taskDescription = taskDescription.replace(DELIMITER_SEMI_COLON, DELIMITER_CHARACTER);
+            break;
+        default:
+            keyword = Duke.KEYWORD_EVENT;
+            taskDescription = taskDescription.replace("(", DELIMITER_SLASH);
+            taskDescription = taskDescription.replace(")", DELIMITER_EMPTY_STRING);
+            taskDescription = taskDescription.replace(DELIMITER_SEMI_COLON, DELIMITER_CHARACTER);
+            break;
+        }
+        Task task = returnTask(taskDescription, keyword);
+
+        if (status.equals("1")) {
+            task.setDone(true);
+        }
+        try {
+            addToTasks(task, false);
+        } catch (IOException e) {
+            System.out.println("Not able to add to file!");
+            ;
+        }
+        PrintMethod.printLines();
+
 
     }
 
@@ -215,12 +267,27 @@ public class TaskArray {
         File file = new File(filePath);
         Scanner readFile = new Scanner(file);
         FileWriter fileWriter = new FileWriter(filePath, true);
+
         if (readFile.hasNextLine() && readFile.nextLine().equals("You do not have any tasks!")) {
             clearFile();
             fileWriter.write("Here are the tasks!" + System.lineSeparator());
         }
+        char complete = '\u2713';
+        char incomplete = '\u2A09';
+        int status = 0;
+        if (textToAdd.charAt(4) == complete) {
+            status = 1;
+        }
+        String output = null;
+        String DIVIDER = " | ";
 
-        fileWriter.write(textToAdd + System.lineSeparator());
+        if (textToAdd.contains(DIVIDER) || textToAdd.contains("Here are the tasks!") ||
+                textToAdd.contains("You do not have any tasks!")) {
+            output = textToAdd;
+        } else {
+            output = textToAdd.charAt(1) + DIVIDER + status + DIVIDER + textToAdd.substring(6);
+        }
+        fileWriter.write(output + System.lineSeparator());
         fileWriter.close();
     }
 
@@ -246,6 +313,7 @@ public class TaskArray {
             System.out.println("Something went wrong: " + i.getMessage());
         }
     }
+
 
     public static void checkFileStatus(String filePath) {
 
