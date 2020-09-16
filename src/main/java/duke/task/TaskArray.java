@@ -17,7 +17,6 @@ import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
 
 import java.util.Scanner;
 
@@ -29,8 +28,13 @@ public class TaskArray {
     public static String DELIMITER_SLASH = "/";
     public static String DELIMITER_SEMI_COLON = ":";
     public static String DELIMITER_CHARACTER = " ";
+    public static String DIVIDER = " | ";
 
-    public static Task returnTask(String input, String keyword) throws IllegalEmptyDescriptionException, IllegalPrepositionWithoutDate {
+    public static String DIRECTORY = "data";
+    public static String FILEPATH = "data/data.txt";
+
+    public static Task returnTaskFromInput(String input, String keyword) throws
+            IllegalEmptyDescriptionException, IllegalPrepositionWithoutDate {
         Task currentTask;
         switch (keyword) {
         case "event":
@@ -50,11 +54,23 @@ public class TaskArray {
 
     }
 
+    /**
+     * Returns a task object that has been instantiated according to its type of task
+     *
+     * @param input   Given by the user
+     * @param keyword The type of the task
+     * @return A task object
+     * @throws IllegalEmptyDescriptionException If the user does not enter a valid description
+     * @throws IllegalPrepositionWithoutDate    If the user does not follow the
+     *                                          required format for deadline and events
+     */
+
+
     public static void readTask(String input, String keyword, boolean writeToFile) {
 
         try {
             PrintMethod.printLines();
-            Task currentTask = returnTask(input, keyword);
+            Task currentTask = returnTaskFromInput(input, keyword);
             addToTasks(currentTask, writeToFile);
 
         } catch (IllegalEmptyDescriptionException i) {
@@ -69,7 +85,8 @@ public class TaskArray {
     }
 
 
-    public static String returnTaskDescription(String command, String typeOfTask) throws IllegalEmptyDescriptionException {
+    public static String returnTaskDescription(String command, String typeOfTask) throws
+            IllegalEmptyDescriptionException {
         String task = command.replace(typeOfTask, DELIMITER_EMPTY_STRING).strip();
         if (task.equals("")) {
             throw new IllegalEmptyDescriptionException();
@@ -78,6 +95,7 @@ public class TaskArray {
     }
 
     public static void readDoneAndDelete(String command, String keyword, boolean writeFile) {
+
         PrintMethod.printLines();
         try {
 
@@ -138,8 +156,6 @@ public class TaskArray {
             writeToFile(task.toString());
             System.out.println("Now you have " + taskArrayList.size() + " tasks in the list.");
         }
-
-
     }
 
 
@@ -181,8 +197,8 @@ public class TaskArray {
 
     public static void fileData(ArrayList<String> filesLines) {
         try {
-            String filePath = "data/data.txt";
-            File file = new File(filePath);
+
+            File file = new File(FILEPATH);
             Scanner readFile = new Scanner(file);
 
             while (readFile.hasNext()) {
@@ -235,15 +251,16 @@ public class TaskArray {
             taskDescription = taskDescription.replace("(", DELIMITER_SLASH);
             taskDescription = taskDescription.replace(")", DELIMITER_EMPTY_STRING);
             taskDescription = taskDescription.replace(DELIMITER_SEMI_COLON, DELIMITER_CHARACTER);
+
             break;
         default:
-            keyword = Duke.KEYWORD_EVENT;
+            keyword=Duke.KEYWORD_EVENT;
             taskDescription = taskDescription.replace("(", DELIMITER_SLASH);
             taskDescription = taskDescription.replace(")", DELIMITER_EMPTY_STRING);
             taskDescription = taskDescription.replace(DELIMITER_SEMI_COLON, DELIMITER_CHARACTER);
             break;
         }
-        Task task = returnTask(taskDescription, keyword);
+        Task task = returnTaskFromInput(taskDescription, keyword);
 
         if (status.equals("1")) {
             task.setDone(true);
@@ -252,37 +269,34 @@ public class TaskArray {
             addToTasks(task, false);
         } catch (IOException e) {
             System.out.println("Not able to add to file!");
-            ;
+
         }
         PrintMethod.printLines();
 
-
     }
-
 
     public static void writeToFile(String textToAdd) throws IOException {
 
-        String filePath = "data/data.txt";
-        Path path = Paths.get(filePath);
-        File file = new File(filePath);
+        File file = new File(FILEPATH);
         Scanner readFile = new Scanner(file);
-        FileWriter fileWriter = new FileWriter(filePath, true);
+        FileWriter fileWriter = new FileWriter((FILEPATH), true);
 
-        if (readFile.hasNextLine() && readFile.nextLine().equals("You do not have any tasks!")) {
+        if (readFile.hasNextLine() && readFile.nextLine().equals("You d" +
+                "o not have any tasks!")) {
             clearFile();
             fileWriter.write("Here are the tasks!" + System.lineSeparator());
         }
         char complete = '\u2713';
-        char incomplete = '\u2A09';
         int status = 0;
+
         if (textToAdd.charAt(4) == complete) {
             status = 1;
         }
         String output = null;
-        String DIVIDER = " | ";
+
 
         if (textToAdd.contains(DIVIDER) || textToAdd.contains("Here are the tasks!") ||
-                textToAdd.contains("You do not have any tasks!")) {
+                textToAdd.contains("You do"+ "not have any tasks!")) {
             output = textToAdd;
         } else {
             output = textToAdd.charAt(1) + DIVIDER + status + DIVIDER + textToAdd.substring(6);
@@ -294,9 +308,8 @@ public class TaskArray {
     public static void createFile() {
 
         try {
-            String filePath = "data/data.txt";
-            Path path = Paths.get(filePath);
-            Files.writeString(path, "You do not have any tasks!" + System.lineSeparator());
+            Path path = Paths.get(FILEPATH);
+            Files.writeString(path, "You do"+ " not have any tasks!" + System.lineSeparator());
 
         } catch (IOException i) {
             System.out.println("Not able to create the file!");
@@ -305,9 +318,7 @@ public class TaskArray {
 
     public static void clearFile() {
         try {
-            String filePath = "data/data.txt";
-            Path path = Paths.get(filePath);
-            FileWriter file = new FileWriter(filePath);
+            FileWriter file = new FileWriter(FILEPATH);
             file.close();
         } catch (IOException i) {
             System.out.println("Something went wrong: " + i.getMessage());
@@ -318,7 +329,7 @@ public class TaskArray {
     public static void checkFileStatus(String filePath) {
 
         try {
-            Path path = Paths.get(filePath);
+            Path path = Paths.get(FILEPATH);
             if (!Files.exists(path)) {
                 TaskArray.createFile();
             }
@@ -331,13 +342,18 @@ public class TaskArray {
     }
 
     public static void checkDirectoryStatus() {
+
         try {
-            String directory = "data";
-            Path path = Paths.get(directory);
+            Path path = Paths.get(DIRECTORY);
             if (!Files.exists(path)) {
-                System.out.println("The directory does not exist!\n");
+                System.out.println("The directory does not exist!");
+                PrintMethod.printLines();
                 Files.createDirectory(path);
-                System.out.println("A new directory has been created,named  " + path.toString());
+                createFile();
+                File file = new File(DIRECTORY);
+                String absolutePath=file.getAbsolutePath();
+                System.out.println("A new directory has been created at " + absolutePath);
+                PrintMethod.printLines();
             }
 
         } catch (IOException e) {

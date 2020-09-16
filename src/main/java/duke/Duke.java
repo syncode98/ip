@@ -38,7 +38,7 @@ public class Duke {
         System.out.println("Hello " + nameOfUser + " !");
         PrintMethod.printLines();
         printContents();
-        PrintMethod.printLines();
+        //PrintMethod.printLines();
         System.out.println("Alright " + nameOfUser + " , What can I do for you?");
         PrintMethod.printLines();
     }
@@ -92,29 +92,21 @@ public class Duke {
             ArrayList<String> fileLines = new ArrayList<>();
             TaskArray.fileData(fileLines);
 
-//            String lastLine = null;
-//            File file = new File(filePath);
-//            Scanner readFile = new Scanner(file);
-
-//            while (readFile.hasNext()) {
-//                lastLine = readFile.nextLine();
-//                fileLines.add(lastLine);
-//                System.out.println(lastLine);
-//            }
-            for (String line: fileLines) {
-                System.out.println(line);
-            }
-
-
             if (!fileLines.contains("You do not have any tasks!")) {
+                for (String line: fileLines) {
+                    System.out.println(line);
+                }
 
                 PrintMethod.printLines();
                 System.out.println("Do you want to keep the contents of the file?");
                 PrintMethod.printLines();
+
                 String decision = inputScanner.nextLine();
                 PrintMethod.printLines();
                 if (decision.equalsIgnoreCase("yes")) {
+
                     for (String line : fileLines) {
+                        //These two lines in the data.txt file are not tasks
                         if (line.equals("Here are the tasks!") || line.equals("You do not have any tasks!")) {
                             continue;
                         } else {
@@ -130,7 +122,8 @@ public class Duke {
         } catch (InvalidPathException i) {
             System.out.println("The path does not exist!");
         } catch (NullPointerException n) {
-            //If the user already has an empty file in the location
+
+            //If the user already has a data.txt file in the location but it is empty
             try {
                 String noTasks = "You do not have any tasks!";
                 TaskArray.writeToFile(noTasks);
@@ -141,7 +134,7 @@ public class Duke {
         } catch (IllegalEmptyDescriptionException e) {
             System.out.println("The description is empty!!");
         } catch (IllegalPrepositionWithoutDate illegalPrepositionWithoutDate) {
-            illegalPrepositionWithoutDate.printStackTrace();
+            System.out.println("Add an appropriate data");;
         }
     }
 

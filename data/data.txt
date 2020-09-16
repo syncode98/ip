@@ -1,1 +1,4 @@
-You do not have any tasks!
+Here are the tasks!
+E | 0 | cry(at:today)
+D | 1 | run(by:today)
+T | 0 | read
