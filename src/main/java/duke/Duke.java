@@ -93,7 +93,7 @@ public class Duke {
             TaskArray.fileData(fileLines);
 
             if (!fileLines.contains("You do not have any tasks!")) {
-                for (String line: fileLines) {
+                for (String line : fileLines) {
                     System.out.println(line);
                 }
 
@@ -134,7 +134,7 @@ public class Duke {
         } catch (IllegalEmptyDescriptionException e) {
             System.out.println("The description is empty!!");
         } catch (IllegalPrepositionWithoutDate illegalPrepositionWithoutDate) {
-            System.out.println("Add an appropriate data");;
+            System.out.println("Add an appropriate data");
         }
     }
 

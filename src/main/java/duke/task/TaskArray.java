@@ -254,7 +254,7 @@ public class TaskArray {
 
             break;
         default:
-            keyword=Duke.KEYWORD_EVENT;
+            keyword = Duke.KEYWORD_EVENT;
             taskDescription = taskDescription.replace("(", DELIMITER_SLASH);
             taskDescription = taskDescription.replace(")", DELIMITER_EMPTY_STRING);
             taskDescription = taskDescription.replace(DELIMITER_SEMI_COLON, DELIMITER_CHARACTER);
@@ -296,7 +296,7 @@ public class TaskArray {
 
 
         if (textToAdd.contains(DIVIDER) || textToAdd.contains("Here are the tasks!") ||
-                textToAdd.contains("You do"+ "not have any tasks!")) {
+                textToAdd.contains("You do" + "not have any tasks!")) {
             output = textToAdd;
         } else {
             output = textToAdd.charAt(1) + DIVIDER + status + DIVIDER + textToAdd.substring(6);
@@ -309,7 +309,7 @@ public class TaskArray {
 
         try {
             Path path = Paths.get(FILEPATH);
-            Files.writeString(path, "You do"+ " not have any tasks!" + System.lineSeparator());
+            Files.writeString(path, "You do" + " not have any tasks!" + System.lineSeparator());
 
         } catch (IOException i) {
             System.out.println("Not able to create the file!");
@@ -351,7 +351,7 @@ public class TaskArray {
                 Files.createDirectory(path);
                 createFile();
                 File file = new File(DIRECTORY);
-                String absolutePath=file.getAbsolutePath();
+                String absolutePath = file.getAbsolutePath();
                 System.out.println("A new directory has been created at " + absolutePath);
                 PrintMethod.printLines();
             }
