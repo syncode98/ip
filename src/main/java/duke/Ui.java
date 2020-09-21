@@ -1,7 +1,6 @@
 package duke;
 
 import duke.task.Task;
-import duke.task.TaskList;
 
 import java.util.ArrayList;
 
@@ -12,18 +11,35 @@ public class Ui {
 
     public static final char sadFace = '\u2639';
 
+    public String nameOfUser;
+
+    public static  final Scanner inputScanner=new Scanner(System.in);
+
     public Ui() {
         Ui.printLines();
         System.out.println("Hello! I'm Mike!\nEnter your name:");
         Ui.printLines();
-        Scanner inputScanner = new Scanner(System.in);
-        String nameOfUser = inputScanner.nextLine();
+        nameOfUser = Ui.inputScanner.nextLine();
         Ui.printLines();
         System.out.println("Hello " + nameOfUser + " !");
         Ui.printLines();
-        Storage.printContents();
+
+    }
+    public void userCommands() {
         System.out.println("Alright " + nameOfUser + " , What can I do for you?");
         Ui.printLines();
+        Parser.readInput();
+
+    }
+
+    public static String keepContents(){
+        Ui.printLines();
+        System.out.println("Do you want to keep the contents of the file?");
+        Ui.printLines();
+        String decision = Ui.inputScanner.nextLine();
+        Ui.printLines();
+
+        return decision;
     }
 
 
@@ -79,6 +95,16 @@ public class Ui {
     public static void printEmptyDate(String task) {
 
         System.out.println(sadFace + " Enter a valid date for " + task + ".");
+    }
+
+    public static void invalidPath(){
+        System.out.println("The path does not exist!");
+    }
+
+    public static void printTasksFromFile(ArrayList<String> fileLines){
+        for (String line : fileLines) {
+            System.out.println(line);
+        }
     }
 
 

@@ -11,12 +11,6 @@ public class TaskList {
     public static final int MAX_SIZE = 100;
     public static ArrayList<Task> taskArrayList = new ArrayList<>();
 
-    public static String DELIMITER_EMPTY_STRING = "";
-    public static String DELIMITER_SLASH = "/";
-    public static String DELIMITER_SEMI_COLON = ":";
-    public static String DELIMITER_CHARACTER = " ";
-    public static String DIVIDER = " | ";
-
     public TaskList() {
         taskArrayList = new ArrayList<>();
     }
