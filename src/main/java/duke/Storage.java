@@ -16,7 +16,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static duke.command.AddCommand.returnTask;
+import static duke.AddCommand.returnTask;
+
 
 public class Storage {
 
