@@ -3,26 +3,52 @@ package duke.command;
 
 import duke.TaskList;
 import duke.Ui;
+import duke.exception.InvalidTask;
 import duke.task.Task;
 
 public class FindCommand extends Command {
 
     public FindCommand(String input) {
         this.command = input;
-        Ui.printLines();
-        System.out.println("Here are the matching tasks in your list:");
-        int index = 1;
-        for (Task task : TaskList.taskArrayList) {
-            String task_description = task.toString().substring(6);
-            if (task_description.contains(command)) {
-                System.out.println(index + ". " + task);
-                index++;
-            }
+        findTask();
+    }
 
+    public void findTask() {
+
+        try {
+            checkTask();
+            Ui.printLines();
+            Ui.printMatchingTasks();
+            int index = 1;
+
+            for (Task task : TaskList.taskArrayList) {
+                String task_description = task.toString();
+                if (task_description.contains(command)) {
+                    System.out.println(index + ". " + task);
+                    index++;
+                }
+
+            }
+            Ui.printLines();
+        } catch (InvalidTask invalidTask) {
+            Ui.printLines();
+            Ui.printInvalidTask();
+            Ui.printLines();
         }
-        Ui.printLines();
+    }
+
+
+    public void checkTask() throws InvalidTask {
+
+        int incidenceOfTask = (int) TaskList.taskArrayList.stream()
+                .filter(task -> task.toString().contains(command))
+                .count();
+        if (incidenceOfTask == 0) {
+            throw new InvalidTask();
+        }
 
     }
+
 }
 
 
