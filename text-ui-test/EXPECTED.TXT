@@ -5,95 +5,52 @@ Enter your name:
 -------------------------------------------------------------
 Hello Muthu !
 -------------------------------------------------------------
-Here are the tasks!
-T | 0 | run
-T | 0 | run
-E | 0 | marathon(at:sunday)
-T | 0 | run
-E | 0 | marathon(at:sunday)
-D | 0 | exam(by:today)
-T | 0 | study
 -------------------------------------------------------------
 Do you want to keep the contents of the file?
 -------------------------------------------------------------
--------------------------------------------------------------
-Got it.I've added this task:
- [T][⨉]run
--------------------------------------------------------------
-Got it.I've added this task:
- [T][⨉]run
--------------------------------------------------------------
-Got it.I've added this task:
- [E][⨉]marathon(at:sunday)
--------------------------------------------------------------
-Got it.I've added this task:
- [T][⨉]run
--------------------------------------------------------------
-Got it.I've added this task:
- [E][⨉]marathon(at:sunday)
--------------------------------------------------------------
-Got it.I've added this task:
- [D][⨉]exam(by:today)
--------------------------------------------------------------
-Got it.I've added this task:
- [T][⨉]study
 -------------------------------------------------------------
 Alright Muthu , What can I do for you?
 -------------------------------------------------------------
 -------------------------------------------------------------
 Got it.I've added this task:
  [T][⨉]run
-Now you have 8 tasks in the list.
+Now you have 1 tasks in the list.
 -------------------------------------------------------------
 -------------------------------------------------------------
 Got it.I've added this task:
  [E][⨉]marathon(at:sunday)
-Now you have 9 tasks in the list.
+Now you have 2 tasks in the list.
 -------------------------------------------------------------
 -------------------------------------------------------------
 Got it.I've added this task:
  [D][⨉]exam(by:today)
-Now you have 10 tasks in the list.
+Now you have 3 tasks in the list.
 -------------------------------------------------------------
 -------------------------------------------------------------
 Nice! I've marked this task as done:
-[T][✓]run
+[E][✓]marathon(at:sunday)
 -------------------------------------------------------------
 -------------------------------------------------------------
 Here are the tasks in your list:
 1.[T][⨉]run
-2.[T][✓]run
-3.[E][⨉]marathon(at:sunday)
-4.[T][⨉]run
-5.[E][⨉]marathon(at:sunday)
-6.[D][⨉]exam(by:today)
-7.[T][⨉]study
-8.[T][⨉]run
-9.[E][⨉]marathon(at:sunday)
-10.[D][⨉]exam(by:today)
+2.[E][✓]marathon(at:sunday)
+3.[D][⨉]exam(by:today)
 -------------------------------------------------------------
 -------------------------------------------------------------
 Noted. I've removed this task:
- [T][✓]run
-Now you have 9 tasks in the list.
+ [E][✓]marathon(at:sunday)
+Now you have 2 tasks in the list.
 -------------------------------------------------------------
 -------------------------------------------------------------
 Got it.I've added this task:
  [T][⨉]study
-Now you have 10 tasks in the list.
+Now you have 3 tasks in the list.
 -------------------------------------------------------------
 -------------------------------------------------------------
 Here are the tasks in your list:
 1.[T][⨉]run
-2.[E][⨉]marathon(at:sunday)
-3.[T][⨉]run
-4.[E][⨉]marathon(at:sunday)
-5.[D][⨉]exam(by:today)
-6.[T][⨉]study
-7.[T][⨉]run
-8.[E][⨉]marathon(at:sunday)
-9.[D][⨉]exam(by:today)
-10.[T][⨉]study
+2.[D][⨉]exam(by:today)
+3.[T][⨉]study
 -------------------------------------------------------------
 -------------------------------------------------------------
 Bye.Hope to see you again soon!

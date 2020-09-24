@@ -1,8 +1,4 @@
 Here are the tasks!
-E | 0 | marathon(at:sunday)
-E | 0 | marathon(at:sunday)
-D | 0 | exam(by:today)
-T | 0 | study
-E | 0 | marathon(at:sunday)
+T | 0 | run
 D | 0 | exam(by:today)
 T | 0 | study
