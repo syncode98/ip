@@ -4,7 +4,6 @@ import duke.task.Task;
 
 import java.util.ArrayList;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Ui {
@@ -13,7 +12,7 @@ public class Ui {
 
     public String nameOfUser;
 
-    public static  final Scanner inputScanner=new Scanner(System.in);
+    public static final Scanner inputScanner = new Scanner(System.in);
 
     public Ui() {
         Ui.printLines();
@@ -25,14 +24,15 @@ public class Ui {
         Ui.printLines();
 
     }
+
     public void userCommands() {
         System.out.println("Alright " + nameOfUser + " , What can I do for you?");
         Ui.printLines();
-        Parser.readInput();
+        //Parser.readInput();
 
     }
 
-    public static String keepContents(){
+    public static String keepContents() {
         Ui.printLines();
         System.out.println("Do you want to keep the contents of the file?");
         Ui.printLines();
@@ -47,12 +47,6 @@ public class Ui {
         System.out.println("-------------------------------------------------------------");
     }
 
-    public static void exitCommand() throws IOException {
-        printLines();
-        System.out.println("Bye.Hope to see you again soon!");
-        printLines();
-
-    }
 
     public static void printAllTasks(ArrayList<Task> taskArrayList) {
         printLines();
@@ -70,13 +64,15 @@ public class Ui {
     }
 
     public static void invalidCommand() {
-        printLines();
         System.out.println(sadFace + " OOPS!!! I'm sorry, but I don't know what that means :-(");
-        printLines();
     }
 
     public static void printInvalidDone() {
         System.out.println(sadFace + " Command done cannot be empty!");
+    }
+
+    public static void printInvalidDelete() {
+        System.out.println(sadFace + " Command delete cannot be empty!");
     }
 
     public static void printInvalidTask() {
@@ -88,7 +84,7 @@ public class Ui {
     }
 
     public static void printEmptyDescription(String task) {
-        String description = task.equals(Parser.KEYWORD_EVENT) ? ("n " + task) : (" " + task);
+        String description = task.equals("event") ? ("n " + task) : (" " + task);
         System.out.println(sadFace + " OOPS!!! The description of a" + description + " cannot be empty.");
     }
 
@@ -97,11 +93,11 @@ public class Ui {
         System.out.println(sadFace + " Enter a valid date for " + task + ".");
     }
 
-    public static void invalidPath(){
+    public static void invalidPath() {
         System.out.println("The path does not exist!");
     }
 
-    public static void printTasksFromFile(ArrayList<String> fileLines){
+    public static void printTasksFromFile(ArrayList<String> fileLines) {
         for (String line : fileLines) {
             System.out.println(line);
         }

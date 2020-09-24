@@ -2,6 +2,7 @@ package duke;
 
 import duke.exception.IllegalEmptyDescriptionException;
 import duke.exception.IllegalPrepositionWithoutDate;
+import duke.exception.InvalidCommand;
 import duke.task.Task;
 
 import java.io.File;
@@ -15,18 +16,26 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import static duke.command.AddCommand.returnTask;
+
 public class Storage {
 
     private static String filePath;
     private static ArrayList<String> fileLines;
-    public static String DIRECTORY ="data";
+    public static String DIRECTORY = "data";
     public static String DIVIDER = " | ";
+
+    public static String DELIMITER_EMPTY_STRING = "";
+    public static String DELIMITER_SLASH = "/";
+    public static String DELIMITER_SEMI_COLON = ":";
+    public static String DELIMITER_CHARACTER = " ";
 
     public Storage(String pathOfFile) {
         fileLines = new ArrayList<>();
         filePath = pathOfFile;
         checkDirectoryStatus();
         checkFileStatus();
+        fileData();
     }
 
     public static ArrayList<Task> load() {
@@ -44,7 +53,7 @@ public class Storage {
                         if (line.equals("Here are the tasks!") || line.equals("You do not have any tasks!")) {
                             continue;
                         } else {
-                            Task task = Parser.taskFromFile(line);
+                            Task task = Storage.taskFromFile(line);
                             tasksFromFile.add(task);
                         }
                     }
@@ -67,10 +76,6 @@ public class Storage {
                 System.out.println("There is an error with the file!");
             }
 
-        } catch (IllegalEmptyDescriptionException e) {
-            System.out.println("The description is empty!!");
-        } catch (IllegalPrepositionWithoutDate illegalPrepositionWithoutDate) {
-            System.out.println("Add an appropriate data");
         }
         return tasksFromFile;
     }
@@ -101,7 +106,8 @@ public class Storage {
         clearFile();
         String task = doneTask.substring(6);
         for (String line : fileLines) {
-            if (line.contains(task)) {
+            String toCompare = line.substring(7).strip();
+            if (toCompare.equals(task)) {
                 if (keyword.equals(Parser.KEYWORD_DELETE)) {
                     continue;
                 } else {
@@ -206,5 +212,47 @@ public class Storage {
         }
     }
 
+    public static Task taskFromFile(String input) {
+
+        Task task = null;
+        try {
+            char keywordSymbol = input.charAt(0);
+            String status = input.substring(4, 5);
+            String taskDescription = input.substring(8);
+            String keyword = null;
+            switch (keywordSymbol) {
+            case 'T':
+                keyword = "todo";
+                break;
+            case 'D':
+                keyword = "deadline";
+                taskDescription = taskDescription.replace("(", DELIMITER_SLASH);
+                taskDescription = taskDescription.replace(")", DELIMITER_EMPTY_STRING);
+                taskDescription = taskDescription.replace(DELIMITER_SEMI_COLON, DELIMITER_CHARACTER);
+
+                break;
+            default:
+                keyword = "event";
+                taskDescription = taskDescription.replace("(", DELIMITER_SLASH);
+                taskDescription = taskDescription.replace(")", DELIMITER_EMPTY_STRING);
+                taskDescription = taskDescription.replace(DELIMITER_SEMI_COLON, DELIMITER_CHARACTER);
+                break;
+            }
+            task = returnTask(taskDescription, keyword);
+
+            if (status.equals("1")) {
+                task.setDone(true);
+            }
+
+        } catch (IllegalEmptyDescriptionException e) {
+            Ui.printEmptyDescription(task.toString());
+        } catch (IllegalPrepositionWithoutDate i) {
+            Ui.printEmptyDate(task.toString());
+        } catch (InvalidCommand invalidCommand) {
+            invalidCommand.printStackTrace();
+        }
+        return task;
+
+    }
 
 }
