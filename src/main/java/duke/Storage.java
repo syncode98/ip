@@ -16,7 +16,6 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static duke.command.AddCommand.returnTask;
 
 public class Storage {
 
@@ -238,7 +237,7 @@ public class Storage {
                 taskDescription = taskDescription.replace(DELIMITER_SEMI_COLON, DELIMITER_CHARACTER);
                 break;
             }
-            task = returnTask(taskDescription, keyword);
+            task = AddCommand.returnTask(taskDescription, keyword);
 
             if (status.equals("1")) {
                 task.setDone(true);

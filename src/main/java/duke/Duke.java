@@ -1,7 +1,6 @@
 package duke;
 
-import duke.command.Command;
-import duke.command.ExitCommand;
+
 
 public class Duke {
 
