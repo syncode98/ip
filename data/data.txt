@@ -1,2 +1,2 @@
 Here are the tasks!
-D | 0 | marathon(by: Dec 1 2019)
+E | 0 | run(at: 10 00-18 00 Oct 1 2019 )

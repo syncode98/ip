@@ -110,7 +110,7 @@ public class Storage {
                 if (keyword.equals(Parser.KEYWORD_DELETE)) {
                     continue;
                 } else {
-                    line = line.replace("0", "1");
+                    line = line.replaceFirst("0", "1");
                 }
             }
             writeToFile(line);
