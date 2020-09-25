@@ -104,16 +104,20 @@ public class AddCommand extends Command {
 
 
             //splits the deadline into its preposition and the date
-            String[] descriptorsForDate = deadlineForTask.split(DELIMITER_CHARACTER);
-            String preposition = descriptorsForDate[0].strip();
+            String[] descriptorsForDate = deadlineForTask.substring(2).strip().split(DELIMITER_CHARACTER);
+            String preposition = deadlineForTask.substring(0, 2);
 
-            LocalDate date = LocalDate.parse(descriptorsForDate[1]);
+
+            LocalDate date = null;
             LocalTime startTime = null;
             LocalTime endTime = null;
-            if (descriptorsForDate.length > 2) {
-                startTime = LocalTime.parse(descriptorsForDate[2]);
-                if (descriptorsForDate.length > 3) {
-                    endTime = LocalTime.parse(descriptorsForDate[4]);
+            if (descriptorsForDate.length >0) {
+                date = LocalDate.parse(descriptorsForDate[0]);
+            }
+            if (descriptorsForDate.length > 1) {
+                startTime = LocalTime.parse(descriptorsForDate[1]);
+                if (descriptorsForDate.length > 2) {
+                    endTime = LocalTime.parse(descriptorsForDate[3]);
                 }
             }
 

@@ -63,16 +63,16 @@ public class Event extends Task {
         String startAndEndTime = "";
 
         if (this.startTime != null) {
-            startAndEndTime += "at: " + this.startTime.format(DateTimeFormatter.ofPattern("HH mm"));
+            startAndEndTime += this.startTime.toString();
         }
         if (this.endTime != null) {
-            startAndEndTime += "-" + this.endTime.format(DateTimeFormatter.ofPattern("HH mm"));
+            startAndEndTime += "-" + this.endTime.toString();
         }
         if (this.date != null) {
-            date_format = date.format(DateTimeFormatter.ofPattern("MMM d yyyy "));
+            date_format = date.format(DateTimeFormatter.ofPattern("d MMM yyyy "));
             startAndEndTime += " " + date_format;
         }
 
-        return "[E]" + super.toString() + "(" + startAndEndTime + ")";
+        return "[E]" + super.toString() + "("+"at: "  + startAndEndTime + ")";
     }
 }

@@ -13,6 +13,10 @@ import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -227,14 +231,21 @@ public class Storage {
                 keyword = "deadline";
                 taskDescription = taskDescription.replace("(", DELIMITER_SLASH);
                 taskDescription = taskDescription.replace(")", DELIMITER_EMPTY_STRING);
-                taskDescription = taskDescription.replace(DELIMITER_SEMI_COLON, DELIMITER_CHARACTER);
-
+                taskDescription = taskDescription.replaceFirst(DELIMITER_SEMI_COLON, DELIMITER_EMPTY_STRING);
+                int index = taskDescription.indexOf("/by");
+                String dateAndTime = taskDescription.substring(index+3).strip();
+                String deadline=convertToTime(dateAndTime);
+                taskDescription=taskDescription.replace(dateAndTime,deadline);
                 break;
             default:
                 keyword = "event";
                 taskDescription = taskDescription.replace("(", DELIMITER_SLASH);
                 taskDescription = taskDescription.replace(")", DELIMITER_EMPTY_STRING);
-                taskDescription = taskDescription.replace(DELIMITER_SEMI_COLON, DELIMITER_CHARACTER);
+                taskDescription = taskDescription.replaceFirst(DELIMITER_SEMI_COLON, DELIMITER_EMPTY_STRING);
+                int index1 = taskDescription.indexOf("/at");
+                String eventDetails = taskDescription.substring(index1 + 3).strip();
+                String eventTime=convertToTime(eventDetails);
+                taskDescription=taskDescription.replace(eventDetails,eventTime);
                 break;
             }
             task = AddCommand.returnTask(taskDescription, keyword);
@@ -251,6 +262,36 @@ public class Storage {
             invalidCommand.printStackTrace();
         }
         return task;
+
+    }
+
+    public static String convertToTime(String deadline) {
+        DateTimeFormatter formatter;
+        String startTime = "";
+        String endTime = "";
+        String newDeadline="";
+        String[]words= deadline.split(" ");
+       if (deadline.contains("-")) {
+            String[] details = deadline.split("-");
+            startTime = details[0];
+            deadline = deadline.replace(details[0] + "-", "");
+            details = deadline.split(" ");
+            endTime = details[0];
+            deadline = deadline.replace(endTime+ " ", "");
+            formatter = DateTimeFormatter.ofPattern("d MMM yyyy");
+            LocalDate date = LocalDate.parse(deadline, formatter);
+            newDeadline+=date.toString()+" "+ startTime+ " - "+ endTime;
+        } else if(deadline.contains(":")) {
+            formatter = DateTimeFormatter.ofPattern("HH:mm d MMM yyyy");
+            LocalDateTime date = LocalDateTime.parse(deadline, formatter);
+
+            newDeadline+=date.toString().replace("T"," ");
+        } else{
+           formatter = DateTimeFormatter.ofPattern("d MMM yyyy");
+           deadline=deadline.strip();
+           newDeadline+=LocalDate.parse(deadline,formatter).toString();
+       }
+        return newDeadline;
 
     }
 

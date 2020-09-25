@@ -40,13 +40,13 @@ public class Deadline extends Task {
     public String toString() {
         String deadline = "";
         if (this.deadlineTime != null) {
-            deadline += this.deadlineTime.format(DateTimeFormatter.ofPattern("HHmm"));
+            deadline += " "+this.deadlineTime.toString();
         }
         if (this.date != null) {
             deadline += date.format(DateTimeFormatter.ofPattern(" d MMM yyyy "));
         }
 
-        return "[D]" + super.toString() + "(by: " + deadline + ")";
+        return "[D]" + super.toString() + "(by:" + deadline + ")";
     }
 
 }
