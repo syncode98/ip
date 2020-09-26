@@ -28,10 +28,14 @@ public class Ui {
     public void userCommands() {
         System.out.println("Alright " + nameOfUser + " , What can I do for you?");
         Ui.printLines();
-        //Parser.readInput();
 
     }
 
+    /**
+     * Checks if the user wants to retain the contents in the data.txt file.
+     *
+     * @return The decision of the user to the Storage.java class.
+     */
     public static String keepContents() {
         Ui.printLines();
         System.out.println("Do you want to keep the contents of the file?");
@@ -48,6 +52,11 @@ public class Ui {
     }
 
 
+    /**
+     * Prints all the tasks from the taskArrayList
+     *
+     * @param taskArrayList The ArrayList in which the tasks are stored.
+     */
     public static void printAllTasks(ArrayList<Task> taskArrayList) {
         printLines();
 
@@ -67,6 +76,7 @@ public class Ui {
         }
     }
 
+    /** Prints out a warning is user enters an invalid Command */
     public static void invalidCommand() {
         System.out.println(sadFace + " OOPS!!! I'm sorry, but I don't know what that means :-(");
     }

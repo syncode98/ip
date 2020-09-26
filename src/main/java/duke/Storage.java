@@ -43,6 +43,11 @@ public class Storage {
         fileData();
     }
 
+    /**
+     * Loads the data in the data.txt file upon the start of the program..
+     *
+     * @return ArrayList of the lines in the data.txt file
+     */
     public static ArrayList<Task> load() {
         ArrayList<Task> tasksFromFile = new ArrayList<Task>();
         try {
@@ -85,6 +90,7 @@ public class Storage {
         return tasksFromFile;
     }
 
+    /** Reads the data in the data.txt file and stores it in an ArrayList */
     public static void fileData() {
         try {
             fileLines.clear();
@@ -104,7 +110,10 @@ public class Storage {
 
     }
 
-
+    /**
+     * Updates the data.txt file if a task has been deleted or
+     * has been completed
+     */
     public static void updateFile(String doneTask, String keyword) throws IOException {
 
         fileData();
@@ -159,6 +168,7 @@ public class Storage {
         fileWriter.close();
     }
 
+    /** Creates a data.txt file */
     public static void createFile() {
 
         try {
@@ -170,6 +180,7 @@ public class Storage {
         }
     }
 
+    /** Clears the data.txt file of all the data */
     public static void clearFile() {
         try {
             FileWriter file = new FileWriter(filePath);
@@ -179,7 +190,10 @@ public class Storage {
         }
     }
 
-
+    /**
+     * Checks if the file exists in the directory and creates
+     * the file if it is not present
+     */
     public static void checkFileStatus() {
 
         try {
@@ -195,6 +209,10 @@ public class Storage {
 
     }
 
+    /**
+     * Checks if the directory is present.If not,
+     * this method created the directory for the user.
+     */
     public void checkDirectoryStatus() {
 
         try {
@@ -217,6 +235,13 @@ public class Storage {
         }
     }
 
+    /**
+     * Reads the line from the file and converts
+     * it into a task.
+     *
+     * @param input The line in the data.txt file.
+     * @return An instantiated task.
+     */
     public static Task taskFromFile(String input) {
 
         Task task = null;
@@ -235,9 +260,9 @@ public class Storage {
                 taskDescription = taskDescription.replace(")", DELIMITER_EMPTY_STRING);
                 taskDescription = taskDescription.replaceFirst(DELIMITER_SEMI_COLON, DELIMITER_EMPTY_STRING);
                 int index = taskDescription.indexOf("/by");
-                String dateAndTime = taskDescription.substring(index+3).strip();
-                String deadline=convertToTime(dateAndTime);
-                taskDescription=taskDescription.replace(dateAndTime,deadline);
+                String dateAndTime = taskDescription.substring(index + 3).strip();
+                String deadline = convertToTime(dateAndTime);
+                taskDescription = taskDescription.replace(dateAndTime, deadline);
                 break;
             default:
                 keyword = "event";
@@ -246,8 +271,8 @@ public class Storage {
                 taskDescription = taskDescription.replaceFirst(DELIMITER_SEMI_COLON, DELIMITER_EMPTY_STRING);
                 int index1 = taskDescription.indexOf("/at");
                 String eventDetails = taskDescription.substring(index1 + 3).strip();
-                String eventTime=convertToTime(eventDetails);
-                taskDescription=taskDescription.replace(eventDetails,eventTime);
+                String eventTime = convertToTime(eventDetails);
+                taskDescription = taskDescription.replace(eventDetails, eventTime);
                 break;
             }
             task = AddCommand.returnTask(taskDescription, keyword);
@@ -267,32 +292,40 @@ public class Storage {
 
     }
 
+    /**
+     * Reads the deadline and converts it into the correct format
+     * which is accepted by the returnEventDeadline() method in
+     * AddCommand class.
+     *
+     * @param deadline Deadline of the task
+     * @return The corrected String format of the deadline.
+     */
     public static String convertToTime(String deadline) {
         DateTimeFormatter formatter;
         String startTime = "";
         String endTime = "";
-        String newDeadline="";
-        String[]words= deadline.split(" ");
-       if (deadline.contains("-")) {
+        String newDeadline = "";
+        String[] words = deadline.split(" ");
+        if (deadline.contains("-")) {
             String[] details = deadline.split("-");
             startTime = details[0];
             deadline = deadline.replace(details[0] + "-", "");
             details = deadline.split(" ");
             endTime = details[0];
-            deadline = deadline.replace(endTime+ " ", "");
+            deadline = deadline.replace(endTime + " ", "");
             formatter = DateTimeFormatter.ofPattern("d MMM yyyy");
             LocalDate date = LocalDate.parse(deadline, formatter);
-            newDeadline+=date.toString()+" "+ startTime+ " - "+ endTime;
-        } else if(deadline.contains(":")) {
+            newDeadline += date.toString() + " " + startTime + " - " + endTime;
+        } else if (deadline.contains(":")) {
             formatter = DateTimeFormatter.ofPattern("HH:mm d MMM yyyy");
             LocalDateTime date = LocalDateTime.parse(deadline, formatter);
 
-            newDeadline+=date.toString().replace("T"," ");
-        } else{
-           formatter = DateTimeFormatter.ofPattern("d MMM yyyy");
-           deadline=deadline.strip();
-           newDeadline+=LocalDate.parse(deadline,formatter).toString();
-       }
+            newDeadline += date.toString().replace("T", " ");
+        } else {
+            formatter = DateTimeFormatter.ofPattern("d MMM yyyy");
+            deadline = deadline.strip();
+            newDeadline += LocalDate.parse(deadline, formatter).toString();
+        }
         return newDeadline;
 
     }

@@ -13,6 +13,11 @@ public class Parser {
     public static String KEYWORD_FIND = "find";
     public static String DELIMITER_EMPTY_STRING = "";
 
+    /**
+     * Reads the command and instantiates the corresponding task.
+     *
+     * @param input The command given by the user
+     */
     public Parser(String input) {
 
         if (input.contains(KEYWORD_DONE)) {

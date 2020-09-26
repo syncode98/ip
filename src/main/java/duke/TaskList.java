@@ -24,6 +24,14 @@ public class TaskList {
         return taskArrayList.size();
     }
 
+    /**
+     * Adds the task to the taskArrayList and updates the data.txt file concurrently,
+     * if needed.
+     *
+     * @param task      The task that has been instantiated.
+     * @param fileWrite To decide if the data.txt file needs to be updated.
+     * @throws IOException If the file is not able to be updated.
+     */
     public static void addToTasks(Task task, boolean fileWrite) throws IOException {
         try {
             taskArrayList.add(task);
@@ -33,7 +41,7 @@ public class TaskList {
                 System.out.println("Now you have " + getSize() + " tasks in the list.");
             }
         } catch (NullPointerException n) {
-           Ui.printInvalidTask();
+            Ui.printInvalidTask();
         }
     }
 
