@@ -11,6 +11,12 @@ import duke.task.Task;
 import duke.task.Todo;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 
 public class AddCommand extends Command {
 
@@ -44,6 +50,8 @@ public class AddCommand extends Command {
             System.out.println("Something went wrong" + e.getMessage());
         } catch (InvalidCommand invalidCommand) {
             Ui.invalidCommand();
+        } catch (DateTimeParseException d) {
+            Ui.printEmptyDate(keyword);
         }
         Ui.printLines();
     }
@@ -60,17 +68,15 @@ public class AddCommand extends Command {
      *                                          required format for deadline and events
      */
     public static Task returnTask(String input, String keyword) throws
-            IllegalEmptyDescriptionException, IllegalPrepositionWithoutDate, InvalidCommand {
-        Task currentTask;
+            IllegalEmptyDescriptionException, IllegalPrepositionWithoutDate, InvalidCommand, NullPointerException {
+        Task currentTask = null;
         switch (keyword) {
         case "event":
-            String[] eventDetails = parseString(keyword, input);
-            currentTask = new Event(eventDetails[0], eventDetails[1]);
-            break;
+            //fallthrough
         case "deadline":
-            String[] deadlineDetails = parseString(keyword, input);
-            currentTask = new Deadline(deadlineDetails[0], deadlineDetails[1]);
+            currentTask = returnEventDeadline(keyword, input);
             break;
+
         case "todo":
             String task = returnDescriptionOfTask(input, keyword);
             currentTask = new Todo(task);
@@ -92,28 +98,54 @@ public class AddCommand extends Command {
      * @throws IllegalEmptyDescriptionException If the task is not given by the user
      * @throws IllegalPrepositionWithoutDate    If the user does not enter the date after the preposition
      */
-    public static String[] parseString(String typeOfTask, String command) throws IllegalEmptyDescriptionException,
+    public static Task returnEventDeadline(String typeOfTask, String command) throws IllegalEmptyDescriptionException,
             IllegalPrepositionWithoutDate {
+        Task task = null;
+
 
         String[] words = command.split(DELIMITER_SLASH);
-        String task = returnDescriptionOfTask(words[0], typeOfTask);
-        words[0] = task;
+        String taskDescription = returnDescriptionOfTask(words[0], typeOfTask);
+        words[0] = taskDescription;
         String deadlineForTask = words[1].strip();
 
 
         //splits the deadline into its preposition and the date
-        String[] descriptorsForDate = deadlineForTask.split(DELIMITER_CHARACTER);
-        String preposition = descriptorsForDate[0].strip();
-        deadlineForTask = deadlineForTask.replace(preposition, DELIMITER_EMPTY_STRING).strip();
+        String[] descriptorsForDate = deadlineForTask.substring(2).strip().split(DELIMITER_CHARACTER);
+        String preposition = deadlineForTask.substring(0, 2);
 
-        if (deadlineForTask.equals(DELIMITER_EMPTY_STRING)) {
+
+        LocalDate date = null;
+        LocalTime startTime = null;
+        LocalTime endTime = null;
+        DateTimeFormatter format= DateTimeFormatter.ofPattern("d-MM-yyyy");
+        if (descriptorsForDate.length > 0) {
+            try {
+                date = LocalDate.parse(descriptorsForDate[0],format);
+            } catch (DateTimeParseException d) {
+                date = LocalDate.parse(descriptorsForDate[0]);
+            }
+        }
+        if (descriptorsForDate.length > 1) {
+            startTime = LocalTime.parse(descriptorsForDate[1]);
+            if (descriptorsForDate.length > 2) {
+                endTime = LocalTime.parse(descriptorsForDate[3]);
+            }
+        }
+
+        if (typeOfTask.equals("deadline")) {
+            task = new Deadline(taskDescription, date, startTime);
+        } else {
+            task = new Event(taskDescription, date, startTime, endTime);
+        }
+
+
+        if (deadlineForTask.equals(DELIMITER_EMPTY_STRING) | deadlineForTask.equals(DELIMITER_CHARACTER)) {
             throw new IllegalPrepositionWithoutDate();
         }
 
-        words[1] = preposition + DELIMITER_SEMI_COLON + deadlineForTask;
-        return words;
-
+        return task;
     }
+
 
     public static String returnDescriptionOfTask(String command, String typeOfTask) throws
             IllegalEmptyDescriptionException {

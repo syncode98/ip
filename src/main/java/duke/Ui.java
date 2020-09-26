@@ -51,16 +51,20 @@ public class Ui {
     public static void printAllTasks(ArrayList<Task> taskArrayList) {
         printLines();
 
-        if (TaskList.taskArrayList.size() == 0) {
-            System.out.println("There are currently no tasks available!");
-        } else {
-            System.out.println("Here are the tasks in your list:");
-            for (Task task : TaskList.taskArrayList) {
-                int indexOfTask = TaskList.taskArrayList.indexOf(task) + 1;
-                System.out.println(indexOfTask + "." + task.toString());
+        try {
+            if (TaskList.taskArrayList.size() == 0) {
+                System.out.println("There are currently no tasks available!");
+            } else {
+                System.out.println("Here are the tasks in your list:");
+                for (Task task : TaskList.taskArrayList) {
+                    int indexOfTask = TaskList.taskArrayList.indexOf(task) + 1;
+                    System.out.println(indexOfTask + "." + task.toString());
+                }
             }
+            printLines();
+        } catch (NullPointerException n) {
+            Ui.printInvalidTask();
         }
-        printLines();
     }
 
     public static void invalidCommand() {

@@ -1,7 +1,8 @@
 package duke;
 
 import duke.command.*;
-
+import duke.command.FindCommand;
+import duke.command.ListCommand;
 
 public class Parser {
     public static Command command;

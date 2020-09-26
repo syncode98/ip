@@ -1,12 +1,15 @@
 package duke.command;
 
-
 import duke.TaskList;
 import duke.Ui;
 import duke.exception.InvalidTask;
 import duke.task.Task;
 
-public class FindCommand extends Command {
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class FindCommand extends duke.command.Command {
 
     public FindCommand(String input) {
         this.command = input;
@@ -23,7 +26,8 @@ public class FindCommand extends Command {
 
             for (Task task : TaskList.taskArrayList) {
                 String task_description = task.toString();
-                if (task_description.contains(command)) {
+
+                if (task_description.contains(command) ) {
                     System.out.println(index + ". " + task);
                     index++;
                 }
@@ -50,5 +54,3 @@ public class FindCommand extends Command {
     }
 
 }
-
-
