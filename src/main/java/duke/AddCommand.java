@@ -9,8 +9,10 @@ import duke.task.Task;
 import duke.task.Todo;
 
 import java.io.IOException;
+import java.text.DateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 
@@ -46,6 +48,8 @@ public class AddCommand extends Command {
             System.out.println("Something went wrong" + e.getMessage());
         } catch (InvalidCommand invalidCommand) {
             Ui.invalidCommand();
+        } catch (DateTimeParseException d) {
+            Ui.printEmptyDate(keyword);
         }
         Ui.printLines();
     }
@@ -62,7 +66,7 @@ public class AddCommand extends Command {
      *                                          required format for deadline and events
      */
     public static Task returnTask(String input, String keyword) throws
-            IllegalEmptyDescriptionException, IllegalPrepositionWithoutDate, InvalidCommand {
+            IllegalEmptyDescriptionException, IllegalPrepositionWithoutDate, InvalidCommand, NullPointerException {
         Task currentTask = null;
         switch (keyword) {
         case "event":
@@ -95,49 +99,48 @@ public class AddCommand extends Command {
     public static Task returnEventDeadline(String typeOfTask, String command) throws IllegalEmptyDescriptionException,
             IllegalPrepositionWithoutDate {
         Task task = null;
-        try {
-
-            String[] words = command.split(DELIMITER_SLASH);
-            String taskDescription = returnDescriptionOfTask(words[0], typeOfTask);
-            words[0] = taskDescription;
-            String deadlineForTask = words[1].strip();
 
 
-            //splits the deadline into its preposition and the date
-            String[] descriptorsForDate = deadlineForTask.substring(2).strip().split(DELIMITER_CHARACTER);
-            String preposition = deadlineForTask.substring(0, 2);
+        String[] words = command.split(DELIMITER_SLASH);
+        String taskDescription = returnDescriptionOfTask(words[0], typeOfTask);
+        words[0] = taskDescription;
+        String deadlineForTask = words[1].strip();
 
 
-            LocalDate date = null;
-            LocalTime startTime = null;
-            LocalTime endTime = null;
-            if (descriptorsForDate.length >0) {
+        //splits the deadline into its preposition and the date
+        String[] descriptorsForDate = deadlineForTask.substring(2).strip().split(DELIMITER_CHARACTER);
+        String preposition = deadlineForTask.substring(0, 2);
+
+
+        LocalDate date = null;
+        LocalTime startTime = null;
+        LocalTime endTime = null;
+        DateTimeFormatter format= DateTimeFormatter.ofPattern("d-MM-yyyy");
+        if (descriptorsForDate.length > 0) {
+            try {
+                date = LocalDate.parse(descriptorsForDate[0],format);
+            } catch (DateTimeParseException d) {
                 date = LocalDate.parse(descriptorsForDate[0]);
             }
-            if (descriptorsForDate.length > 1) {
-                startTime = LocalTime.parse(descriptorsForDate[1]);
-                if (descriptorsForDate.length > 2) {
-                    endTime = LocalTime.parse(descriptorsForDate[3]);
-                }
-            }
-
-            if (typeOfTask.equals("deadline")) {
-                task = new Deadline(taskDescription, date, startTime);
-            } else {
-                task = new Event(taskDescription, date, startTime, endTime);
-            }
-
-
-            if (deadlineForTask.equals(DELIMITER_EMPTY_STRING)) {
-                throw new IllegalPrepositionWithoutDate();
-            }
-
-
-        } catch (IllegalEmptyDescriptionException | IllegalPrepositionWithoutDate e) {
-            Ui.printInvalidTask();
-        } catch (DateTimeParseException d) {
-            Ui.printEmptyDate(typeOfTask);
         }
+        if (descriptorsForDate.length > 1) {
+            startTime = LocalTime.parse(descriptorsForDate[1]);
+            if (descriptorsForDate.length > 2) {
+                endTime = LocalTime.parse(descriptorsForDate[3]);
+            }
+        }
+
+        if (typeOfTask.equals("deadline")) {
+            task = new Deadline(taskDescription, date, startTime);
+        } else {
+            task = new Event(taskDescription, date, startTime, endTime);
+        }
+
+
+        if (deadlineForTask.equals(DELIMITER_EMPTY_STRING) | deadlineForTask.equals(DELIMITER_CHARACTER)) {
+            throw new IllegalPrepositionWithoutDate();
+        }
+
         return task;
     }
 

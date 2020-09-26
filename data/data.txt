@@ -1,3 +1,5 @@
 Here are the tasks!
-D | 0 | exam(by: 1 Oct 2019 )
-D | 0 | exam(by:1800 1 Oct 2019 )
+D | 0 | run(by: 10 Oct 2019 )
+E | 0 | run(at: 18:00 20 Oct 2020 )
+E | 0 | run(at: 18:00 10 Jan 2019 )
+E | 0 | cry(at: 18:00-20:00 10 Jan 2019 )
