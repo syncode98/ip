@@ -117,6 +117,10 @@ public class Ui {
         }
     }
 
+    public static void printMatchingTasks(){
+        System.out.println("Here are the matching tasks in your list:");
+    }
+
 
 }
 
