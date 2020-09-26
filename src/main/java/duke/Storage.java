@@ -1,7 +1,5 @@
 package duke;
 
-import duke.command.AddCommand;
-import duke.command.Command;
 import duke.exception.IllegalEmptyDescriptionException;
 import duke.exception.IllegalPrepositionWithoutDate;
 import duke.exception.InvalidCommand;

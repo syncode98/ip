@@ -1,3 +1,4 @@
 Here are the tasks!
 T | 0 | run
+D | 0 | exam(by:today)
 T | 0 | study
