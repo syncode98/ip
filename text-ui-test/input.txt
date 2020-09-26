@@ -1,12 +1,11 @@
 Muthu
 no
-todo run
-event marathon/at sunday
-deadline exam /by today
-done 2
-list
-delete 2
-todo study
-list
+deadline exam/by 10-10-2019
+deadline homework/by 20-10-2019 18:00
+event charity/at 10
+event charity match/at 10-05-2019
+event marathon/at 05-05-2019 18:00
+event marathon/at 09-09-2019 18:00 - 20:00
 bye
+
 

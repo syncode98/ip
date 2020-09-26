@@ -5,6 +5,12 @@ Enter your name:
 -------------------------------------------------------------
 Hello Muthu !
 -------------------------------------------------------------
+Here are the tasks!
+D | 0 | exam(by: 10 Oct 2019 )
+D | 0 | homework(by: 18:00 20 Oct 2019 )
+E | 0 | charity match(at:  10 May 2019 )
+E | 0 | marathon(at: 18:00 5 May 2019 )
+E | 0 | marathon(at: 18:00-20:00 9 Sep 2019 )
 -------------------------------------------------------------
 Do you want to keep the contents of the file?
 -------------------------------------------------------------
@@ -13,44 +19,31 @@ Alright Muthu , What can I do for you?
 -------------------------------------------------------------
 -------------------------------------------------------------
 Got it.I've added this task:
- [T][⨉]run
+ [D][⨉]exam(by: 10 Oct 2019 )
 Now you have 1 tasks in the list.
 -------------------------------------------------------------
 -------------------------------------------------------------
 Got it.I've added this task:
- [E][⨉]marathon(at:sunday)
+ [D][⨉]homework(by: 18:00 20 Oct 2019 )
 Now you have 2 tasks in the list.
 -------------------------------------------------------------
 -------------------------------------------------------------
-Got it.I've added this task:
- [D][⨉]exam(by:today)
-Now you have 3 tasks in the list.
--------------------------------------------------------------
--------------------------------------------------------------
-Nice! I've marked this task as done:
-[E][✓]marathon(at:sunday)
--------------------------------------------------------------
--------------------------------------------------------------
-Here are the tasks in your list:
-1.[T][⨉]run
-2.[E][✓]marathon(at:sunday)
-3.[D][⨉]exam(by:today)
--------------------------------------------------------------
--------------------------------------------------------------
-Noted. I've removed this task:
- [E][✓]marathon(at:sunday)
-Now you have 2 tasks in the list.
+☹ Enter a valid date for event.
 -------------------------------------------------------------
 -------------------------------------------------------------
 Got it.I've added this task:
- [T][⨉]study
+ [E][⨉]charity match(at:  10 May 2019 )
 Now you have 3 tasks in the list.
 -------------------------------------------------------------
 -------------------------------------------------------------
-Here are the tasks in your list:
-1.[T][⨉]run
-2.[D][⨉]exam(by:today)
-3.[T][⨉]study
+Got it.I've added this task:
+ [E][⨉]marathon(at: 18:00 5 May 2019 )
+Now you have 4 tasks in the list.
+-------------------------------------------------------------
+-------------------------------------------------------------
+Got it.I've added this task:
+ [E][⨉]marathon(at: 18:00-20:00 9 Sep 2019 )
+Now you have 5 tasks in the list.
 -------------------------------------------------------------
 -------------------------------------------------------------
 Bye.Hope to see you again soon!
