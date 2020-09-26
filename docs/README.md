@@ -1,13 +1,13 @@
-# User Guide
-##Duke.java
-### :ledger: **The Ultimate companion** :bookmark_tabs:
+# User Guide For Duke.java
+
+###  **The Ultimate companion**
 
 ## Features 
 
-### Store tasks  
+### 1.Store tasks  
 
 
-## Usage
+#### Usage
 To keep track of the tasks and their completion statuses. 
 
 There are three types of tasks:
@@ -58,7 +58,7 @@ Tasks that have a duration as a deadline
 
 The deadline can be entered in 3 formats:
 
-###1.Only the date.
+### 1.Only the date.
 
 Example of usage: 
 
@@ -69,7 +69,7 @@ Expected outcome:
 ` [E][X]charity match(at:  10 May 2019 )`
 
 
-###2.The date and the time.
+### 2.The date and the time.
 
 Example of usage: 
 
@@ -78,7 +78,7 @@ Example of usage:
 Expected outcome:
 
 ` [E][X]marathon(at: 18:00 5 May 2019 )`
-###2.The date,the start and end time of the event.
+### 3.The date,the start and end time of the event.
 
 Example of usage: 
 
@@ -87,9 +87,9 @@ Example of usage:
 Expected outcome:
 `[E][X]marathon(at: 18:00-20:00 9 Sep 2019 )`
 
-##Error detection
+## Error detection
 
 If the user enters an inappropriate command, then they will be highlighted
 through statements such as these:
 
-`:worried: Enter a valid date for event.`
+`  Task number must be in between 1 and 100.`
