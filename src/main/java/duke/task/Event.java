@@ -57,6 +57,12 @@ public class Event extends Task {
     }
 
 
+    /**
+     * Converts the date, startTime and endTime to string format, only if the
+     * object has been instantiated.
+     *
+     * @return String format of event.
+     */
     @Override
     public String toString() {
         String date_format;
