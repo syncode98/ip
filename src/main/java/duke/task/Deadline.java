@@ -1,34 +1,52 @@
 package duke.task;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+
 public class Deadline extends Task {
-    private String deadline;
 
-    public Deadline(String task, boolean isDone, String deadline) {
-        super(task, isDone);
-        this.deadline = deadline;
-    }
 
-    public Deadline(String task, String deadline) {
+    private LocalDate date;
+    private LocalTime deadlineTime;
+
+
+    public Deadline(String task, LocalDate date, LocalTime time) {
         super(task, false);
-        this.deadline = deadline;
+        this.date = date;
+        this.deadlineTime = time;
+
     }
+
 
     public Deadline() {
         super(null, false);
-        this.deadline = null;
+        // this.deadline = null;
+        this.date = null;
+        this.deadlineTime = null;
     }
 
-    public String getDeadline() {
-        return deadline;
+
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setDeadline(String deadline) {
-        this.deadline = deadline;
+    public LocalTime getDeadlineTime() {
+        return deadlineTime;
     }
+
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + "(" + this.deadline + ")";
+        String deadline = "";
+        if (this.deadlineTime != null) {
+            deadline += " "+this.deadlineTime.toString();
+        }
+        if (this.date != null) {
+            deadline += date.format(DateTimeFormatter.ofPattern(" d MMM yyyy "));
+        }
+
+        return "[D]" + super.toString() + "(by:" + deadline + ")";
     }
 
 }
