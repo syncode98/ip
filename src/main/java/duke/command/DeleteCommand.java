@@ -1,5 +1,8 @@
-package duke;
+package duke.command;
 
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
 import duke.exception.IllegalNumberException;
 import duke.task.Task;
 

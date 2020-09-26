@@ -1,5 +1,6 @@
-package duke;
+package duke.command;
 
+import duke.TaskList;
 import duke.exception.IllegalNumberException;
 
 public abstract class Command {
@@ -24,5 +25,7 @@ public abstract class Command {
         return indexOfTask - 1;
 
     }
+
+
 
 }

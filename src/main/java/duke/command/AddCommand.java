@@ -1,5 +1,7 @@
-package duke;
+package duke.command;
 
+import duke.TaskList;
+import duke.Ui;
 import duke.exception.IllegalEmptyDescriptionException;
 import duke.exception.IllegalPrepositionWithoutDate;
 import duke.exception.InvalidCommand;
