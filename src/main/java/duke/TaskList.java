@@ -25,11 +25,15 @@ public class TaskList {
     }
 
     public static void addToTasks(Task task, boolean fileWrite) throws IOException {
-        taskArrayList.add(task);
-        task.addTask();
-        if (fileWrite) {
-            writeToFile(task.toString());
-            System.out.println("Now you have " + getSize() + " tasks in the list.");
+        try {
+            taskArrayList.add(task);
+            task.addTask();
+            if (fileWrite) {
+                writeToFile(task.toString());
+                System.out.println("Now you have " + getSize() + " tasks in the list.");
+            }
+        } catch (NullPointerException n) {
+           Ui.printInvalidTask();
         }
     }
 
