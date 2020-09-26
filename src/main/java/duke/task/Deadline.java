@@ -36,6 +36,12 @@ public class Deadline extends Task {
     }
 
 
+    /**
+     * Converts the task to String format. The date and time are only
+     * converted if they have been instantiated.
+     *
+     * @return String format of task.
+     */
     @Override
     public String toString() {
         String deadline = "";

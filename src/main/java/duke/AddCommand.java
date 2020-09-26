@@ -32,6 +32,9 @@ public class AddCommand extends Command {
         readTask();
     }
 
+    /**
+     * Reads the command and adds the corresponding tasks to the taskArrayList.
+     */
     public void readTask() {
 
         try {
@@ -145,6 +148,14 @@ public class AddCommand extends Command {
     }
 
 
+    /**
+     * Returns the description of the task.
+     *
+     * @param command The command given by the user.
+     * @param typeOfTask The type of the task.
+     * @return The description of the task
+     * @throws IllegalEmptyDescriptionException If the task is not given by the user.
+     */
     public static String returnDescriptionOfTask(String command, String typeOfTask) throws
             IllegalEmptyDescriptionException {
         String task = command.replace(typeOfTask, DELIMITER_EMPTY_STRING).strip();
