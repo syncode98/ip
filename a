@@ -1,0 +1,1016 @@
+[33mcommit bdc66a5a586b6a346c67dd2caa0ce115b1eb922e[m[33m ([m[1;36mHEAD -> [m[1;32mbranch_A_JavaDoc[m[33m)[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Sat Sep 26 14:30:47 2020 +0800
+
+    Add JavaDoc to AddCommand and Parser classes
+
+[33mcommit 5dc95d06a7df19839424335dbe3ebfcecc5c7ff3[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Sat Sep 26 13:25:34 2020 +0800
+
+    Add JavaDoc to the Deadline and Event classes
+
+[33mcommit 11a2a57cca5da0ab454659cc7b5168e0cb4008d6[m[33m ([m[1;33mtag: Level-8[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m
+Merge: ce83814 0d90a05
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Sat Sep 26 12:01:16 2020 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit ce8381488f4b381af6245b72dd8605810e2f1588[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Sat Sep 26 12:01:00 2020 +0800
+
+    Format data.txt file
+
+[33mcommit ca6b23c93b2814062d0a8825b913bfa0298b86e8[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Sat Sep 26 11:54:47 2020 +0800
+
+    Level-8
+
+[33mcommit 0d90a054d6e39932341dd5254381f26ce5898574[m
+Merge: 8c79cde 6af8ff6
+Author: I MUTHUKUMAR <46095141+syncode98@users.noreply.github.com>
+Date:   Sat Sep 26 11:44:16 2020 +0800
+
+    Merge pull request #1 from syncode98/branch-Level-8
+    
+    Merge Branch level 8
+
+[33mcommit 6af8ff61f22dd60adf0434bd4f13a8e61b1ec1d9[m[33m ([m[1;31morigin/branch-Level-8[m[33m, [m[1;32mbranch-Level-8[m[33m)[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Sat Sep 26 11:22:49 2020 +0800
+
+    Allow multiple formats for input of date
+    
+    The returnEventDeadline method now allows
+    users to input date by the d-MM-yyyy format.
+    
+    Minor code refactoring in the Ui.java
+    class to catch exception.
+
+[33mcommit 5523b4371881d399c91a38d6e92cad5cb24b0b09[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Sat Sep 26 00:56:45 2020 +0800
+
+    Code refactoring to read input from File
+    
+    The method taskFromFile() in storage.java now reads the date and Time input
+    from the files and updates it accordingly to the taskArrayList. The parseString
+    method in AddCommand.java has been changed to accomodate reading of file.
+    
+    The classes Deadline.java and Event.java have been refactored
+    to implement the correct toString() method. Now, the time is shown as
+    HH:mm and the date is shown as dd MMM yyyy.
+
+[33mcommit 7c4639b1520e679c42f1abb1538ff709c31edba0[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Fri Sep 25 20:23:12 2020 +0800
+
+    Implement time in Deadline class
+    
+    The deadline class now tracks the time
+    of deadline.
+
+[33mcommit 80b08042e45154e111a40558010640cf0f1f4bf4[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Fri Sep 25 20:15:23 2020 +0800
+
+    Refactor code in AddCommand.java and Storage.java
+    
+    In the AddCommand.java, the returnEventDeadline() method
+    returns the deadline or the event object, after instantiating it
+    with the appropriate time and date variable.It also finds
+    the date and time of the task given to it.
+    
+    In the Storage.java class, the updateFile() method
+    is modified so that the completion status of the task
+    will be updated accordingly in the data.txt file.
+
+[33mcommit c0b461b12ef8f8dd8d4e90b4c7a7334e2142a0ba[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Fri Sep 25 20:10:30 2020 +0800
+
+    Add exception to TaskList.java
+    
+    If the task equal to null, then the method throws
+    and exception.
+
+[33mcommit 6ff9d47a8d1da4c2e79bcfe153c75df01bea67a2[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Fri Sep 25 20:09:44 2020 +0800
+
+    Implement time and date features in Event class
+    
+    The toString() method converts the date and time
+    of the event to string. It is appended to the task
+    to give the final output.
+
+[33mcommit 5e53dbb8077ba21037ee00b4f9b939b16d9f6392[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Thu Sep 24 23:27:32 2020 +0800
+
+    Implement date & time in Deadline class
+    
+    The deadline class now has an additional date
+    variable, which stores the date of the
+    task in the taskArrayList.
+    
+    There are minor code refactors in the
+    other classes.
+
+[33mcommit 8c79cde8b774ac6cef96168f643e3320c88e34b2[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Thu Sep 24 22:35:30 2020 +0800
+
+    Code refactoring
+
+[33mcommit 8cbee6243bc512dd6815aadd20736958a5a24ab6[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Thu Sep 24 22:34:43 2020 +0800
+
+    Code refactoring
+
+[33mcommit 9961919dde3f51bbd96c984ad573cd62ea760e96[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Thu Sep 24 19:27:46 2020 +0800
+
+    Regression testing for OOP
+
+[33mcommit 24e69ead681535f835bfa56d0c085ec80e779426[m[33m ([m[1;33mtag: A-MoreOOP[m[33m)[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Thu Sep 24 19:24:41 2020 +0800
+
+    Code Refactor for OOP implmentation
+    
+    The command classes have been regrouped into
+    a command package.
+    
+    The taskFromFile method has been moved
+    to the Storage class.It was previously
+    in the Parser class.
+
+[33mcommit 89106a061c075fd6c049fba9755743e55fc89276[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Tue Sep 22 22:58:44 2020 +0800
+
+    Refactor Parser.java class
+    
+    Seperate Command classes have been
+    created for the different commands that can be
+    given by the user.
+    
+    A new exception, InvalidCommand, has
+    been created to deal with case of the user
+    entering an invalid command. It is thrown
+    in the AddCommand.java class.
+
+[33mcommit 87de4cc11abff3f1f1ce6d7175b0255a7462579f[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Tue Sep 22 00:20:41 2020 +0800
+
+    Code refactoring to implement minimal OOP
+    
+    The required classes have been implemented
+    at this level. In the Duke class, the relevant
+    objects are instantiated to perform the relevant actions.
+
+[33mcommit e37a51ae861caf7a3ce4cf868646ea2b353e8558[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Tue Sep 22 00:09:16 2020 +0800
+
+    Code refactor for TaskList.java
+    
+    The class now takes care of the relevant methods
+    for the taskArrayList.
+
+[33mcommit 73197ab8ff2cdd35fa85abcfb680d00b47cda8e7[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Mon Sep 21 17:02:18 2020 +0800
+
+    Extract closely related code
+    
+    The code has been refactored to extract out
+    the methods that perform a specific task.
+    
+    The Ui Class takes care of User-interactions.
+    The Parser Class performs the relevant operations on
+    the String to extract out the task.
+    
+    The storage class takes care of the loading of the data from the
+    data.txt file.
+    
+    The taskList class modifies the ArrayList which tracks all
+    of the tasks.
+
+[33mcommit c5180922e49c8864cdfb761f1e172eb1fb3e8587[m[33m ([m[1;33mtag: A-Collections[m[33m)[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Wed Sep 16 22:20:11 2020 +0800
+
+    Regression Testing Level 7
+    
+    Regression Testing was conducted
+    to ensure the accuracy of the application.
+    
+    Code refactored in to follow coding conventions.
+
+[33mcommit 61a0b375abc4b46335f6ccb0bb4976d54b204149[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Wed Sep 16 22:18:47 2020 +0800
+
+    Code Refactor for  Level 7
+    
+    The directory and filepaths are now stored as constant
+    expressions in TaskArray.java.
+    
+    The fileData method in TaskArray.java reads the contents
+    of data.txt and stores them as an Arraylist.
+    
+    The printContents method in Duke.java class
+    now shows the path in which the directory would be created eventually.
+
+[33mcommit 1fdab2dc2abdfda43631e9ca30ebbfbb80bcbaa6[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Wed Sep 16 19:58:16 2020 +0800
+
+    Implement additional methods to transfer data to data.txt
+    
+    The format of the  output that is being written to the
+     data.txt file has been changed. The Boolean value
+    is now represented by 0's and 1's.  Complete tasks are assigned
+    with a value of 1 while incomplete tasks are assigned with a value
+    of 0.
+    
+    The application now loads the pre existing tasks from
+    the data.txt file. The fileToTask method converts the
+    task in the data.txt file to its respective task object. After
+    that, the task is added in to the arraylilst.
+
+[33mcommit a698de718fe4c0e05b6a10545313cd7e629c8246[m[33m ([m[1;33mtag: A-Jar[m[33m)[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Tue Sep 15 22:42:08 2020 +0800
+
+    Final Implementation of Level 7
+    
+    Regression Testing done to verify that
+    deletion of tasks is successful.
+    
+    Refactored the code to follow coding conventions.
+
+[33mcommit c18fea527217b12279d299ad175e4e445442485b[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Tue Sep 15 22:34:30 2020 +0800
+
+    Implement delete function for external file
+    
+    The searchFile method in TaskArray.java has been
+    changed to updateFile. It now takes care of
+    deleting tasks in the external file.
+
+[33mcommit 404b3a6a62ebf52af919fffe92c6c2c0fbcd04fa[m[33m ([m[1;33mtag: Level-7[m[33m)[m
+Merge: f2eae47 afcac8e
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Tue Sep 15 21:39:12 2020 +0800
+
+    Merge branch 'branch-Level-7'
+    
+    # Conflicts:
+    #       src/main/java/duke/Duke.java
+    #       src/main/java/duke/task/TaskArray.java
+    #       text-ui-test/EXPECTED.TXT
+    #       text-ui-test/input.txt
+    
+    Retained both changes in Duke.java and TaskArray.java.
+    
+    Retained Head changes in EXPECTED.TXT and input.txt.
+
+[33mcommit f2eae474d815d37b817ed8ccf89cab5f6fb1b696[m[33m ([m[1;33mtag: Level-6[m[33m)[m
+Merge: 1f93d8c 97d153f
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Tue Sep 15 20:48:54 2020 +0800
+
+    Merge branch 'branch-Level-6'
+
+[33mcommit 97d153f9ec626d244cbf40706d6e0b584cafb8ee[m[33m ([m[1;31morigin/branch-Level-6[m[33m, [m[1;32mbranch-Level-6[m[33m)[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Tue Sep 15 20:48:07 2020 +0800
+
+    Re commit Level 6
+    
+    This move is to list the commits that are
+    supposed to be under Level-6-branch,
+    which was deleted.
+    
+    Implement ArrayList in Project File
+     fd3b08a97a12d86ad0bb5e57449467af46b2a995 [fd3b08a]
+    
+    Combine two methods to read command
+    b6dd92e8ffa33f489e2d386d91c888e7bfa35e49 [b6dd92e]
+    
+    Code refactoring for Level 6
+    7df933f632edc4d4c76efa55d4d1191573464cc2 [7df933f]
+
+[33mcommit 1f93d8c80d5fd28e5031820eea40c15cedec6756[m
+Merge: 7df933f 323a222
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Tue Sep 15 19:41:42 2020 +0800
+
+    Merge branch 'branch-Level-6'
+
+[33mcommit 323a2228c202938f3df317d20ad14afc0410e85c[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Tue Sep 15 19:41:20 2020 +0800
+
+    Re-Merge with Master branch
+    
+    This is done to merge with the master branch.
+    
+    The previous merge was done with a fast forward option.
+
+[33mcommit afcac8e4b9d93470255e5f402c95ddc9e1580de2[m[33m ([m[1;31morigin/branch-Level-7[m[33m, [m[1;32mbranch-Level-7[m[33m)[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Tue Sep 15 19:32:52 2020 +0800
+
+    Implement Level 7
+    
+    Code has been refactored to follow
+    coding standards
+
+[33mcommit 2e916402b8f92c42ad37eaca648830ddc64528c5[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Tue Sep 15 19:10:22 2020 +0800
+
+    Regression Testing on File methods
+    
+    The text-ui-test/data/data.txt files updates automatically according
+    to inputs.
+    
+    The ACTUAL.txt file shows the implemented changes.
+    (This is observed from the EXPECTED.txt file)
+
+[33mcommit 9503020b22ef1aa3f3375c5186f03124db5c1d74[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Tue Sep 15 18:28:07 2020 +0800
+
+    Implement methods to check status of directory and the file
+    
+    The methods, checkDirectoryStatus and checkFileStatus
+    checks if the directory and the file exists. If not, the application
+    creates it for the users.
+
+[33mcommit f69b03d8aebe7de18aaaa36dd205adfe851f50b8[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Tue Sep 15 15:53:48 2020 +0800
+
+    Implement methods to change content in data.txt file
+    
+    A method, searchFile has been implemented in TaskArray.java .
+    It searches the existing file for the specific task and changes the task.
+    This is useful when the user enters the done command. Hence, the
+    searchFile method updates the existing file to replace the task which has
+    been completed.
+    
+    The readTask method in TaskArray.java now reads all of the
+    inputs from the todo,event,deadline commands, instantiates the
+    task and adds the task to the array.
+    
+    The createFile method in TaskArray.java creates a file if a file is
+    not present.
+    
+    The clearFile method in TaskArray. java clears the contents of the file
+    if the user does not need it.
+    
+    The printContents  Method has been moved from PrintMethod class
+    to Duke.java class.
+
+[33mcommit 1f61c8043dc8715cb0c394c6e273e8ce85baf36d[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Mon Sep 14 13:07:05 2020 +0800
+
+    Enable application to detect the existence of data.txt file
+    
+    A method has been implemented in PrintMethod.java class
+    to check if the data.txt file is available. The method, printContents,
+    will then show the tasks from a previous session.
+    
+    If a file is not present, the application informs the user that a
+    new file will be created in the directory that contains the src folder.
+    The createFile() method creates the data.txt file for the user.
+
+[33mcommit de9c579ebd498c52bfbb04af4567e7b21610a608[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Sun Sep 13 23:57:34 2020 +0800
+
+    Write to an external file
+    
+    A new method, writeToFile, has been
+    implemented in TaskArray.java to transfer
+    the task contents to an external file, data.txt.
+
+[33mcommit 7df933f632edc4d4c76efa55d4d1191573464cc2[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Sun Sep 13 00:11:03 2020 +0800
+
+    Code refactoring for Level 6
+    
+    Unnecessary comments have been removed
+    from all of the class files.
+    
+    The input.txt file has been updated to test
+    the delete feature. Regression testing was
+    successful. The EXPECTED.TXT file has been
+    updated to accordingly.
+
+[33mcommit b6dd92e8ffa33f489e2d386d91c888e7bfa35e49[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Sun Sep 13 00:07:32 2020 +0800
+
+    Combine two methods to read command
+    
+    The readDone method and deleteTask
+    methods in TaskArray.java have been combined
+    since they have a similar structure. The new method
+    is named readDoneandDelete.
+
+[33mcommit fd3b08a97a12d86ad0bb5e57449467af46b2a995[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Sat Sep 12 23:35:49 2020 +0800
+
+    Implement ArrayList in Project File
+    
+    The Task Array in TaskArray.java
+     has been replaced by an ArrayList of tasks.
+    
+    Method implemented in Duke.java
+    to delete tasks. Keyword has also been
+    implemented to identify command "delete".
+    
+    The numberOfTasks variable in Task.java
+    has been deleted since it is redundant.
+    The getters and setters have been deleted
+    too.
+    
+    Methods in PrintMethods have been modified to
+    accomodate the ArrayList.
+
+[33mcommit 96aef3d2ca143496b8a5270ff3b846aa6739d9d1[m[33m ([m[1;33mtag: A-Exceptions[m[33m)[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Wed Sep 9 23:49:55 2020 +0800
+
+    Implementing exceptions
+    
+    Three exception classes have been defined to
+    tackle the exceptions that arise.
+    
+    Try and catch functions have been defined to
+     deal with exceptions that would arise in methods.
+
+[33mcommit 3edb6ca94c8a8153ef723fa0692cfad3a9a57e84[m[33m ([m[1;33mtag: A-CodeQuality[m[33m)[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Wed Sep 9 23:45:31 2020 +0800
+
+    Implement A-CodeQuality
+    
+    Code has been refactored to follow coding
+    conventions.
+
+[33mcommit c1a386afc37c41bdb2815b2db3156e9b72a44111[m[33m ([m[1;33mtag: A-Packages[m[33m)[m
+Merge: 2bf1b9e 533bc6e
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Tue Sep 8 18:39:13 2020 +0800
+
+    Merge branch 'branch-A-Packages'
+
+[33mcommit 533bc6e211436ab7c84a1b63a365bd8ecaccf732[m[33m ([m[1;31morigin/branch-A-Packages[m[33m, [m[1;32mbranch-A-Packages[m[33m)[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Tue Sep 8 18:38:42 2020 +0800
+
+    Ignore certain files
+    
+    Contributors.md and README.md have been ignored
+    from revision control
+
+[33mcommit a1677c8463e5e27ddbd1cfcf6df225f98c21763c[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Tue Sep 8 18:36:39 2020 +0800
+
+    Code refactoring before final commit for this level
+    
+    TaskArray class has been added to task package.
+    
+    The regression testing has been updated to include
+    all the class paths for the packages.
+    
+    Formatting done for all files.
+
+[33mcommit 86b7f61c25ae03350259691c47b0b1cb1c2d4abf[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Tue Sep 8 18:16:51 2020 +0800
+
+    Creating a class to track the tasks
+    
+    The TaskArray class was created to read all
+    the commands and assign them to the task array.
+    Contains the other relevant methods that are required
+    for reading the commands.
+
+[33mcommit 8910783ea9fd384897a72e17df1a36f87659ad72[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Tue Sep 8 17:51:16 2020 +0800
+
+    Creating packages within project
+    
+    Three new packages have been created.They are the
+    duke package to contain all the files, exception package
+    to contain all the exception classes that were created and
+    the task package to hold the task,event,todo and deadline
+    classes.
+
+[33mcommit 2bf1b9e9db690e74f08fb2e2b3438a94b7b76032[m[33m ([m[1;33mtag: Level-5[m[33m)[m
+Merge: 10cf084 2d1ba51
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Tue Sep 8 17:33:23 2020 +0800
+
+    Merge branch 'branch-Level-5'
+
+[33mcommit 2d1ba5140dc1c893b56f37a4e8a68f1abd1af502[m[33m ([m[1;31morigin/branch-Level-5[m[33m, [m[1;32mbranch-Level-5[m[33m)[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Tue Sep 8 17:31:41 2020 +0800
+
+    Final Tests for Level 5
+    
+    The Actual and Expected files have been updated to
+    show most of the features that have been implemented.
+    
+    The initilaiseMike method moved back to the Duke.java class
+    from the PrintMethod Java class to ensure that only one Scanner
+    object is created. This prevents errors that occur while doing
+    regression testing.
+    
+    Code refactored to follow coding standards
+
+[33mcommit 9a76a2c8e178747560c1950739d6b7f0adbed12f[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Mon Sep 7 22:55:39 2020 +0800
+
+    Implement Error Handling for Event and Deadline tasks
+    
+    The relevant methods have been implemented to ensure that
+    if the user does not provide the relevant details to the chatbot, then
+    the chatbot will prompt for the necessary information(for
+    deadline and events)
+    
+    A new class , IllegalPropositionWithoutDate, has been implemented to
+    tackle the scenario where the user does not appropriately enter
+    the date for the event or deadline tasks.
+
+[33mcommit 897f92d5a07661f72618eb3f1c2d8789e027d791[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Mon Sep 7 20:32:31 2020 +0800
+
+    Implement Class to print methods
+    
+    A new PrintMethod class contains the
+    methods that have to be printed out. Improves
+    code readability.
+    
+    The printlines() method has been moved from Task class
+    to  PrintMethod class.
+
+[33mcommit aca05ba0d74777dc1ac5805dcdb271406d1d82f0[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Mon Sep 7 19:56:46 2020 +0800
+
+    Deal with exceptions when User inputs Todo tasks
+    
+    A new class has been initialised to deal with blank
+    description for the commands for the tasks.
+    
+    The new readTodo() method deals wtih the
+    exceptions that arises when the user inputs
+    any Todo tasks.
+
+[33mcommit da7ee60b05ac9170490e56616fda7eae4821b915[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Mon Sep 7 19:31:04 2020 +0800
+
+    Implement error handling for done command
+    
+    A new method, readDone(), has been defined to handle three
+    possible errors that might occur when users use the "Done"
+    command.
+    
+    Three new print methods have been implemented to print the correct
+    output for the errors.
+    
+    A new Illegal Number Exception class has been defined to tackle
+    an exception that occurs during the readDone() method.
+
+[33mcommit b3f6c4c8f2b290c5ae6e61484a97f66981e50ce4[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Mon Sep 7 17:25:14 2020 +0800
+
+    Initialise String constants
+    
+    In the Duke class, string constants were initiated to improve
+    code readability and reusability.
+
+[33mcommit 10cf084d1582cca62ea7be10902c508edcfda207[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Mon Aug 31 18:57:12 2020 +0800
+
+    Display Unicode characters
+    
+    Runtest.bat file modified so that the EXPECTED.txt
+    now displays the unicode characters. Previously,
+    it only displayed question marks.
+
+[33mcommit c908757cb49ba1bfc657a88bcb49b59a65383872[m[33m ([m[1;33mtag: A-TextUiTesting[m[33m)[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Mon Aug 31 18:42:59 2020 +0800
+
+    Implemened Automated Text UI Testing
+    
+    Main file able to read inputs from the input.txt
+    file and pass the outputs to the ACTUAL.txt file.
+    After that, the ACTUAL.txt file is compared with the
+    EXPECTED.txt file to examine any differences.
+
+[33mcommit 8407eaefc274052723842546771470c783ccbb2a[m[33m ([m[1;33mtag: Level-4[m[33m)[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Mon Aug 31 18:12:34 2020 +0800
+
+    Implement Level 4
+    
+    Classes Todo,Deadline and Event were created to
+    track the different types of tasks that are available. There
+    classes inherit from the Task class.
+    
+    Funciton toString has been defined in all of the classes
+    (except Duke class) .The function returns the string representation
+    of the class. Furthermore, this function overrides the original
+    toString function in Object class.
+    
+    The seperate task classes(Todo,Deadline and Event) each have overridden
+     toString methods,which add on the specific character of the type of  task
+    to be printed out.
+
+[33mcommit 50edcc3ba279d91eb87436a4eb7cbf7674efb731[m[33m ([m[1;33mtag: A-CodingStandard[m[33m)[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Sun Aug 30 18:10:18 2020 +0800
+
+    Implement A-CodingStandard
+    
+    Function command () causes confusion to readers.
+    Hence, it is changed to readInput to comply with the Coding
+    Standards.
+    
+    Implentation of the task class as an array of objects
+    makes it harder for the tasks to be modified in the future. Hence, the class
+    now initialises single task objects. The array is then initialised
+    in the main function.
+    
+    The functions in the Task class now modify the specific
+    task it is called upon to modify.
+
+[33mcommit df27041fe2ca0bd1b87dd6ec58ec4597ff6ec833[m[33m ([m[1;33mtag: Level-3[m[33m)[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Mon Aug 24 22:19:29 2020 +0800
+
+    Implement Level 3
+    
+    The chatbot is able to update the completion statuses of the tasks that
+    were given by the user. The command "done " prompts the system to
+    change the completion status of the task as completed.
+    
+    In the Task Class, the completion array stores the completion statuses of the tasks. The
+    completeTasks function controls the completion statuses
+    of the tasks.The appropriate getters and setters have been added for this class
+    level member
+    
+    The printTasks function now accommodates the printing of
+    the tick and cross symbols for the task.
+    
+    In the Duke Class, the commands function reads the input of the users
+    and decides the appropriate course of action.
+
+[33mcommit a9f77eee25203e80bd9fc972fbcd07b2845d9320[m[33m ([m[1;33mtag: Level-2[m[33m)[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Mon Aug 24 20:42:48 2020 +0800
+
+    Implement Level-2
+    
+    Chatbot prompts user to add in tasks
+    and displays it to the user when the command
+    "list" is used.
+    
+    Class Task keeps track of the
+    String array that stores all the tasks. The
+    class contains the relevant constructors, getters
+    and setters for the class.
+    
+    Function addTask in Task.java adds the task
+    to the array and function printTasks prints the existing
+    tasks if user enters the command "list".
+    
+    Initialise function in Duke .java prompts
+    user to enter name
+
+[33mcommit 3a5b25a77ecd3361c14489daa22202b9689e885a[m[33m ([m[1;33mtag: Level-1[m[33m)[m
+Author: IMUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Mon Aug 24 18:57:17 2020 +0800
+
+    Implement Level 1 for Chatbot
+    
+    Chatbot echo's user's commands and exits when
+    the user types "bye".
+    
+    Function printLines prints dotted lines. This improves
+     code readability.
+    
+    Users would be able to enter their name and Chatbot
+    records it. Addresses the user with the name
+    given.
+
+[33mcommit ddaf38966e489b25936a9f596bb575586091ca28[m[33m ([m[1;33mtag: LEVEL-0[m[33m)[m
+Author: MUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Wed Aug 19 23:14:52 2020 +0800
+
+    Implementing level-0 for the code
+    
+    The Duke symbol was removed from the code.
+    This symbol was used to test out the code when it was cloned from
+    a remote directory.
+    
+    Two statements and a few lines were added.These act as a base
+    for future communications.
+    
+    This the is required task for week 2.
+
+[33mcommit 8c50b05dfb45eb325bfe9899c39a388d635e560d[m
+Author: MUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Mon Aug 17 13:28:51 2020 +0800
+
+    clean code
+
+[33mcommit 04720aa68a2d933699340b04d00b40abe776a982[m
+Author: MUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Sat Aug 15 14:40:45 2020 +0800
+
+    final edit
+
+[33mcommit 6f2a6c89811eb5799258cec4b81c5d0f3e656cd4[m
+Author: MUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Sat Aug 15 12:12:29 2020 +0800
+
+    edited unnecessary comments from the program and added the lines
+
+[33mcommit b675207ed5e8ab240e4e8a514562178492999721[m
+Author: MUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Sat Aug 15 12:03:35 2020 +0800
+
+    minimum requirements for first task without the lines
+
+[33mcommit 19e3efe0d3e85705af5bac8d37203f2201f84c01[m
+Author: MUTHUKUMAR <imuthukumar1998@gmail.com>
+Date:   Sat Aug 15 11:28:28 2020 +0800
+
+    Commenting the "DUKE" symbol
+
+[33mcommit 87eb8b818ae0e244a172420fdab8c46c45c43e0b[m
+Author: Damith C. Rajapakse <damith@gmail.com>
+Date:   Sat Jul 4 01:45:26 2020 +0800
+
+    README.md: Fix typo of => or
+
+[33mcommit ef3c8cd14cc5d9d0350eb62b06f640aab4119f8c[m
+Author: damithc <damithch@damithch-mbp.comp.nus.edu.sg>
+Date:   Mon May 25 00:03:55 2020 +0800
+
+    Add text-ui-test files
+
+[33mcommit 71d7ea84f3d61821643e505e532051fcc09ec2b1[m
+Author: damithc <damithch@damithch-mbp.comp.nus.edu.sg>
+Date:   Sun May 24 23:34:49 2020 +0800
+
+    Remove generic tutorials
+    
+    Let's remove generic tutorials from this repo as they are not specific
+    to this project tempalte
+
+[33mcommit 1416279436d1c0c7c0c87db5dd9fe75a3c72e5bb[m
+Merge: 6f2ddfa 2697ae1
+Author: Jeffry Lum <22460123+j-lum@users.noreply.github.com>
+Date:   Wed Feb 12 15:39:44 2020 +0800
+
+    Merge pull request #41 from jiachen247/patch-2
+    
+    Remove unnecessary override annotation
+
+[33mcommit 2697ae1dd966ac2f3ec34eb8a14819b4fa9e6f70[m
+Author: jiachen <jiachen247@users.noreply.github.com>
+Date:   Tue Feb 11 15:13:03 2020 +0800
+
+    Remove unnecessary override annotation
+    
+    Remove extra '@Override' at the start of the code example.
+
+[33mcommit 6f2ddfaef13a62f650128050d8923eff99761f82[m
+Merge: fae28ab 2ca6b28
+Author: Jeffry Lum <22460123+j-lum@users.noreply.github.com>
+Date:   Mon Feb 3 23:29:41 2020 +0800
+
+    Merge pull request #35 from j-lum/xplatformjfx
+    
+    JavaFX tutorial: Support cross-platform JARs
+
+[33mcommit 2ca6b28c8d2ebebfe001e1a618a5d5af4094e088[m
+Author: Jeffry Lum <22460123+j-lum@users.noreply.github.com>
+Date:   Fri Sep 20 16:05:59 2019 +0800
+
+    JavaFX tutorial: Support cross-platform JARs
+    
+    The OpenJFX plugin expects applications to be modular and bundled
+    with jlink, resulting in fat jars that are not cross-platform. Let's
+    manually include the required dependencies so that shadow can package
+    them properly.
+
+[33mcommit fae28ab89ea8846e56f2e6df33fbd6f9dd7fbea0[m
+Merge: baa18a5 26a5013
+Author: Jeffry Lum <22460123+j-lum@users.noreply.github.com>
+Date:   Sat Aug 31 16:43:08 2019 +0800
+
+    Merge pull request #14 from j-lum/fxml-indent
+    
+    Change indentation in FXML samples to match AB-3
+
+[33mcommit 26a5013d00ef2201cd6433f308f53dc52e277b76[m
+Author: Jeffry Lum <22460123+j-lum@users.noreply.github.com>
+Date:   Sat Aug 31 16:40:20 2019 +0800
+
+    Change indentation in FXML samples to match AB-3
+
+[33mcommit baa18a5b60aee205f3593787bac4dc4a98a7687c[m
+Merge: 999fa98 5df56a8
+Author: Jeffry Lum <22460123+j-lum@users.noreply.github.com>
+Date:   Fri Aug 16 16:59:58 2019 +0800
+
+    Merge pull request #8 from j-lum/tutorial-fix
+    
+    Remove references to DukeStub
+
+[33mcommit 5df56a8908679dfc9efc6fcca655b1f9de85d51e[m
+Author: Jeffry Lum <22460123+j-lum@users.noreply.github.com>
+Date:   Fri Aug 16 16:58:43 2019 +0800
+
+    Remove references to DukeStub
+
+[33mcommit 999fa98979ab5be8233b7838451650d8345bb520[m
+Merge: d2ffa00 8d6d6f4
+Author: Jeffry Lum <22460123+j-lum@users.noreply.github.com>
+Date:   Thu Aug 15 15:18:12 2019 +0800
+
+    Merge pull request #7 from j-lum/tutorial-fix
+    
+    Address issues #5 and #6
+
+[33mcommit 8d6d6f4b95dd028ee97ba3df4d36b38ffc92d343[m
+Author: Jeffry Lum <22460123+j-lum@users.noreply.github.com>
+Date:   Thu Aug 15 14:05:46 2019 +0800
+
+    Add images to JavaFX tutorial 3
+
+[33mcommit b6df1a32827a0d318ba241a10bfded88101daca3[m
+Author: Jeffry Lum <22460123+j-lum@users.noreply.github.com>
+Date:   Thu Aug 15 13:59:56 2019 +0800
+
+    Fix typo referring to `HelloWorld`
+
+[33mcommit d2ffa00dbe45016b1c087a9a26e2d5be1d595ee4[m
+Author: Jeffry Lum <22460123+j-lum@users.noreply.github.com>
+Date:   Wed Aug 14 15:35:46 2019 +0800
+
+    Update Gradle tutorial to reflect new checkstyle config
+
+[33mcommit f20d61019a2ea5ce166440b47e9a37a8bd373bb0[m
+Merge: 5c47c23 bad66fc
+Author: Jeffry Lum <22460123+j-lum@users.noreply.github.com>
+Date:   Wed Aug 14 15:30:37 2019 +0800
+
+    Merge pull request #3 from j-lum/inline-javafx-tutorials
+    
+    Inline JavaFX tutorials
+
+[33mcommit bad66fc459bc2173e26be31598e04c4315df7933[m
+Author: Jeffry Lum <22460123+j-lum@users.noreply.github.com>
+Date:   Mon Aug 12 14:24:27 2019 +0800
+
+    Adapt JavaFX tutorial for Duke
+    
+    Rather than to have distinct tutorials building up to a Duke-like
+    application, let's merge the tutorials into Duke's tutorials
+    to enhance cohesiveness in the course material.
+    
+    We also merge the gradle/gradleless tutorials into one by providing a
+    universal entry point to JavaFX in the style of AddressBook
+    applications.
+    
+    Fix header levels in JavaFX Tutorial 1.
+    
+    Change code samples to use Duke.
+    
+    Add hints on required import statements.
+    
+    Add location hints to code snippets to help students find where to copy
+    and paste them.
+    
+    Remove nitpicks to make the development process smoother.
+    
+    Fix usage of `Collections` to `FXCollections`.
+    
+    Replace image for JavaFX tutorial 3.
+    
+    Specify location to place images.
+    
+    Replace a screenshot that referred to the outdated package structure.
+    
+    Remove reference to DukeStub.
+
+[33mcommit 5c47c238cef0369657cea1f3023dcc053aabe733[m
+Author: Jeffry Lum <22460123+j-lum@users.noreply.github.com>
+Date:   Tue Aug 6 20:38:08 2019 +0800
+
+    Specify checkstyle version
+    
+    Not specifying the checkstyle version causes it to fail with a cryptic
+    error.
+
+[33mcommit a2150c17028761c775b44368ede448060a7ce44e[m
+Author: damithc <damith@gmail.com>
+Date:   Tue Aug 6 20:10:10 2019 +0800
+
+    textUiTestingTutorial.md: mention updating java/javac commands
+
+[33mcommit 2d06f90400a17fd0ad95c0a68edf4917d12ee7ff[m
+Author: damithc <damith@gmail.com>
+Date:   Tue Aug 6 19:54:03 2019 +0800
+
+    textUiTestingTutorial.md: add missing <br>
+
+[33mcommit 5c491d3de4822b43f1db4c3bf806f81eae0c64a0[m
+Author: damithc <damith@gmail.com>
+Date:   Tue Aug 6 19:50:20 2019 +0800
+
+    Add a tutorial on text UI testing
+
+[33mcommit 53c04603712fd4132acd73091ffa37e29b7c0e70[m
+Author: Jeffry Lum <22460123+j-lum@users.noreply.github.com>
+Date:   Tue Aug 6 15:15:04 2019 +0800
+
+    Update list of contributors
+
+[33mcommit 21af6a13f93c15964b20eb0ead90ef50ef70a42b[m
+Author: Jeffry Lum <22460123+j-lum@users.noreply.github.com>
+Date:   Tue Aug 6 15:06:11 2019 +0800
+
+    Fix typo in link to checkstyle config files
+
+[33mcommit 8fe8afd9397509e450f821bc1f5524a3519ab488[m
+Author: damithc <damith@gmail.com>
+Date:   Mon Aug 5 19:29:40 2019 +0800
+
+    README: use numbered list for steps
+
+[33mcommit f20bff25cfb935b211b47aa3bcb5e690bbe614c0[m
+Author: damithc <damith@gmail.com>
+Date:   Mon Aug 5 19:26:04 2019 +0800
+
+    Tweak tutorial text
+
+[33mcommit 6a7120cbb6568134aef5d1d35e9596e4862acae4[m
+Author: damithc <damith@gmail.com>
+Date:   Mon Aug 5 19:08:53 2019 +0800
+
+    Move Duke.java out of the package
+
+[33mcommit 6bb6b9f6c525f5343fdc6dd3a43a086a11e9708e[m
+Author: damithc <damith@gmail.com>
+Date:   Mon Aug 5 19:08:08 2019 +0800
+
+    .gitignore: add *.iml
+
+[33mcommit 946f3bb509aa0710d45d820855ea3aa6cf096071[m
+Author: Jeffry Lum <22460123+j-lum@users.noreply.github.com>
+Date:   Mon Jul 29 17:14:46 2019 +0800
+
+    Import base branch for students to start off
+    
+    As student may not have learnt about branching, let's include a copy of
+    the base branch into the main repository.
+
+[33mcommit 245013d3ac98862fe7c5f52fee9a7b5c389fb7ab[m
+Author: Jeffry Lum <22460123+j-lum@users.noreply.github.com>
+Date:   Mon Jul 29 17:14:46 2019 +0800
+
+    Initial commit
