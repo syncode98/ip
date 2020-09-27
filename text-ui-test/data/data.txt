@@ -2,5 +2,4 @@ Here are the tasks!
 D | 0 | exam(by: 10 Oct 2019 )
 D | 0 | homework(by: 18:00 20 Oct 2019 )
 E | 0 | charity match(at:  10 May 2019 )
-E | 0 | marathon(at: 18:00 5 May 2019 )
 E | 0 | marathon(at: 18:00-20:00 9 Sep 2019 )
