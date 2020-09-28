@@ -1,18 +1,38 @@
-# User Guide For Duke.java
+Duke.java is a desktop app for to manage tasks. Though the utilisation of Command Line Interface(CLI) users
+can quickly add,delete,find tasks or update the completion status of a task.
 
-###  **The Ultimate companion**
+## Table of Contents
 
+* [Initialisation](https://github.com/syncode98/ip#initialisation) <br>
+   - [Setup](https://github.com/syncode98/ip#setup) <br>
+   - [Load Data](https://github.com/syncode98/ip#load-data) <br>
+   - [Begin](https://github.com/syncode98/ip#begin) <br> 
+* [Features](https://github.com/syncode98/ip#features) <br>
+    - [Store tasks](https://github.com/syncode98/ip#store-tasks) <br>
+       - [Todo](https://github.com/syncode98/ip#add-todotodo) <br>
+       - [Deadline](https://github.com/syncode98/ip#add-deadlinedeadline) <br>
+       - [Event](https://github.com/syncode98/ip#add-eventevent) <br>
+    - [Error detection](https://github.com/syncode98/ip#error-detection) <br>
+    - [List Tasks](https://github.com/syncode98/ip#list-all-tasks-list) <br>
+    - [Find Tasks](https://github.com/syncode98/ip#find-tasks-find) <br>
+    - [Delete Tasks](https://github.com/syncode98/ip#delete-tasks-delete) <br>
+    - [Complete tasks](https://github.com/syncode98/ip#5-complete-tasks-done) <br>
+    - [Exit Application](https://github.com/syncode98/ip#5-exit-application-bye) <br>
+    - [Save Application](https://github.com/syncode98/ip#6-save-data) <br>
+* [Command Summary](https://github.com/syncode98/ip#command-summary) <br>
 ## Initialisation
 
 ### Setup
 Upon opening the application, the chatbot will enquire about the user's name.
 
 <pre><code>-------------------------------------------------------------<br>
+Muthu <br>
+------------------------------------------------------------- <br>
 Hello! I'm Mike!<br>
 Enter your name:<br>
 ------------------------------------------------------------- </code></pre>
 
-The chatbot then greets the user.
+After the user enters the name, the chatbot then greets the user.
 
 <pre><code>-------------------------------------------------------------<br>
 Hello Muthu !<br>
@@ -20,8 +40,10 @@ Hello Muthu !<br>
 
 
 #### Load data
+If the user had no data stored previously, the user can proceed to the [begin](https://github.com/syncode98/ip#begin) 
+section.
 
-If the user had stored any task previously, then application shows the tasks to the user.
+If the user had stored any task previously, the application shows the tasks to the user.
 
 <pre><code>-------------------------------------------------------------<br>
 Here are the tasks!<br>
@@ -32,6 +54,11 @@ E | 1 | marathon(at: 18:00 5 May 2019 )<br>
 E | 0 | marathon(at: 18:00-20:00 9 Sep 2019 )<br>
 -------------------------------------------------------------</code></pre>
 
+The format of the task displayed is as follows: <br>
+Type of task - Completion status - Task <br>
+ * **The type of task**: T for todo, D for deadline and E for event. <br>
+ * **Completion Status**:The digit represents the completion status of the task. 0 represents a task that has not been completed.Conversely, a 1 shows a task that has been completed.
+ * **Task** The task itself.
 
 Subsequently, the user can choose to keep the tasks or to delete them.
 
@@ -39,18 +66,16 @@ Subsequently, the user can choose to keep the tasks or to delete them.
 Do you want to keep the contents of the file?<br>
 -------------------------------------------------------------</code></pre>
 
-
-If the user had no data stored previously, the user can proceed to the begin section.
-
 If a file does not exist to store the data, then the program creates one for the user automatically.
 
-If the directory does not exist, then the program creates the directory and the file for the user .
+If the directory does not exist, then the program creates the directory and the data file for the user .
 
 <pre><code>-------------------------------------------------------------<br>
 The directory does not exist!<br>
 -------------------------------------------------------------<br>
 A new directory has been created at C:\Users\Muthu Kumar\Desktop\cs2113T-project\data\data.txt<br>
 -------------------------------------------------------------</code></pre>
+
 
 
 #### Begin 
@@ -61,21 +86,21 @@ Alright Muthu , What can I do for you?<br>
 
 ## Features 
 
-### 1. Store tasks  
+### Store tasks  
 
 #### Usage
 To keep track of the tasks and their completion statuses. 
 
 There are three types of tasks:
 
-1.Todo
+* [Todo](https://github.com/syncode98/ip#add-todotodo) <br>
+* [Deadline](https://github.com/syncode98/ip#add-deadlinedeadline) <br>
+* [Event](https://github.com/syncode98/ip#add-eventevent) <br>
 
-2.Deadline
+## Todo:`todo` 
 
-3.Event
-
-## Add todo:`todo` 
 Tasks that do not have any deadlines.
+
 Example of usage: 
 
 `todo homework`
@@ -84,7 +109,8 @@ Expected outcome:
 
 `[T][X]homework`
 
-## Add deadline:`deadline` 
+## Deadline:`deadline` 
+
 Store tasks that have a deadline
 
 The deadline can be entered in 2 formats:
@@ -101,6 +127,7 @@ Expected outcome:
 
 
 2.The date and the time.
+
 Example of usage: 
 
 `deadline homework/by 20-10-2019 18:00`
@@ -109,7 +136,8 @@ Expected outcome:
 
 ` [D][X]homework(by: 18:00 20 Oct 2019 )`
 
-## Add event:`event`
+## Event:`event`
+
 Tasks that have a duration as a deadline
 
 The deadline can be entered in 3 formats:
@@ -134,6 +162,7 @@ Example of usage:
 Expected outcome:
 
 ` [E][X]marathon(at: 18:00 5 May 2019 )`
+
 ### 3.The date,the start and end time of the event.
 
 Example of usage: 
@@ -151,7 +180,7 @@ through statements such as these:
 
 `  Task number must be in between 1 and 100.`
 
-## 2. List all tasks: `list`
+## List all tasks: `list`
 
 Shows all the tasks in the program.
 
@@ -170,7 +199,7 @@ Here are the tasks in your list:<br>
 -------------------------------------------------------------
 </code></pre>
 
-## 3. Find tasks: `find`
+## Find tasks: `find`
 
 Finds a task for the user
 
@@ -185,7 +214,7 @@ Here are the matching tasks in your list:<br>
 2. [E][X]marathon(at: 18:00-20:00 9 Sep 2019 )
 -------------------------------------------------------------</code></pre>
 
-## 4. Delete tasks: `delete`
+## Delete tasks: `delete`
 
 Deletes the task for which the user had given the number for.
 
@@ -200,9 +229,7 @@ Noted. I've removed this task:<br>
 Now you have 4 tasks in the list.<br>
 -------------------------------------------------------------</code></pre>
 
-
-
-## 5. Complete tasks: `done`
+## Complete tasks: `done`
 
 Updates the completion status for a task that has been completed.
 
@@ -216,9 +243,7 @@ Nice! I've marked this task as done:<br>
 [E][✓]marathon(at: 18:00 5 May 2019 )<br>
 -------------------------------------------------------------</code></pre>
 
-
-
-## 5. Exit application: `bye`
+## Exit application: `bye`
 
 Exits the application.
 
@@ -233,8 +258,7 @@ Noted. I've removed this task:<br>
 Now you have 4 tasks in the list.<br>
 -------------------------------------------------------------</code></pre>
 
-
-## 6. Save data
+## Save data
 
 The data in the files is saved automatically after the user adds/edits a task.
 
