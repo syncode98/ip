@@ -6,29 +6,58 @@
 
 ### Setup
 Upon opening the application, the chatbot will enquire about the user's name.
-![name_enquiry](https://user-images.githubusercontent.com/46095141/94368780-a7251400-0118-11eb-8396-b846f185916b.jpg)
+
+<pre><code>-------------------------------------------------------------<br>
+Hello! I'm Mike!<br>
+Enter your name:<br>
+------------------------------------------------------------- </code></pre>
 
 The chatbot then greets the user.
-![enterted_name](https://user-images.githubusercontent.com/46095141/94368802-d045a480-0118-11eb-92e0-7efa926ece59.jpg)
+
+<pre><code>-------------------------------------------------------------<br>
+Hello Muthu !<br>
+-------------------------------------------------------------</code></pre>
+
 
 #### Load data
 
-If the user had stored any data previously, then the user would be shown the tasks.
-![load_data](https://user-images.githubusercontent.com/46095141/94368858-18fd5d80-0119-11eb-88b6-69248fbfc89b.jpg)
+If the user had stored any task previously, then application shows the tasks to the user.
+
+<pre><code>-------------------------------------------------------------<br>
+Here are the tasks!<br>
+D | 0 | exam(by: 10 Oct 2019 )<br>
+D | 0 | homework(by: 18:00 20 Oct 2019 )<br>
+E | 0 | charity match(at:  10 May 2019 )<br>
+E | 1 | marathon(at: 18:00 5 May 2019 )<br>
+E | 0 | marathon(at: 18:00-20:00 9 Sep 2019 )<br>
+-------------------------------------------------------------</code></pre>
+
 
 Subsequently, the user can choose to keep the tasks or to delete them.
-![keep_contents](https://user-images.githubusercontent.com/46095141/94368887-3d593a00-0119-11eb-8112-513b54dd6dfc.jpg)
+
+<pre><code>-------------------------------------------------------------<br>
+Do you want to keep the contents of the file?<br>
+-------------------------------------------------------------</code></pre>
+
 
 If the user had no data stored previously, the user can proceed to the begin section.
 
 If a file does not exist to store the data, then the program creates one for the user automatically.
 
-If the directory does not exist, then the program creates the directory and the file for the user.
-![directory does not exist](https://user-images.githubusercontent.com/46095141/94369217-02f09c80-011b-11eb-8646-584f9b8e3618.jpg)
+If the directory does not exist, then the program creates the directory and the file for the user .
+
+<pre><code>-------------------------------------------------------------<br>
+The directory does not exist!<br>
+-------------------------------------------------------------<br>
+A new directory has been created at C:\Users\Muthu Kumar\Desktop\cs2113T-project\data\data.txt<br>
+-------------------------------------------------------------</code></pre>
+
 
 #### Begin 
 After the loading  the data, the user can now start entering the tasks.
-![begin](https://user-images.githubusercontent.com/46095141/94368939-890be380-0119-11eb-8166-205cb677d029.jpg)
+<pre><code>-------------------------------------------------------------<br>
+Alright Muthu , What can I do for you?<br>
+-------------------------------------------------------------</code></pre>
 
 ## Features 
 
@@ -112,6 +141,7 @@ Example of usage:
 `event marathon/at 09-09-2019 18:00 - 20:00`
 
 Expected outcome:
+
 `[E][X]marathon(at: 18:00-20:00 9 Sep 2019 )`
 
 ## Error detection
@@ -130,7 +160,15 @@ Example of usage:
 
 Expected outcome:
 
-![list_command](https://user-images.githubusercontent.com/46095141/94369341-c1acbc80-011b-11eb-8e67-7b0f83cf2ea8.jpg)
+<pre><code>-------------------------------------------------------------
+Here are the tasks in your list:<br>
+1.[D][X]exam(by: 10 Oct 2019 )<br>
+2.[D][X]homework(by: 18:00 20 Oct 2019 )<br>
+3.[E][X]charity match(at:  10 May 2019 )<br>
+4.[E][X]marathon(at: 18:00 5 May 2019 )<br>
+5.[E][X]marathon(at: 18:00-20:00 9 Sep 2019 )<br>
+-------------------------------------------------------------
+</code></pre>
 
 ## 3. Find tasks: `find`
 
@@ -140,9 +178,12 @@ Example of usage:
 `find marathon`
 
 Expected outcome:
-![find_command](https://user-images.githubusercontent.com/46095141/94369361-e143e500-011b-11eb-9f34-9cc0f9760a93.jpg)
 
-
+<pre><code>-------------------------------------------------------------
+Here are the matching tasks in your list:<br>
+1. [E][X]marathon(at: 18:00 5 May 2019 )<br>
+2. [E][X]marathon(at: 18:00-20:00 9 Sep 2019 )
+-------------------------------------------------------------</code></pre>
 
 ## 4. Delete tasks: `delete`
 
@@ -152,7 +193,14 @@ Example of usage:
 `delete 4`
 
 Expected outcome:
-![delete_command](https://user-images.githubusercontent.com/46095141/94369404-12bcb080-011c-11eb-843f-a04752bdec25.jpg)
+
+<pre><code>-------------------------------------------------------------<br>
+Noted. I've removed this task:<br>
+[E][⨉]marathon(at: 18:00 5 May 2019 )<br>
+Now you have 4 tasks in the list.<br>
+-------------------------------------------------------------</code></pre>
+
+
 
 ## 5. Complete tasks: `done`
 
@@ -162,7 +210,11 @@ Example of usage:
 `done 4`
 
 Expected outcome:
-![done_task](https://user-images.githubusercontent.com/46095141/94368555-35989600-0117-11eb-9180-fc8e0472261f.jpg)
+
+<pre><code>-------------------------------------------------------------<br>
+Nice! I've marked this task as done:<br>
+[E][✓]marathon(at: 18:00 5 May 2019 )<br>
+-------------------------------------------------------------</code></pre>
 
 
 
@@ -175,12 +227,16 @@ Example of usage:
 
 Expected outcome:
 
-![bye_command_final](https://user-images.githubusercontent.com/46095141/94369299-75617c80-011b-11eb-89a0-956d0e32e0ba.jpg)
+<pre><code>-------------------------------------------------------------<br>
+Noted. I've removed this task:<br>
+[E][✓]marathon(at: 18:00 5 May 2019 )<br>
+Now you have 4 tasks in the list.<br>
+-------------------------------------------------------------</code></pre>
 
 
 ## 6. Save data
 
-The data in the files are saved automatically after the user adds/edits a task.
+The data in the files is saved automatically after the user adds/edits a task.
 
 ## Command Summary
 Action|Examples
