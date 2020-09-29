@@ -3,31 +3,29 @@ can quickly add,delete,find tasks or update the completion status of a task.
 
 ## Table of Contents
 
-* [Initialisation](https://github.com/syncode98/ip#initialisation) <br>
-   - [Setup](https://github.com/syncode98/ip#setup) <br>
-   - [Load Data](https://github.com/syncode98/ip#load-data) <br>
-   - [Begin](https://github.com/syncode98/ip#begin) <br> 
-* [Features](https://github.com/syncode98/ip#features) <br>
-    - [Store tasks](https://github.com/syncode98/ip#store-tasks) <br>
-       - [Todo](https://github.com/syncode98/ip#add-todotodo) <br>
-       - [Deadline](https://github.com/syncode98/ip#add-deadlinedeadline) <br>
-       - [Event](https://github.com/syncode98/ip#add-eventevent) <br>
-    - [Error detection](https://github.com/syncode98/ip#error-detection) <br>
-    - [List Tasks](https://github.com/syncode98/ip#list-all-tasks-list) <br>
-    - [Find Tasks](https://github.com/syncode98/ip#find-tasks-find) <br>
-    - [Delete Tasks](https://github.com/syncode98/ip#delete-tasks-delete) <br>
-    - [Complete tasks](https://github.com/syncode98/ip#5-complete-tasks-done) <br>
-    - [Exit Application](https://github.com/syncode98/ip#5-exit-application-bye) <br>
-    - [Save Application](https://github.com/syncode98/ip#6-save-data) <br>
-* [Command Summary](https://github.com/syncode98/ip#command-summary) <br>
-## Initialisation
+* <a href ="#Initialisation">Initialisation</a> <br>
+   - <a href ="#setup">Setup</a> <br>
+   - <a href ="#load">Load Data</a> <br> 
+   - <a href ="#begin">Begin</a> <br> 
+* <a href ="#features">Features</a> <br>
+    - <a href ="#store">Store Tasks</a> <br>
+       - <a href ="#todo">Todo</a>  <br>
+       - <a href ="#deadline">Deadline</a>  <br>
+       - <a href ="#event">Event</a>  <br>
+    - <a href ="#error">Error Detection</a>  <br>
+    - <a href ="#list">List Tasks</a>  <br>
+    - <a href ="#find">Find Tasks</a>  <br>
+    - <a href ="#delete">Delete Tasks</a>  <br>
+    - <a href ="#done">Complete Tasks</a>  <br>
+    - <a href ="#bye">Exit Application</a>  <br>
+    - <a href ="#save">Save Application</a>  <br>
+* <a href ="#command">Command Summary</a>  <br>
+## Initialisation  <a name="Initialisation"></a>
 
-### Setup
+### Setup <a name="setup"></a>
 Upon opening the application, the chatbot will enquire about the user's name.
 
 <pre><code>-------------------------------------------------------------<br>
-Muthu <br>
-------------------------------------------------------------- <br>
 Hello! I'm Mike!<br>
 Enter your name:<br>
 ------------------------------------------------------------- </code></pre>
@@ -39,11 +37,9 @@ Hello Muthu !<br>
 -------------------------------------------------------------</code></pre>
 
 
-#### Load data
+#### Load data <a name="load"></a>
 If the user had no data stored previously, the user can proceed to the [begin](https://github.com/syncode98/ip#begin) 
-section.
-
-If the user had stored any task previously, the application shows the tasks to the user.
+section. Otherwise, the application will show the pending tasks that the user had saved in the previous session.
 
 <pre><code>-------------------------------------------------------------<br>
 Here are the tasks!<br>
@@ -55,10 +51,10 @@ E | 0 | marathon(at: 18:00-20:00 9 Sep 2019 )<br>
 -------------------------------------------------------------</code></pre>
 
 The format of the task displayed is as follows: <br>
-Type of task - Completion status - Task <br>
+Type of task | Completion status | Task <br>
  * **The type of task**: T for todo, D for deadline and E for event. <br>
- * **Completion Status**:The digit represents the completion status of the task. 0 represents a task that has not been completed.Conversely, a 1 shows a task that has been completed.
- * **Task** The task itself.
+ * **Completion Status**: The digit represents the completion status of the task. 0 represents a task that has not been completed.Conversely, a 1 shows a task that has been completed.
+ * **Task**: The task itself.
 
 Subsequently, the user can choose to keep the tasks or to delete them.
 
@@ -78,15 +74,15 @@ A new directory has been created at C:\Users\Muthu Kumar\Desktop\cs2113T-project
 
 
 
-#### Begin 
+#### Begin <a name="begin"></a>
 After the loading  the data, the user can now start entering the tasks.
 <pre><code>-------------------------------------------------------------<br>
 Alright Muthu , What can I do for you?<br>
 -------------------------------------------------------------</code></pre>
 
-## Features 
+## Features <a name="features"></a>
 
-### Store tasks  
+### Store tasks  <a name="store"></a>
 
 #### Usage
 To keep track of the tasks and their completion statuses. 
@@ -97,7 +93,7 @@ There are three types of tasks:
 * [Deadline](https://github.com/syncode98/ip#add-deadlinedeadline) <br>
 * [Event](https://github.com/syncode98/ip#add-eventevent) <br>
 
-## Todo:`todo` 
+## Todo:`todo` <a name="todo"></a>
 
 Tasks that do not have any deadlines.
 
@@ -107,15 +103,15 @@ Example of usage:
 
 Expected outcome:
 
-`[T][X]homework`
+`[T][⨉]homework`
 
-## Deadline:`deadline` 
+## Deadline:`deadline` <a name="deadline"></a>
 
 Store tasks that have a deadline
 
 The deadline can be entered in 2 formats:
 
-1.Only the date.
+1.With date.
 
 Example of usage: 
 
@@ -123,10 +119,10 @@ Example of usage:
 
 Expected outcome:
 
-` [D][X]homework(by: 10 Oct 2019 )`
+` [D][⨉]homework(by: 10 Oct 2019 )`
 
 
-2.The date and the time.
+2.With date and the time.
 
 Example of usage: 
 
@@ -134,23 +130,23 @@ Example of usage:
 
 Expected outcome:
 
-` [D][X]homework(by: 18:00 20 Oct 2019 )`
+` [D][⨉]homework(by: 18:00 20 Oct 2019 )`
 
-## Event:`event`
+## Event:`event` <a name="event"></a>
 
 Tasks that have a duration as a deadline
 
 The deadline can be entered in 3 formats:
 
-### 1.Only the date.
+* Date.
+<
+    Example of usage: 
 
-Example of usage: 
+    `event charity match/at 10-05-2019`
 
-`event charity match/at 10-05-2019`
+    Expected outcome:
 
-Expected outcome:
-
-` [E][X]charity match(at:  10 May 2019 )`
+    ` [E][⨉]charity match(at:  10 May 2019 )`
 
 
 ### 2.The date and the time.
@@ -161,7 +157,7 @@ Example of usage:
 
 Expected outcome:
 
-` [E][X]marathon(at: 18:00 5 May 2019 )`
+` [E][⨉]marathon(at: 18:00 5 May 2019 )`
 
 ### 3.The date,the start and end time of the event.
 
@@ -171,98 +167,83 @@ Example of usage:
 
 Expected outcome:
 
-`[E][X]marathon(at: 18:00-20:00 9 Sep 2019 )`
+`[E][⨉]marathon(at: 18:00-20:00 9 Sep 2019 )`
 
-## Error detection
+## Error detection <a name="error"></a>
 
 If the user enters an inappropriate command, then they will be highlighted
 through statements such as these:
 
 `  Task number must be in between 1 and 100.`
 
-## List all tasks: `list`
+## List all tasks: `list` <a name="list"></a>
 
 Shows all the tasks in the program.
 
-Example of usage:
-`list`
-
-Expected outcome:
-
 <pre><code>-------------------------------------------------------------
-Here are the tasks in your list:<br>
-1.[D][X]exam(by: 10 Oct 2019 )<br>
-2.[D][X]homework(by: 18:00 20 Oct 2019 )<br>
-3.[E][X]charity match(at:  10 May 2019 )<br>
-4.[E][X]marathon(at: 18:00 5 May 2019 )<br>
-5.[E][X]marathon(at: 18:00-20:00 9 Sep 2019 )<br>
+list
+-------------------------------------------------------------
+Here are the tasks in your list:
+1.[D][⨉]exam(by: 10 Oct 2019 )
+2.[D][⨉]homework(by: 18:00 20 Oct 2019 )
+3.[E][⨉]charity match(at:  10 May 2019 )
+4.[E][⨉]marathon(at: 18:00 5 May 2019 )
+5.[E][⨉]marathon(at: 18:00-20:00 9 Sep 2019 )
 -------------------------------------------------------------
 </code></pre>
 
-## Find tasks: `find`
+## Find tasks: `find` <a name="find"></a>
 
 Finds a task for the user
 
-Example of usage:
-`find marathon`
-
-Expected outcome:
-
 <pre><code>-------------------------------------------------------------
-Here are the matching tasks in your list:<br>
-1. [E][X]marathon(at: 18:00 5 May 2019 )<br>
-2. [E][X]marathon(at: 18:00-20:00 9 Sep 2019 )
+find marathon 
+-------------------------------------------------------------
+Here are the matching tasks in your list:
+1. [E][⨉]marathon(at: 18:00 5 May 2019 )
+2. [E][⨉]marathon(at: 18:00-20:00 9 Sep 2019 )
 -------------------------------------------------------------</code></pre>
 
-## Delete tasks: `delete`
+## Delete tasks: `delete` <a name="delete"></a>
 
 Deletes the task for which the user had given the number for.
 
-Example of usage:
-`delete 4`
-
-Expected outcome:
-
-<pre><code>-------------------------------------------------------------<br>
-Noted. I've removed this task:<br>
-[E][⨉]marathon(at: 18:00 5 May 2019 )<br>
-Now you have 4 tasks in the list.<br>
+<pre><code>-------------------------------------------------------------
+delete 4
+-------------------------------------------------------------
+Noted. I've removed this task:
+[E][⨉]marathon(at: 18:00 5 May 2019 )
+Now you have 4 tasks in the list.
 -------------------------------------------------------------</code></pre>
 
-## Complete tasks: `done`
+## Complete tasks: `done` <a name="done"></a>
 
 Updates the completion status for a task that has been completed.
 
-Example of usage:
-`done 4`
-
-Expected outcome:
-
-<pre><code>-------------------------------------------------------------<br>
-Nice! I've marked this task as done:<br>
-[E][✓]marathon(at: 18:00 5 May 2019 )<br>
+<pre><code>-------------------------------------------------------------
+done 4
+-------------------------------------------------------------
+Nice! I've marked this task as done:
+[E][✓]marathon(at: 18:00 5 May 2019 )
 -------------------------------------------------------------</code></pre>
 
-## Exit application: `bye`
+## Exit application: `bye` <a name="bye"></a>
 
 Exits the application.
 
-Example of usage:
-`bye`
-
-Expected outcome:
-
-<pre><code>-------------------------------------------------------------<br>
-Noted. I've removed this task:<br>
-[E][✓]marathon(at: 18:00 5 May 2019 )<br>
-Now you have 4 tasks in the list.<br>
+<pre><code>-------------------------------------------------------------
+bye
+-------------------------------------------------------------
+Noted. I've removed this task:
+[E][✓]marathon(at: 18:00 5 May 2019 )
+Now you have 4 tasks in the list.
 -------------------------------------------------------------</code></pre>
 
-## Save data
+## Save data <a name="save"></a>
 
 The data in the files is saved automatically after the user adds/edits a task.
 
-## Command Summary
+## Command Summary <a name="summary"></a>
 Action|Examples
 ------|------
 Add task without deadline|`todo homework` 
