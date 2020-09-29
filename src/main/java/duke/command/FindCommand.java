@@ -13,10 +13,10 @@ public class FindCommand extends duke.command.Command {
 
     public FindCommand(String input) {
         this.command = input;
-        findTask();
+
     }
 
-    public void findTask() {
+    public void execute() {
 
         try {
             checkTask();
@@ -27,7 +27,7 @@ public class FindCommand extends duke.command.Command {
             for (Task task : TaskList.taskArrayList) {
                 String task_description = task.toString();
 
-                if (task_description.contains(command) ) {
+                if (task_description.contains(command)) {
                     System.out.println(index + ". " + task);
                     index++;
                 }

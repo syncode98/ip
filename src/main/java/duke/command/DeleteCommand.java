@@ -12,6 +12,12 @@ public class DeleteCommand extends Command {
 
     public DeleteCommand(String input) {
         this.command = input;
+
+
+    }
+
+    @Override
+    public void execute() {
         try {
             Ui.printLines();
             int indexOfTask = findTaskNumber(command);
@@ -39,8 +45,5 @@ public class DeleteCommand extends Command {
             System.out.println("Not able to update file!");
         }
         Ui.printLines();
-
     }
-
-
 }

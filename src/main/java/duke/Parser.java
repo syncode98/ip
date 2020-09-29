@@ -5,8 +5,7 @@ import duke.command.FindCommand;
 import duke.command.ListCommand;
 
 public class Parser {
-    public static Command command;
-
+    private String input;
     public static String KEYWORD_LIST = "list";
     public static String KEYWORD_DONE = "done";
     public static String KEYWORD_DELETE = "delete";
@@ -19,7 +18,13 @@ public class Parser {
      * @param input The command given by the user
      */
     public Parser(String input) {
+        this.input = input;
 
+    }
+
+
+    public Command parseInput() {
+        Command command;
         if (input.contains(KEYWORD_DONE)) {
             input = input.replace(KEYWORD_DONE, DELIMITER_EMPTY_STRING).strip();
             command = new DoneCommand(input);
@@ -33,13 +38,13 @@ public class Parser {
 
         } else if (input.contains(KEYWORD_FIND)) {
             input = input.replace(KEYWORD_FIND, DELIMITER_EMPTY_STRING).strip();
-            FindCommand findcommand = new FindCommand(input);
+            command = new FindCommand(input);
 
         } else {
             command = new AddCommand(input);
 
         }
+        return command;
 
     }
-
 }

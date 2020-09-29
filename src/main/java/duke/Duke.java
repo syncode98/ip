@@ -12,6 +12,7 @@ public class Duke {
     private static Storage storage;
     private static TaskList tasks;
     private static Parser parse;
+    public static Command command;
 
     public Duke(String filepath) {
         ui = new Ui();
@@ -29,9 +30,12 @@ public class Duke {
         String input = Ui.inputScanner.nextLine();
         while (!input.equals("bye")) {
             parse = new Parser(input);
+            command=parse.parseInput();
+            command.execute();
             input = Ui.inputScanner.nextLine();
         }
         Command exit = new ExitCommand();
+        exit.execute();
     }
 
     public static void main(String[] args) {

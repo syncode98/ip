@@ -31,13 +31,13 @@ public class AddCommand extends Command {
         this.command = input;
         String[] words = input.split(DELIMITER_CHARACTER);
         this.keyword = words[0];
-        readTask();
+
     }
 
     /**
      * Reads the command and adds the corresponding tasks to the taskArrayList.
      */
-    public void readTask() {
+    public void execute() {
 
         try {
             Ui.printLines();

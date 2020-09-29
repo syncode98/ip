@@ -25,6 +25,7 @@ public abstract class Command {
         return indexOfTask - 1;
 
     }
+    public abstract void execute();
 
 
 

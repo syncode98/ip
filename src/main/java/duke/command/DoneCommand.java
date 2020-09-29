@@ -12,6 +12,11 @@ public class DoneCommand extends Command {
 
     public DoneCommand(String input) {
         this.command = input;
+    }
+
+
+    @Override
+    public void execute() {
         Ui.printLines();
         try {
 
