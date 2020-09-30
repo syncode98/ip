@@ -5,6 +5,7 @@ import duke.command.Command;
 import duke.exception.IllegalEmptyDescriptionException;
 import duke.exception.IllegalPrepositionWithoutDate;
 import duke.exception.InvalidCommand;
+import duke.exception.InvalidPreposition;
 import duke.task.Task;
 
 import java.io.File;
@@ -249,11 +250,11 @@ public class Storage {
     public static Task taskFromFile(String input) {
 
         Task task = null;
+        String keyword=null;
         try {
             char keywordSymbol = input.charAt(0);
             String status = input.substring(4, 5);
             String taskDescription = input.substring(8);
-            String keyword = null;
             switch (keywordSymbol) {
             case 'T':
                 keyword = "todo";
@@ -289,8 +290,13 @@ public class Storage {
             Ui.printEmptyDescription(task.toString());
         } catch (IllegalPrepositionWithoutDate i) {
             Ui.printEmptyDate(task.toString());
-        } catch (InvalidCommand invalidCommand) {
-            invalidCommand.printStackTrace();
+        } catch (InvalidCommand i) {
+            Ui.printInvalidTask();
+        } catch(InvalidPreposition i){
+            assert keyword != null;
+            Ui.printIncorrectPreposition(keyword);
+        } catch(NullPointerException n){
+            Ui.invalidCommand();
         }
         return task;
 

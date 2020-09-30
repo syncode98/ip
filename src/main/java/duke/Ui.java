@@ -133,11 +133,16 @@ public class Ui {
         System.out.println("Here are the matching tasks in your list:");
     }
 
-    public static void printClear(){
-        System.out.println();
-    }
-    public static void printClearTasks(){
+    public static void printClearTasks() {
         System.out.println("All the tasks have been cleared!");
+    }
+
+    public static void printIncorrectPreposition(String keyword) {
+        if (keyword.equals("event")) {
+            System.out.println("Inavlid preposition! Use 'at' for events!");
+        } else if (keyword.equals("deadline")) {
+            System.out.println("Inavlid preposition! Use 'by' for deadlines!");
+        }
     }
 
 }

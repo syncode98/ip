@@ -2,9 +2,7 @@ package duke.command;
 
 import duke.TaskList;
 import duke.Ui;
-import duke.exception.IllegalEmptyDescriptionException;
-import duke.exception.IllegalPrepositionWithoutDate;
-import duke.exception.InvalidCommand;
+import duke.exception.*;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
@@ -16,6 +14,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.regex.PatternSyntaxException;
 
 
 public class AddCommand extends Command {
@@ -34,9 +33,7 @@ public class AddCommand extends Command {
 
     }
 
-    /**
-     * Reads the command and adds the corresponding tasks to the taskArrayList.
-     */
+    /** Reads the command and adds the corresponding tasks to the taskArrayList. */
     public void execute() {
 
         try {
@@ -55,6 +52,10 @@ public class AddCommand extends Command {
             Ui.invalidCommand();
         } catch (DateTimeParseException d) {
             Ui.printEmptyDate(keyword);
+        } catch (InvalidPreposition i) {
+            Ui.printIncorrectPreposition(this.keyword);
+        } catch (IllegalSlashException i) {
+            Ui.printSlash();
         }
         Ui.printLines();
     }
@@ -71,7 +72,8 @@ public class AddCommand extends Command {
      *                                          required format for deadline and events
      */
     public static Task returnTask(String input, String keyword) throws
-            IllegalEmptyDescriptionException, IllegalPrepositionWithoutDate, InvalidCommand, NullPointerException {
+            IllegalEmptyDescriptionException, IllegalPrepositionWithoutDate, InvalidCommand, NullPointerException,
+            InvalidPreposition, IllegalSlashException {
         Task currentTask = null;
         switch (keyword) {
         case "event":
@@ -102,11 +104,13 @@ public class AddCommand extends Command {
      * @throws IllegalPrepositionWithoutDate    If the user does not enter the date after the preposition
      */
     public static Task returnEventDeadline(String typeOfTask, String command) throws IllegalEmptyDescriptionException,
-            IllegalPrepositionWithoutDate {
+            IllegalPrepositionWithoutDate, InvalidPreposition,  IllegalSlashException {
         Task task = null;
 
-
-        String[] words = command.split(DELIMITER_SLASH);
+        if (!command.contains(DELIMITER_SLASH)){
+            throw new IllegalSlashException();
+        }
+            String[] words = command.split(DELIMITER_SLASH);
         String taskDescription = returnDescriptionOfTask(words[0], typeOfTask);
         words[0] = taskDescription;
         String deadlineForTask = words[1].strip();
@@ -116,14 +120,19 @@ public class AddCommand extends Command {
         String[] descriptorsForDate = deadlineForTask.substring(2).strip().split(DELIMITER_CHARACTER);
         String preposition = deadlineForTask.substring(0, 2);
 
+        if ((typeOfTask.equals("event") && !preposition.equals("at")) |
+                (typeOfTask.equals("deadline") && !preposition.equals("by"))) {
+            throw new InvalidPreposition();
+        }
+
 
         LocalDate date = null;
         LocalTime startTime = null;
         LocalTime endTime = null;
-        DateTimeFormatter format= DateTimeFormatter.ofPattern("d-MM-yyyy");
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("d-MM-yyyy");
         if (descriptorsForDate.length > 0) {
             try {
-                date = LocalDate.parse(descriptorsForDate[0],format);
+                date = LocalDate.parse(descriptorsForDate[0], format);
             } catch (DateTimeParseException d) {
                 date = LocalDate.parse(descriptorsForDate[0]);
             }
@@ -153,7 +162,7 @@ public class AddCommand extends Command {
     /**
      * Returns the description of the task.
      *
-     * @param command The command given by the user.
+     * @param command    The command given by the user.
      * @param typeOfTask The type of the task.
      * @return The description of the task
      * @throws IllegalEmptyDescriptionException If the task is not given by the user.
