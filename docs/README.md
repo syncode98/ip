@@ -111,7 +111,9 @@ Type of task | Completion status | Task <br>
 ## Todo:`todo` <a name="todo"></a>
 
 Tasks that do not have any deadlines.<br>
+
 Format:`todo DESCRIPTION` <br>
+* Take note of the spacing in between the keyword `todo` and the description of the task.
 Example: Create a task about a homework that has to be done.
 <pre><code>-------------------------------------------------------------
 todo homework
@@ -131,6 +133,7 @@ The deadline can be entered in 2 formats:
 * <a href ="#deadline_date_time">Deadline with the date and time</a> 
  
 **Deadline with the date:**<br> <a name="deadline_date"></a>
+
 Format:`deadline DESCRIPTION /by dd-mm-yy ` <br>
 * Take note of the spacing in between the keyword `deadline` and the description of the task.
 * Also, take note of the spacing between the term `/by` and the date.
@@ -145,6 +148,7 @@ Now you have 2 tasks in the list.
 -------------------------------------------------------------</code></pre>
     
 **Deadline with the date and time:**<br> <a name="deadline_date_time"></a>
+
 Format:`deadline DESCRIPTION /by dd-mm-yy HH:mm` <br>
 * Take note of the spacing in between the keyword `deadline` and the description of the task.
 * Take note of the spacing between the term `/by` and the date.
@@ -169,6 +173,7 @@ The event can be entered in 3 formats:<br>
 * <a href ="#event_date_two_time">Event with the date,start time and endtime</a> 
 
 **Event with the date:** <br> <a name="event_date"></a>
+
 Format:`event DESCRIPTION /at dd-mm-yyyy`  <br>
 * Take note of the spacing in between the keyword `event` and the description, and the spacing
 in between the preposition `/at` and the date.<br>
@@ -183,7 +188,8 @@ Now you have 4 tasks in the list.
 -------------------------------------------------------------
 </code></pre>
 
-**Event with the date and time:**<br> <a name="event_date_time"></a>
+**Event with the date and time of the event:**<br> <a name="event_date_time"></a>
+
 Format:`event DESCRIPTION /at dd-mm-yyyy HH:mm` <br>
 * Take note of the spacing in between the keyword `event` and the description, the spacing
 in between the preposition `/at` and the date and the spacing between the date and the time.
@@ -198,8 +204,9 @@ Now you have 5 tasks in the list.
 -------------------------------------------------------------
 </code></pre>
     
-**Event with the date, Start time and End time of the event:** <a name="event_date_two_time"></a>
-Format:`event DESCRIPTION /at dd-mm-yyyy HH:mm - HH:mm`<br>
+**Event with the date, start time and end time of the event:** <a name="event_date_two_time"></a>
+
+Format:`event DESCRIPTION /at dd-mm-yyyy HH:mm - HH:mm` <br>
 * Take note of the spacing in between the keyword `event` and the description, the spacing
 in between the preposition `/at` and the date and the spacing between the date and the time.
 * Enter the two timings appropriately.Observe the spacing between the two timings and the `-` sign. 
