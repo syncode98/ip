@@ -30,7 +30,7 @@ public class Duke {
         String input = Ui.inputScanner.nextLine();
         while (!input.equals("bye")) {
             parse = new Parser(input);
-            command=parse.parseInput();
+            command = parse.parseInput();
             command.execute();
             input = Ui.inputScanner.nextLine();
         }

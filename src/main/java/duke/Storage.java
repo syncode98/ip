@@ -1,11 +1,7 @@
 package duke;
 
 import duke.command.AddCommand;
-import duke.command.Command;
-import duke.exception.IllegalEmptyDescriptionException;
-import duke.exception.IllegalPrepositionWithoutDate;
-import duke.exception.InvalidCommand;
-import duke.exception.InvalidPreposition;
+import duke.exception.*;
 import duke.task.Task;
 
 import java.io.File;
@@ -18,7 +14,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -34,7 +29,7 @@ public class Storage {
     public static String DELIMITER_EMPTY_STRING = "";
     public static String DELIMITER_SLASH = "/";
     public static String DELIMITER_SEMI_COLON = ":";
-    public static String DELIMITER_CHARACTER = " ";
+
 
     public Storage(String pathOfFile) {
         fileLines = new ArrayList<>();
@@ -142,7 +137,7 @@ public class Storage {
 
     }
 
-
+    /**Writes the data to the file.*/
     public static void writeToFile(String textToAdd) throws IOException {
 
         File file = new File(filePath);
@@ -297,6 +292,8 @@ public class Storage {
             Ui.printIncorrectPreposition(keyword);
         } catch(NullPointerException n){
             Ui.invalidCommand();
+        } catch (IllegalSlashException e) {
+            Ui.printSlash();
         }
         return task;
 

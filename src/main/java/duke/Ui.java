@@ -1,6 +1,6 @@
 package duke;
 
-import duke.exception.InvalidCommand;
+
 import duke.task.Task;
 
 import java.util.ArrayList;
@@ -9,9 +9,9 @@ import java.util.Scanner;
 
 public class Ui {
 
-    public static final char sadFace = '\u2639';
+    private static final char sadFace = '\u2639';
 
-    public String nameOfUser;
+    private final String nameOfUser;
 
     public static final Scanner inputScanner = new Scanner(System.in);
 
@@ -93,36 +93,42 @@ public class Ui {
         System.out.println(sadFace + " OOPS!!! I'm sorry, but I don't know what that means :-(");
     }
 
+    /** Prints out a warning if the command done is empty. */
     public static void printInvalidDone() {
         System.out.println(sadFace + " Command done cannot be empty!");
     }
 
+    /** Prints out a warning if the command delete is empty. */
     public static void printInvalidDelete() {
         System.out.println(sadFace + " Command delete cannot be empty!");
     }
 
+    /**
+     * Prints out a warning if the user executes the done,delete,find command for a task
+     * that does not exist.
+     */
     public static void printInvalidTask() {
         System.out.println(sadFace + " Task does not exist in list!");
     }
 
+    /** Prints out a warning if the user uses an invalid index for the done or delete command. */
     public static void printWithinRangeTask() {
         System.out.println(sadFace + " Task number must be in between 1 and 100.");
     }
 
+    /** Prints out a warning if the user enters a task without any description */
     public static void printEmptyDescription(String task) {
         String description = task.equals("event") ? ("n " + task) : (" " + task);
         System.out.println(sadFace + " OOPS!!! The description of a" + description + " cannot be empty.");
     }
 
+    /** Prints out a warning if the user enters a task with invalid date */
     public static void printEmptyDate(String task) {
 
         System.out.println(sadFace + " Enter a valid date for " + task + ".");
     }
 
-    public static void invalidPath() {
-        System.out.println("The path does not exist!");
-    }
-
+    /** Prints out all of the tasks from the data.txt file. */
     public static void printTasksFromFile(ArrayList<String> fileLines) {
         for (String line : fileLines) {
             System.out.println(line);
@@ -137,12 +143,17 @@ public class Ui {
         System.out.println("All the tasks have been cleared!");
     }
 
+    /** Prints out a warning if user enters the wrong preposition for deadline or event. */
     public static void printIncorrectPreposition(String keyword) {
         if (keyword.equals("event")) {
-            System.out.println("Inavlid preposition! Use 'at' for events!");
+            System.out.println("Invalid preposition! Use 'at' for events!");
         } else if (keyword.equals("deadline")) {
-            System.out.println("Inavlid preposition! Use 'by' for deadlines!");
+            System.out.println("Invalid preposition! Use 'by' for deadlines!");
         }
+    }
+
+    public static void printSlash(){
+        System.out.println("Please enter the slash for the task!");
     }
 
 }

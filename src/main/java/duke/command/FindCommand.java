@@ -5,9 +5,6 @@ import duke.Ui;
 import duke.exception.InvalidTask;
 import duke.task.Task;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class FindCommand extends duke.command.Command {
 
@@ -15,7 +12,7 @@ public class FindCommand extends duke.command.Command {
         this.command = input;
 
     }
-
+    /**Reads the command and finds the corresponding tasks.*/
     public void execute() {
 
         try {
@@ -42,6 +39,11 @@ public class FindCommand extends duke.command.Command {
     }
 
 
+    /**
+     * Checks if the task entered by the user exists in the first place.
+     *
+     * @throws InvalidTask If the task does not exist.
+     */
     public void checkTask() throws InvalidTask {
 
         int incidenceOfTask = (int) TaskList.taskArrayList.stream()
