@@ -1,5 +1,6 @@
 package duke;
 
+import duke.exception.InvalidCommand;
 import duke.task.Task;
 
 import java.util.ArrayList;
@@ -37,15 +38,26 @@ public class Ui {
      * @return The decision of the user to the Storage.java class.
      */
     public static String keepContents() {
-        Ui.printLines();
+        printLines();
         System.out.println("Do you want to keep the contents of the file?");
         Ui.printLines();
         String decision = Ui.inputScanner.nextLine();
-        Ui.printLines();
+        printLines();
+
+        while (!decision.equalsIgnoreCase("yes") && !decision.equalsIgnoreCase("no")) {
+            invalidDecision();
+            printLines();
+            decision = Ui.inputScanner.nextLine();
+            printLines();
+
+        }
 
         return decision;
     }
 
+    public static void invalidDecision() {
+        System.out.println("Please enter yes or no.");
+    }
 
     public static void printLines() {
         System.out.println("-------------------------------------------------------------");
@@ -117,10 +129,16 @@ public class Ui {
         }
     }
 
-    public static void printMatchingTasks(){
+    public static void printMatchingTasks() {
         System.out.println("Here are the matching tasks in your list:");
     }
 
+    public static void printClear(){
+        System.out.println();
+    }
+    public static void printClearTasks(){
+        System.out.println("All the tasks have been cleared!");
+    }
 
 }
 

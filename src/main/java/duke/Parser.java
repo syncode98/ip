@@ -40,6 +40,9 @@ public class Parser {
             input = input.replace(KEYWORD_FIND, DELIMITER_EMPTY_STRING).strip();
             command = new FindCommand(input);
 
+        } else if (input.equalsIgnoreCase("clear")) {
+            command=new ClearCommand();
+
         } else {
             command = new AddCommand(input);
 

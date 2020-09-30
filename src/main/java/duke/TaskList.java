@@ -53,6 +53,10 @@ public class TaskList {
     public static void removeTask(Task task) {
         taskArrayList.remove(task);
     }
+
+    public static void removeAllTasks(){
+        taskArrayList.clear();
+    }
 }
 
 

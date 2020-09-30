@@ -69,10 +69,14 @@ public class Storage {
                     }
 
 
-                } else {
+                } else if(decision.equalsIgnoreCase("no")) {
                     //User decides to delete the existing file
                     clearFile();
                     createFile();
+                }else{
+                    Ui.invalidCommand();
+
+                    Ui.printLines();
                 }
             }
         } catch (NullPointerException n) {
