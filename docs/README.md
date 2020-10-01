@@ -300,7 +300,7 @@ Bye.Hope to see you again soon!
 
 ## Save data <a name="save"></a>
 
-The data in the files is saved automatically after the user adds/edits a task.
+The data in the list is saved automatically after the user adds/edits a task.
 
 ## Error detection <a name="error"></a>
 

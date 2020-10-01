@@ -65,11 +65,11 @@ public class Storage {
                     }
 
 
-                } else if(decision.equalsIgnoreCase("no")) {
+                } else if (decision.equalsIgnoreCase("no")) {
                     //User decides to delete the existing file
                     clearFile();
                     createFile();
-                }else{
+                } else {
                     Ui.invalidCommand();
 
                     Ui.printLines();
@@ -137,7 +137,7 @@ public class Storage {
 
     }
 
-    /**Writes the data to the file.*/
+    /** Writes the data to the file. */
     public static void writeToFile(String textToAdd) throws IOException {
 
         File file = new File(filePath);
@@ -245,7 +245,7 @@ public class Storage {
     public static Task taskFromFile(String input) {
 
         Task task = null;
-        String keyword=null;
+        String keyword = null;
         try {
             char keywordSymbol = input.charAt(0);
             String status = input.substring(4, 5);
@@ -287,10 +287,10 @@ public class Storage {
             Ui.printEmptyDate(task.toString());
         } catch (InvalidCommand i) {
             Ui.printInvalidTask();
-        } catch(InvalidPreposition i){
+        } catch (InvalidPreposition i) {
             assert keyword != null;
             Ui.printIncorrectPreposition(keyword);
-        } catch(NullPointerException n){
+        } catch (NullPointerException n) {
             Ui.invalidCommand();
         } catch (IllegalSlashException e) {
             Ui.printSlash();

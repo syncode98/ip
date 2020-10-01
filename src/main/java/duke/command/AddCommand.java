@@ -104,13 +104,13 @@ public class AddCommand extends Command {
      * @throws IllegalPrepositionWithoutDate    If the user does not enter the date after the preposition
      */
     public static Task returnEventDeadline(String typeOfTask, String command) throws IllegalEmptyDescriptionException,
-            IllegalPrepositionWithoutDate, InvalidPreposition,  IllegalSlashException {
+            IllegalPrepositionWithoutDate, InvalidPreposition, IllegalSlashException {
         Task task = null;
 
-        if (!command.contains(DELIMITER_SLASH)){
+        if (!command.contains(DELIMITER_SLASH)) {
             throw new IllegalSlashException();
         }
-            String[] words = command.split(DELIMITER_SLASH);
+        String[] words = command.split(DELIMITER_SLASH);
         String taskDescription = returnDescriptionOfTask(words[0], typeOfTask);
         words[0] = taskDescription;
         String deadlineForTask = words[1].strip();
