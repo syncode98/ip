@@ -11,6 +11,7 @@ done 4
 done 3
 list
 find marathon
+done
 delete 4
 bye
 

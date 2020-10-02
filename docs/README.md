@@ -315,7 +315,7 @@ Task number must be in between 1 and 100.
 
 Example: User enters an invalid date for an event.
 <pre><code>-------------------------------------------------------------
-☹ Enter a valid date for event.
+Enter a valid date for event.
 -------------------------------------------------------------
 </code></pre>
 
