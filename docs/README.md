@@ -104,7 +104,7 @@ Now you have N tasks in the list.
 The format of the task displayed is as follows: <br>
 Type of task | Completion status | Task <br>
  * **The type of task**: T for todo, D for deadline and E for event. <br>
- * **Completion Status**: `[⨉]`represents a task that has not been completed.Conversely, a `[✓]` shows a task that has been completed.
+ * **Completion Status**: `[N]`represents a task that has not been completed.Conversely, a `[Y]` shows a task that has been completed.
  * **Task**: The task itself.
  * **N**: The number of tasks in the list.
  
@@ -118,7 +118,7 @@ Example: Create a task about a homework that has to be done.
 <pre><code>-------------------------------------------------------------
 todo homework
 -------------------------------------------------------------
-[T][⨉]homework
+[T][N]homework
 -------------------------------------------------------------
 Now you have 1 tasks in the list.
 -------------------------------------------------------------
@@ -142,7 +142,7 @@ Example: Create a task for a homework which has to be submitted by 10-01-2019
 <pre><code>-------------------------------------------------------------
 deadline homework/by 10-01-2019
 -------------------------------------------------------------
-[D][⨉]homework(by: 10 Oct 2019 )
+[D][N]homework(by: 10 Oct 2019 )
 -------------------------------------------------------------
 Now you have 2 tasks in the list.
 -------------------------------------------------------------</code></pre>
@@ -158,7 +158,7 @@ Example: Create a task about the homework which has to be submitted by 10-01-201
 <pre><code>-------------------------------------------------------------
 deadline homework/by 20-10-2019 18:00
 -------------------------------------------------------------
-[D][⨉]homework(by: 18:00 20 Oct 2019 )
+[D][N]homework(by: 18:00 20 Oct 2019 )
 -------------------------------------------------------------
 Now you have 3 tasks in the list.
 -------------------------------------------------------------</code></pre>
@@ -182,7 +182,7 @@ Example: Create an event about a charity match which occurs on 10-05-2019
 <pre><code>-------------------------------------------------------------
 event charity match/at 10-05-2019
 -------------------------------------------------------------
-[E][⨉]charity match(at:  10 May 2019 )
+[E][N]charity match(at:  10 May 2019 )
 -------------------------------------------------------------
 Now you have 4 tasks in the list.
 -------------------------------------------------------------
@@ -198,7 +198,7 @@ Example: Create an event about a marathon which occurs on 05-05-2019 at 6 PM
 <pre><code>-------------------------------------------------------------
 event marathon/at 05-05-2019 18:00
 -------------------------------------------------------------
-[E][⨉]marathon(at: 18:00 5 May 2019 )
+[E][N]marathon(at: 18:00 5 May 2019 )
 -------------------------------------------------------------
 Now you have 5 tasks in the list.
 -------------------------------------------------------------
@@ -215,7 +215,7 @@ Example: Create an event about a marathon which occurs on 10-05-2019 at 6 PM to 
 <pre><code>-------------------------------------------------------------
 event marathon/at 09-09-2019 18:00 - 20:00
 -------------------------------------------------------------
-[E][⨉]marathon(at: 18:00-20:00 9 Sep 2019 )
+[E][N]marathon(at: 18:00-20:00 9 Sep 2019 )
 -------------------------------------------------------------
 Now you have 6 tasks in the list.
 ------------------------------------------------------------- 
@@ -232,11 +232,11 @@ Format:`list`<br>
 list
 -------------------------------------------------------------
 Here are the tasks in your list:
-1.[D][⨉]exam(by: 10 Oct 2019 )
-2.[D][⨉]homework(by: 18:00 20 Oct 2019 )
-3.[E][⨉]charity match(at:  10 May 2019 )
-4.[E][⨉]marathon(at: 18:00 5 May 2019 )
-5.[E][⨉]marathon(at: 18:00-20:00 9 Sep 2019 )
+1.[D][N]exam(by: 10 Oct 2019 )
+2.[D][N]homework(by: 18:00 20 Oct 2019 )
+3.[E][N]charity match(at:  10 May 2019 )
+4.[E][N]marathon(at: 18:00 5 May 2019 )
+5.[E][N]marathon(at: 18:00-20:00 9 Sep 2019 )
 -------------------------------------------------------------
 </code></pre>
 
@@ -250,8 +250,8 @@ Example:Find tasks that has the description.
 find marathon 
 -------------------------------------------------------------
 Here are the matching tasks in your list:
-1. [E][⨉]marathon(at: 18:00 5 May 2019 )
-2. [E][⨉]marathon(at: 18:00-20:00 9 Sep 2019 )
+1. [E][N]marathon(at: 18:00 5 May 2019 )
+2. [E][N]marathon(at: 18:00-20:00 9 Sep 2019 )
 -------------------------------------------------------------</code></pre>
 
 ## Delete tasks: `delete` <a name="delete"></a>
@@ -265,7 +265,7 @@ Example: Delete the 4th task in the list.
 delete 4
 -------------------------------------------------------------
 Noted. I've removed this task:
-[E][⨉]marathon(at: 18:00 5 May 2019 )
+[E][N]marathon(at: 18:00 5 May 2019 )
 Now you have 4 tasks in the list.
 -------------------------------------------------------------</code></pre>
 
@@ -278,7 +278,7 @@ Example:After finishing the fourth task in the list, update its completion statu
 done 4
 -------------------------------------------------------------
 Nice! I've marked this task as done:
-[E][✓]marathon(at: 18:00 5 May 2019 )
+[E][Y]marathon(at: 18:00 5 May 2019 )
 -------------------------------------------------------------</code></pre>
 ## Clear : `clear` <a name="clear"></a>
 Clear all the tasks.<br>

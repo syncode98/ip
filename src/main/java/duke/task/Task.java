@@ -52,7 +52,7 @@ public class Task {
     public String toString() {
         char complete = '\u2713'; //unicode values for tick
         char incomplete = '\u2A09'; //unicode values for cross
-        char symbol = (this.isDone) ? complete : incomplete;
+        char symbol = (this.isDone) ? 'Y' : 'N';
         return "[" + symbol + "]" + this.task;
     }
 }
